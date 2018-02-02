@@ -13,7 +13,8 @@
 ## Set Up
 
 ### Install all Dependencies 
-Run `npm install` - installs all dependencies contained in package.json
+While in __development__ run `npm install` - installs all dependencies contained in package.json
+For __production server__ use `npm install --production` instead - installs dependencies, excluded dev dependencies.
 
 ### Build
 Run `npm run build` - Compiles JS files in the /src directory from ES6 to browser ready ES5 and writes them to /dist.
