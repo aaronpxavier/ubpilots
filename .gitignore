@@ -27,7 +27,7 @@ dist
 **/Thumbs.db
 
 #sensitive_data
-remote_conn.json
+secret.js
 src/__tests__/test_config.js
 key
 **/token_secret.js

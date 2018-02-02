@@ -3,13 +3,12 @@ var gulp = require('gulp');
 var babel = require('gulp-babel');
 var GulpSSH = require('gulp-ssh');
 var fs = require('fs');
-
-var remoteConn = JSON.parse(fs.readFileSync('remote_conn.json', 'utf8'));
+var remoteConn = require('secret');
 
 var config = {
-    host: remoteConn.host,
-    port: remoteConn.port,
-    username: remoteConn.user,
+    host: remoteConn.ssh_host,
+    port: remoteConn.ssh_port,
+    username: remoteConn.ssh_user,
     privateKey: fs.readFileSync('key','utf8')
 }
 
