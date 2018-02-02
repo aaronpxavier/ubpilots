@@ -14,6 +14,7 @@
 
 ### Install all Dependencies 
 While in __development__ run `npm install` - installs all dependencies contained in package.json
+
 For __production server__ use `npm install --production` instead - installs dependencies, excluded dev dependencies.
 
 ### Build
