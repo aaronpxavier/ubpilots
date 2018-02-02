@@ -1,0 +1,31 @@
+{
+  "name": "ubpilots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "build": "babel src -d ./dist --ignore *.spec.js",
+    "deploy": "npm run build && gulp deploy && gulp deploy2",
+    "start": "npm run build && node ./dist/server.js"
+  },
+  "keywords": [
+    "ubpilots",
+    "ubpa",
+    "'university at buffalo",
+    "ub",
+    "pilot's association"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-ssh": "^0.6.2"
+  },
+  "dependencies": {
+    "mongoose": "^5.0.3"
+  }
+}
