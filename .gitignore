@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-dist
+**/dist
 
 # dependencies
 **/node_modules
@@ -26,11 +26,11 @@ dist
 **/Thumbs.db
 
 #sensitive_data
-secret.js
-src/__tests__/test_config.js
+backend/secret.js
+backend/src/__tests__/test_config.js
 key
 **/token_secret.js
-logs
+**/logs
 
 
 
