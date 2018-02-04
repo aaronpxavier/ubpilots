@@ -21,7 +21,6 @@ dist
 **/!.vscode/launch.json
 **/!.vscode/extensions.json
 
-
 # System Files
 **/.DS_Store
 **/Thumbs.db
