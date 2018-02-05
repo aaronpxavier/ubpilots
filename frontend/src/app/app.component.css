@@ -1,0 +1,22 @@
+.btn {
+    border: none;
+    background-color: #f5f6f7;
+    margin-top: 0px;
+    margin-left: 0;
+    padding-left: 0px;
+}
+
+#login-btn:hover {
+    background-color: #005bbb;
+    font-size: 16px;
+    padding-left: 16px;
+    color: #f5f6f7;
+}
+
+.nav-link a{
+    padding-top: 22px;
+}
+
+.navbar-brand {
+    padding-top: 22px;
+}
