@@ -21,6 +21,15 @@
 **/!.vscode/launch.json
 **/!.vscode/extensions.json
 
+# misc
+frontend/.sass-cache
+frontend/connect.lock
+frontend/coverage
+frontend/libpeerconnection.log
+frontend/npm-debug.log
+frontend/testem.log
+frontend/typings
+
 # System Files
 **/.DS_Store
 **/Thumbs.db
@@ -31,6 +40,4 @@ backend/src/__tests__/test_config.js
 key
 **/token_secret.js
 **/logs
-
-
 
