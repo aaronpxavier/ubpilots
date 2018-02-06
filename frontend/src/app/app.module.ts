@@ -1,12 +1,13 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { ImageCropperComponent } from 'ng2-img-cropper';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ImgCropperComponent } from './components/img-cropper/img-cropper.component';
 
 
 
@@ -15,7 +16,9 @@ import { ErrorComponent } from './components/error/error.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ErrorComponent
+    ErrorComponent,
+    ImgCropperComponent,
+      ImageCropperComponent
   ],
   imports: [
       BrowserModule,
