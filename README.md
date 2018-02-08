@@ -1,5 +1,5 @@
 # UBPA Web Application
-Markup : ![picture alt](https://ubpilots.fltprep.com/assets/el_presidente.jpg)
+Sim room : ![picture alt](https://ubpilots.fltprep.com/assets/logo/ubpa_logo_black.png)
 
 
 ## Setup 
