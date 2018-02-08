@@ -1,5 +1,5 @@
 # UBPA Web Application
-Sim room : ![picture alt](https://ubpilots.fltprep.com/assets/logo/ubpa_logo_black.png)
+Sim room : ![picture alt](https://ubpilots.fltprep.com/assets/logo/ubpa_logo_blue.png)
 
 
 ## Setup 
