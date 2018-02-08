@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css");
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Merriweather+Sans|Share+Tech+Mono');
 
 body {
@@ -47,9 +48,7 @@ p {font-size: 16px;}
 .navbar-default .navbar-nav>li>a {
     font-family: 'Merriweather Sans', sans-serif;
 }
-.navbar-default .navbar-nav>li>button {
-    margin-top: 10px;
-}
+
 .navbar-nav  li a:hover {
     color: #005bbb !important;
 }
