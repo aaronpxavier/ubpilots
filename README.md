@@ -1,0 +1,59 @@
+# UBPA Web Application
+Markup : ![picture alt](https://ubpilots.fltprep.com/assets/el_presidente.jpg)
+
+
+## Setup 
+1. Start node/express development server. (See README in /backend)
+2. Start ng2 development server. (See README in /frontend)
+
+## Project Description. 
+Project will create a web application that supports the UB pilot's association. 
+1. MVP (minimum viable product) will consist of a landing page, user login & authentication, 
+user sign up page (restricted to people with *@buffalo.edu email accounts), and an admin page for 
+club officers to validate user flight log submissions. page that will contain html table of all 
+flight log entries. Table will be loaded dynamically with data queried from a backend web api. All 
+flight log data will be stored and retrieved from a mongoDB database. 
+2. Add on Features 
+a. 
+
+## User Story 
+The UB Pilot's Association is a student organization that serves a community of certified pilots,
+aspiring pilots and aviation enthusiasts. The pilot's association currently has a simulator room that 
+provides flight training to people with interest in learning to fly. The sim room also allows, 
+currently certified pilots, a very low cost way of staying current and sharpening their skills. 
+One of the things we do in the sim room is have people log their flight time on a white board.
+When the white board is full, we transfer the info onto a excel spread sheet. This is a tedious and 
+inefficient way to work. A web application could simplify this by providing a way for people to create 
+their own user account and log their time through a html form. All the logged time will get stored 
+in a database.
+
+## Technology
+* Node (see README.md in /backend)
+* Angular 5 (see README.md in /frontend)
+* Ubuntu 16.04 Xenial
+* Nginx (web server/reverse proxy/load balancer)
+* PM2 (production process manager)
+
+## License
+
+MIT License
+
+Copyright (c) 2018 UBPA (University at Buffalo Pilot's Association)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
