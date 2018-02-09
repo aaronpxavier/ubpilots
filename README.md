@@ -1,6 +1,4 @@
 # UBPA Web Application
-Sim room : ![picture alt](https://ubpilots.fltprep.com/assets/logo/ubpa_logo_blue.png = x350)
-
 
 ## Setup 
 1. Start node/express development server. (See README in /backend)
@@ -13,8 +11,19 @@ user sign up page (restricted to people with *@buffalo.edu email accounts), and 
 club officers to validate user flight log submissions. page that will contain html table of all 
 flight log entries. Table will be loaded dynamically with data queried from a backend web api. All 
 flight log data will be stored and retrieved from a mongoDB database. 
-2. Add on Features 
-a. 
+2. Add on Features <details>
+    <summary>Admin Resources</summary>
+     Allow admin user to edit and change images on landing page. 
+     </details> <details>
+    <summary>Messaging</summary>
+     Admin User has ability to make announcements that gets posted on web page, facebook page, twitter, and sent via email.
+    </details> <details>
+    <summary>Club E-Board</summary>
+    Create a page that contains club E-Board. 
+     Admin has ability to change content of page through a web application interface.
+    </details>
+
+
 
 ## User Story 
 The UB Pilot's Association is a student organization that serves a community of certified pilots,
