@@ -9,8 +9,8 @@
 ## Project Description. 
 Project will create a web application that supports the UB pilot's association. 
 1. MVP (minimum viable product) will consist of a landing page, user login & authentication, 
-user sign up page (restricted to people with *@buffalo.edu email accounts), and an admin page for 
-club officers to validate user flight log submissions. page that will contain html table of all 
+user sign up page (restricted to people with *@buffalo.edu email accounts), an admin page for 
+club officers to validate user flight log submissions and a page that will contain a html table of all 
 flight log entries. Table will be loaded dynamically with data queried from a backend web api. All 
 flight log data will be stored and retrieved from a mongoDB database. 
 2. Add on Features <details>
@@ -25,18 +25,15 @@ flight log data will be stored and retrieved from a mongoDB database.
      Admin has ability to change content of page through a web application interface.
     </details>
 
-
-
 ## User Story 
 The UB Pilot's Association is a student organization that serves a community of certified pilots,
 aspiring pilots and aviation enthusiasts. The pilot's association currently has a simulator room that 
-provides flight training to people with interest in learning to fly. The sim room also allows, 
-currently certified pilots, a very low cost way of staying current and sharpening their skills. 
-One of the things we do in the sim room is have people log their flight time on a white board.
-When the white board is full, we transfer the info onto a excel spread sheet. This is a tedious and 
-inefficient way to work. A web application could simplify this by providing a way for people to create 
-their own user account and log their time through a html form. All the logged time will get stored 
-in a database.
+provides flight training to people with interest in learning to fly. Additionally, the sim room provides a 
+way for current pilots to keep their skills sharp while they are in school. One of the things 
+we do in the sim room is have people log their flight time on a white board. When the white board is full, 
+we transfer the info onto a excel spread sheet. This is a tedious and inefficient way to work. A web 
+application could simplify this by providing a way for people to create their own user accounts and log 
+their time through a html form. All the logged time will get stored in a database.
 
 ## Technology
 * Node (see README.md in /backend)
