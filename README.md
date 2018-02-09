@@ -10,7 +10,7 @@
 Project will create a web application that supports the UB pilot's association. 
 1. MVP (minimum viable product) will consist of a landing page, user login & authentication, 
 user sign up page (restricted to people with *@buffalo.edu email accounts), an admin page for 
-club officers to validate user flight log submissions and a page that will contain html table of all 
+club officers to validate user flight log submissions and a page that will contain a html table of all 
 flight log entries. Table will be loaded dynamically with data queried from a backend web api. All 
 flight log data will be stored and retrieved from a mongoDB database. 
 2. Add on Features <details>
