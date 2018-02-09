@@ -1,5 +1,7 @@
 # UBPA Web Application
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CSE_442/[UB-Pilots-Association-Dev-Team]?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Setup 
 1. Start node/express development server. (See README in /backend)
 2. Start ng2 development server. (See README in /frontend)
