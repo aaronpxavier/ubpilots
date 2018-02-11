@@ -1,9 +1,8 @@
 
 import Users from './Users';
 import jwt from '../../node_modules/jsonwebtoken';
-import secret from '../../remote_conn.json';
-
-const key = secret.secret;
+import cfg from '../cfg';
+key = cfg.tokenKey;
 
 export default class Token {
 
