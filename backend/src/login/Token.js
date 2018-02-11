@@ -1,8 +1,9 @@
 
 import Users from './Users';
-import jwt from '../../node_modules/jsonwebtoken';
+import jwt from '../../Token.js';
 import cfg from '../cfg';
-key = cfg.tokenKey;
+
+let key = cfg.tokenKey;
 
 export default class Token {
 
