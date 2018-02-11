@@ -1,9 +1,9 @@
 
 import Users from './Users';
-import jwt from '../../Token.js';
+import jwt from '../../node_modules/jsonwebtoken';
 import cfg from '../cfg';
 
-let key = cfg.tokenKey;
+const key = cfg.tokenKey;
 
 export default class Token {
 
@@ -27,13 +27,13 @@ export default class Token {
                         return this.users.getUser(userName);
                     }
                     else {
-                        console.log('invalid user');
                         reject(new Error('Invalid User'));
                     }
                 })
                 .then( (user) => {
                     jwt.sign(user.toJSON(), key,
                         { expiresIn: 60 * this.tokenExpMins }, (err, token) => {
+                            if (err) reject(err);
                             resolve(token);
                         });
                 })
