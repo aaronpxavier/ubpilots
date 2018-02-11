@@ -7,15 +7,18 @@ export class LoginService {
 
 
   constructor(private http: HttpClient) {
-      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       if (currentUser) {
         this.token = currentUser.token;
       }
   }
 
   hasToken() {
-    if (this.token) return true;
-    else return false;
+    if (this.token) {
+        return true;
+    } else {
+        return false;
+    }
   }
 
   login(username: string, password: string) {
