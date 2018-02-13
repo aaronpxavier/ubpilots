@@ -38,7 +38,6 @@ frontend/typings
 backend/src/secret.json
 backend/src/__tests__/test_config.js
 **/key
-
 **/secret.json
 **/logs
 

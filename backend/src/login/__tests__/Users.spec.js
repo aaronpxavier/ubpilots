@@ -4,7 +4,6 @@
 import Users from '../Users';
 import app from '../../app';
 
-
 describe('testing Users Class', () => {
     const userName = 'testuser';
     const pass = 'password%';
@@ -34,9 +33,14 @@ describe('testing Users Class', () => {
             });
     });
 
-    test('testing checking that testUser is not admin', () => {
+    test('testing method checking that testUser is not admin', () => {
         expect.assertions(1);
         return expect(users.checkIfAdmin(userName)).resolves.toBe(false);
+    });
+
+    test('testing method checkIfAdminUserExists returns false when the db has no admins', () => {
+        expect.assertions(1);
+        return expect(users.checkIfAdminUserExists()).resolves.toBe(false);
     });
 
     test('testing method validateUser(userName,pass) checking if testUser exists', () => {
@@ -72,14 +76,27 @@ describe('testing Users Class', () => {
     test('testing creating admin user', (done) => {
         const adminUser = 'testAdmin';
         const adminPass = 'testAdmin^Pass';
-        expect.assertions(1);
+        expect.assertions(3);
         users.saveUser(adminUser,adminPass, true)
             .then(() => {
                 return users.checkIfAdmin(adminUser);
             })
             .then((isAdmin) => {
                 expect(isAdmin).toBe(true);
+                return users.checkIfAdminUserExists()
+
+            })
+            .then((adminUserExists) => {
+                expect(adminUserExists).toBe(true);
+            })
+            .then(() => {
                 return users.deleteUser(adminUser);
+            })
+            .then(() => {
+                return users.checkIfAdminUserExists();
+            })
+            .then((adminUserExists) => {
+                expect(adminUserExists).toBe(false);
             })
             .then(() => {
                 done();
