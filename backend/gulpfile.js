@@ -19,7 +19,7 @@ var gulpSSH = new GulpSSH({
 
 gulp.task('deploy', function () {
     return gulp
-        .src(['dist/**/*', 'package.json', 'secret.js', 'src/secret.json'])
+        .src(['dist/**/*', 'package.json', 'src/secret.json'])
         .pipe(gulpSSH.dest('app/dist'));
 });
 
