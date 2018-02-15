@@ -121,4 +121,21 @@ export default class Users {
         });
     }
 
+    /**
+     * @define fn checks if a regular user Exists on mongoDB. If there is an non admin user then Promise resolves true. Otherwise returns false
+     * @return { Promise }
+     **/
+    checkIfRegularUserExists() {
+        return new Promise ((resolve) => {
+            userModel.findOne({'isAdmin': false}, 'isAdmin', function (err, user) {
+                console.log(user);
+                if (err)
+                    resolve(false);
+                else if (user)
+                    user.isAdmin === false ? resolve(true) : resolve(false);
+                else
+                    resolve(false);
+            });
+        });
+    }
 }
