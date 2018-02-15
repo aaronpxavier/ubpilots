@@ -1,0 +1,38 @@
+Meeting 1
+2/ 14/ 2018
+
+Attendance:
+
+•	Felipe Canales
+•	Derrick Dela Cruz
+•	Arun Mavumkal
+
+
+
+Summary of Meeting:
+
+•	Created practice Git Repository/ Practiced protocols as a team/ How to avoid merge conflicts
+•	Discussed where we stand with the project
+•	How we want to move forward with it
+
+Completed Since Last Meeting:
+
+N/A
+
+
+
+Tasks to Be Completed Before Next Meeting:
+
+•	Felipe Canales – Frontend - Admin Page/ User Page Table for the prototype. Table will be static for the time being
+
+•	Derrick Dela Cruz – Frontend - Create user login/sign up page
+
+•	Arum Mavumkal – Frontend – Introduce Materilize CSS Library
+
+
+
+Task Descriptions:
+
+•	Logbook table will be introduced for the Admin page with “New”, “Delete”, and “Edit” buttons. Can be ordered in Ascending/Descending order. Will be able to search by users/date/number of landings…etc
+•	Frontend – Will remove bootstrap and introduce materialize css library to the landing page
+•	Frontend – Will create user/admin login page and create a sign up page for new users.
