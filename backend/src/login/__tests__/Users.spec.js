@@ -38,10 +38,6 @@ describe('testing Users Class', () => {
         return expect(users.checkIfAdmin(userName)).resolves.toBe(false);
     });
 
-    test('testing method checkIfAdminUserExists returns false when the db has no admins', () => {
-        expect.assertions(1);
-        return expect(users.checkIfAdminUserExists()).resolves.toBe(false);
-    });
 
     test('testing method validateUser(userName,pass) checking if testUser exists', () => {
         expect.assertions(1);
@@ -76,7 +72,7 @@ describe('testing Users Class', () => {
     test('testing creating admin user', (done) => {
         const adminUser = 'testAdmin';
         const adminPass = 'testAdmin^Pass';
-        expect.assertions(3);
+        expect.assertions(2);
         users.saveUser(adminUser,adminPass, true)
             .then(() => {
                 return users.checkIfAdmin(adminUser);
@@ -94,9 +90,6 @@ describe('testing Users Class', () => {
             })
             .then(() => {
                 return users.checkIfAdminUserExists();
-            })
-            .then((adminUserExists) => {
-                expect(adminUserExists).toBe(false);
             })
             .then(() => {
                 done();
