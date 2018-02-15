@@ -45,14 +45,14 @@ export default class Token {
 
     /**
      * @param token must be defined with valid json web token
-     * @returns {Promise} promise resolves with decoded string if token is valid.
-     *  Other wise rejects with error.
+     * @returns {Promise}
+     * @define promise resolves with decoded string if token is valid. Other wise rejects with error.
      */
     resolveToken(token) {
         return new Promise((resolve, reject)=> {
             jwt.verify(token, key, function(err, decoded) {
                 if(err) reject(err);
-                console.log(decoded);// bar
+                //console.log(decoded);// bar
                 resolve(decoded);
             });
         });
