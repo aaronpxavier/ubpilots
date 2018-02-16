@@ -36,12 +36,21 @@ describe('testing Token Class', () => {
     test('testing method getToken(userName,password)', () => {
         expect.assertions(1);
         return expect(token.getToken(userName, pass)).resolves.toBeTruthy();
+    });
 
+    test('testing method getToken(userName,password) rejects invalid pass', () => {
+        expect.assertions(1);
+        return expect(token.getToken(userName,'wrongPass')).rejects.toBeInstanceOf(Error);
     });
 
     test('testing method getToken(userName,password) rejects invalid user', () => {
         expect.assertions(1);
-        return expect(token.getToken(userName, 'wrongPass')).rejects.toBeInstanceOf(Error);
+        return expect(token.getToken('WrongUser',pass)).rejects.toBeInstanceOf(Error);
+    });
+
+    test('testing method getToken(userName,password) rejects invalid user and pass', () => {
+        expect.assertions(1);
+        return expect(token.getToken('WrongUser','wrongPass')).rejects.toBeInstanceOf(Error);
     });
 
     test('testing method resolveToken(token) resolves token', (done) => {

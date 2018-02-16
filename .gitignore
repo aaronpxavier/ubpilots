@@ -35,10 +35,10 @@ frontend/typings
 **/Thumbs.db
 
 #sensitive_data
+**/remote-conn.json
 backend/src/secret.json
 backend/src/__tests__/test_config.js
 **/key
-
 **/secret.json
 **/logs
 

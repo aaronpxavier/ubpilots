@@ -20,7 +20,8 @@ export default class Users {
      * @param userName must be defined with valid user string
      * @param pass must be defined with valid password string
      * @param isAdmin default to false must be boolean.
-     * @returns promise obj after creating user in database
+     * @define creates user in db
+     * @returns {Promise}
      */
     saveUser (userName, pass, isAdmin = false) {
         return this.createUserModel(userName, pass, isAdmin).save();
@@ -47,7 +48,7 @@ export default class Users {
 
     /**
      * @param userName must be defined with valid user.
-     * Method must not be used to validate user.
+     * @define Method must not be used to validate user.
      * @returns {Promise} that resolves user json if user exists in db
      */
     getUser(userName) {
@@ -63,6 +64,7 @@ export default class Users {
      * @param userName must be defined with valid string
      * @param pass must be defined with string
      * @param isAdmin must be defined with boolean
+     * @returns { mongoose.model }
      */
     createUserModel (userName, pass, isAdmin) {
 
@@ -93,12 +95,47 @@ export default class Users {
     }//end validateUser
 
     /**
-     * fn deletes user from db
      * @param userName must be declared and defined with valid username
-     * @returns promise object.
+     * @define fn deletes user from db
+     * @returns { Promise }
      * * * */
     deleteUser(userName) {
         return userModel.remove({username: userName});
     }//end deleteUser
 
+    /**
+     * @define fn checks if a admin Exists on mongoDB. If there is an admin then Promise resolves true. Otherwise returns false
+     * @return { Promise }
+     **/
+    checkIfAdminUserExists() {
+        return new Promise ((resolve) => {
+            userModel.findOne({'isAdmin': true}, 'isAdmin', function (err, user) {
+                console.log(user);
+                if (err)
+                    resolve(false);
+                else if (user)
+                    user.isAdmin ? resolve(true) : resolve(false);
+                else
+                    resolve(false);
+            });
+        });
+    }
+
+    /**
+     * @define fn checks if a regular user Exists on mongoDB. If there is an non admin user then Promise resolves true. Otherwise returns false
+     * @return { Promise }
+     **/
+    checkIfRegularUserExists() {
+        return new Promise ((resolve) => {
+            userModel.findOne({'isAdmin': false}, 'isAdmin', function (err, user) {
+                console.log(user);
+                if (err)
+                    resolve(false);
+                else if (user)
+                    user.isAdmin === false ? resolve(true) : resolve(false);
+                else
+                    resolve(false);
+            });
+        });
+    }
 }

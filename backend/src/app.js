@@ -3,7 +3,6 @@
  *
  */
 // Imports ------------------------------------------------------------------//
-
 import express from '../node_modules/express'; // web server
 import parser from '../node_modules/body-parser'; // http request parser
 import morgan from '../node_modules/morgan'; // logger
@@ -11,7 +10,7 @@ import mongoose from '../node_modules/mongoose'; //mongoose middleware
 import config from './cfg'; // application configuration
 import formEndpoints from './routes/form_endpoints'; // version 1 routes
 import loginEndpoints from './routes/login_endpoints'; // version 1 routes
-
+import seed from './utility/seed';
 // Variables ----------------------------------------------------------------//
 
 const app = express(); // our express application
@@ -19,6 +18,9 @@ const app = express(); // our express application
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db_host);
 // Express Application Setup ------------------------------------------------//
+
+// Seed admin and regular user;
+seed();
 
 // logging
 app.use(morgan(config.mode));
@@ -55,6 +57,9 @@ app.all('/',(req,res)=>{
         msg: 'testing root api endpoint. It works!!!'
     });
 }); // end app.all(/)
+
+//seeding admin
+
 
 // Exports ------------------------------------------------------------------//
 
