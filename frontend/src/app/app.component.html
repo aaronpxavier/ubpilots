@@ -1,15 +1,35 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <!-- Navbar -->
-<nav class="nav-wrapper">
-      <a href="/home" class="brand-logo">UBPA</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/login">WHO</a></li>
-        <li><a href="#">WHAT</a></li>
-        <li> <a href="#">WHERE</a></li>
-        <li><a href="/login"><button  class="btn btn-default" id="login-btn">Login</button></a></li>
-      </ul>
-</nav><!-- End Navbar -->
+
+<!--<nav class="bg-3 nav-extended">-->
+    <!--<div class="nav-wrapper">-->
+
+      <!--<ul id="nav-mobile" class="right hide-on-med-and-down">-->
+
+      <!--</ul>-->
+    <!--</div>-->
+    <!---->
+<!--</nav>&lt;!&ndash; End Navbar &ndash;&gt;-->
+<nav>
+    <div class="nav-wrapper bg-3">
+        <a href="/home" class="brand-logo">UB Pilots</a>
+        <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">Flight Logs</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li> <a href="#">About Us</a></li>
+            <li><a href="/login" id="login-btn" class="waves-effect waves-light btn">Login</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-menu">
+            <h2 class="center-align"><strong><u>Menu</u></strong></h2>
+            <li><a href="#">Flight Logs</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li> <a href="#">About Us</a></li>
+            <li><a href="/login" id="login-btn-collapsable" class="waves-effect waves-light btn">Login</a></li>
+        </ul>
+    </div>
+</nav>
 
 
 <router-outlet></router-outlet>

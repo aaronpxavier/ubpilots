@@ -3,11 +3,13 @@
 
 
 <!-- First Container -->
-<div class="container-fluid bg-1 text-center">
-  <h3 class="margin">Wanna get high?</h3>
-  <img src="../assets/logo/ubpa_logo_black.png" class="img-responsive margin" style="display:inline" alt="Bird" width="350" height="350">
+<div class="section bg-1 center-align">
+  <h3 id="cool-phrase" class="margin">Wanna get high?</h3>
+  <img src="../assets/logo/ubpa_logo_black.png" class="responsive-img" style="display:inline" alt="UBPA Logo" width="350" height="350">
   <h2>UB Pilot's Association</h2>
-  <h3> Come Fly With Us!!! </h3>
+  <div class="container">
+  </div>
+  <p></p>
 </div>
 
 <!-- Second Container -->
@@ -16,7 +18,7 @@
 </div>
 
 <!-- Third Container (Grid) -->
-<div class="container-fluid bg-3 text-center">
+<div class="section bg-3 center-align">
   <h3 class="margin">What we do...</h3><br>
   <!--<div class="row hidden-xs">-->
   <!--<div class="col-sm-4">-->
@@ -30,36 +32,50 @@
   <!--</div>-->
   <!--</div>-->
   <div class="row">
-    <div class="col-sm-4">
-      <div class="row">
-        <p>We Fly Together</p>
-      </div>
-      <div class="row thumbnail-row">
-        <img class="img-thumbnail" src="../assets/el_presidente.jpg"  style="width:100%" alt="Image">
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="row">
-        <p>We hang together</p>
-      </div>
-      <div class="row thumbnail-row">
-        <img class="img-thumbnail" src="../assets/yournot_maverick.jpg"  style="width:100%" alt="Image">
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+          <img src="../assets/el_presidente.jpg"  alt="Image">
+          <div class="card-content"><p>We fly together</p></div>
+        </div>
       </div>
     </div>
-
-    <div class="col-sm-4">
-      <div class="row">
-        <p>We discuss aviation</p>
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+          <img src="../assets/yournot_maverick.jpg"  alt="Image">
+          <div class="card-content"><p>We hang together</p></div>
+        </div>
       </div>
-      <div class="row">
-        <img class="img-thumbnail thumbnail-row" src="../assets/maverick.jpg"  style="width:100%" alt="Image">
+    </div>
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+          <img src="../assets/maverick.jpg"  alt="Image">
+          <div class="card-content"><p>We discuss aviation</p></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+        <!--<p>We hang together</p>-->
+      <!--</div>-->
+      <!--<div class="row thumbnail-row">-->
+        <!--<img class="img-thumbnail" src="../assets/yournot_maverick.jpg"  style="width:100%" alt="Image">-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col s4">-->
+      <!--<div class="row">-->
+        <!--<p>We discuss aviation</p>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+        <!--<img class="img-thumbnail thumbnail-row" src="../assets/maverick.jpg"  style="width:100%" alt="Image">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 <!-- Footer -->
-<footer class="container-fluid bg-4 text-center" >
-  <p>Your a pirate!!!
-  </p>
-</footer>
+
 <router-outlet></router-outlet>

@@ -1,26 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+/*!* You can add global styles to this file, and also import other style files *!*/
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css");
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Merriweather+Sans|Share+Tech+Mono');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 body {
     line-height: 1.8;
     font-family: 'Share Tech Mono', monospace;
     font-size: 20px;
-    color: #f5f6f7;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 p {font-size: 16px;}
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {font-size: 24px}
+
+.page-footer {
+    background-color: #005bbb;
+    color: #f5f6f7;
+}
+
 .margin {margin-bottom: 45px;}
+
 .bg-1 {
     background-color: #005bbb;
-    /*background-color: #1abc9c; /* Green */
-    color: #ffffff;
+    color: #f5f6f7;
+    /*background-color: #1abc9c; !* Green */
 }
 .bg-2 {
     background-color: #474e5d; /* Dark Blue */
-    color: #ffffff;
 }
 .bg-3 {
     background-color: #ffffff; /* White */
@@ -28,27 +53,17 @@ p {font-size: 16px;}
 }
 .bg-4 {
     background-color: #2f2f2f; /* Black Gray */
-    color: #fff;
 }
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
 }
-.navbar {
-    border: 0;
-    border-radius: 0;
-    margin-bottom: 0;
-    margin-top: 0px;
-    padding-bottom: 0px;
-    font-size: 12px;
-    letter-spacing: 5px;
-}
 
 
-.navbar-default .navbar-nav>li>a {
-    font-family: 'Merriweather Sans', sans-serif;
-}
 
-.navbar-nav  li a:hover {
-    color: #005bbb !important;
-}
+
+
+
+/*.navbar-nav  li a:hover {*/
+    /*color: #005bbb !important;*/
+/*}*/
