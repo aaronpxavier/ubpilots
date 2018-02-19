@@ -4,12 +4,12 @@ var gulp = require('gulp');
 var GulpSSH = require('gulp-ssh');
 var fs = require('fs');
 
-var remoteConn = JSON.parse(fs.readFileSync('remote_conn.json', 'utf8'));
+var remoteConn = require('./remote-conn.json');
 
 var config = {
-    host: remoteConn.host,
-    port: remoteConn.port,
-    username: remoteConn.user,
+    host: remoteConn.ssh_host,
+    port: remoteConn.ssh_port,
+    username: remoteConn.ssh_user,
     privateKey: fs.readFileSync('key','utf8')
 };
 
@@ -22,9 +22,9 @@ var gulpSSH = new GulpSSH({
 gulp.task('deploy', function () {
     return gulp
         .src(['dist/**/*'])
-        .pipe(gulpSSH.dest(remoteConn.remoteDest))
+        .pipe(gulpSSH.dest(remoteConn.ssh_remote_dest))
 
-;});
+        ;});
 
 
 gulp.task('deploy2', function () {
