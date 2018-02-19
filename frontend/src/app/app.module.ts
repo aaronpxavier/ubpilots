@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ImgCropperComponent } from './components/img-cropper/img-cropper.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -18,7 +19,8 @@ import { ImgCropperComponent } from './components/img-cropper/img-cropper.compon
     HomeComponent,
     ErrorComponent,
     ImgCropperComponent,
-      ImageCropperComponent
+      ImageCropperComponent,
+      FooterComponent
   ],
   imports: [
       BrowserModule,

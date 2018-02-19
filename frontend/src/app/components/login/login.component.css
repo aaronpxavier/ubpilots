@@ -1,10 +1,24 @@
-.row {
-    margin-top: 10%;
-    position: relative;
+/* label focus color */
+.input-field {
+    color: #000;
+}
+/* label underline focus color */
+.input-field input:focus {
+    border-bottom: 1px solid #005bbb;
+    box-shadow: 0 1px 0 0 #000;
 }
 
-.container-fluid {
-   height: 100%;
-    width: 100%;
+#submit-btn {
+    background-color: #005bbb;
+    color: #f5f6f7;
+}
+
+#submit-btn:hover {
+    background-color: #007aed;
+    color: #f5f6f7;
+}
+
+form {
+    margin-top: 250px;
 }
 
