@@ -9,29 +9,36 @@ import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ImgCropperComponent } from './components/img-cropper/img-cropper.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LogbookComponent } from './components/logbook/logbook.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    HomeComponent,
-    ErrorComponent,
-    ImgCropperComponent,
+      AppComponent,
+      LoginComponent,
+      HomeComponent,
+      ErrorComponent,
+      ImgCropperComponent,
       ImageCropperComponent,
-      FooterComponent
+      FooterComponent,
+      LogbookComponent
   ],
   imports: [
       BrowserModule,
       RouterModule.forRoot([
           {
-              path:'login',
+              path: 'login',
               component: LoginComponent
           },
+
           {
               path: '',
               component: HomeComponent
+          },
+          {
+              path: 'log',
+              component: LogbookComponent
           },
           {
               path: 'home',
@@ -45,7 +52,7 @@ import { FooterComponent } from './components/footer/footer.component';
           },
           {
               path: "**",
-              redirectTo:"error"
+              redirectTo: "error"
           }
       ])
   ],
