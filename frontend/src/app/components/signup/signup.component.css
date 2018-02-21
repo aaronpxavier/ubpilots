@@ -1,0 +1,55 @@
+
+
+.wrap{
+    width: 350px;
+    margin:auto;
+    background: #f3f3f3;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 5px;
+}
+
+form{
+    padding:10px;
+    font-family: arial;
+    border: 1px dotted white;
+    margin: 10px;
+
+}
+
+h2{
+    text-align: center;
+    background: #005bbb;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+input{
+    padding: 10px;
+    margin:10px;
+    border-radius: 10px;
+    border: none;
+}
+
+input[type=text], input[type=email], input[type=username], input[type=password], input[type= repassword]{
+    width: 90%;
+}
+
+input[type=submit]{
+    width: 95%;
+    background: #005bbb;
+    cursor: pointer;
+    font-size: 18;
+    font-weight: bold;
+    color:white;
+}
+
+input[type=submit]:hover{
+    background:yellow;
+}
+
+/*select{*/
+    /*padding:10px;*/
+    /*width: 32%;*/
+    /*border-radius: 5px;*/
+/*}*/
