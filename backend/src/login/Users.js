@@ -17,22 +17,24 @@ export default class Users {
     constructor() {}
 
     /**
-     * @param userName must be defined with valid user string
+     * @param userIn must be defined with valid user string
      * @param pass must be defined with valid password string
      * @param isAdmin default to false must be boolean.
      * @define creates user in db
      * @returns {Promise}
      */
-    saveUser (userName, pass, isAdmin = false) {
+    saveUser (userIn, pass, isAdmin = false) {
+        let userName = userIn.toLowerCase();
         return this.createUserModel(userName, pass, isAdmin).save();
     }//end saveUser
 
     /**
-     * @param userName must be defined with valid user string
+     * @param userIn must be defined with valid user string
      * @returns promise obj that resolves true if user is an admin
      */
-    checkIfAdmin(userName) {
+    checkIfAdmin(userIn) {
         return new Promise((resolve,reject) => {
+            let userName = userIn.toLowerCase();
             userModel.findOne({ 'username': userName }, 'isAdmin', function (err, user) {
                 if(err)
                     reject(err);
@@ -47,11 +49,12 @@ export default class Users {
     }// end checkIfAdmin
 
     /**
-     * @param userName must be defined with valid user.
+     * @param userIn must be defined with valid user.
      * @define Method must not be used to validate user.
      * @returns {Promise} that resolves user json if user exists in db
      */
-    getUser(userName) {
+    getUser(userIn) {
+        let userName = userIn.toLowerCase();
         return new Promise((resolve,reject) => {
             userModel.findOne({ username: userName}, function (err, doc){
                 if (err) reject(err);
@@ -77,11 +80,12 @@ export default class Users {
     }//end createUserModel
 
     /**
-     * @param userName must be declared and defined with valid username
+     * @param userIn must be declared and defined with valid username
      * @param pass must be declared and defined with valid password
      * @returns promise object that will resolve true if user is valid;
      * * * */
-    validateUser (userName, pass) {
+    validateUser (userIn, pass) {
+        let userName = userIn.toLowerCase();
         return new Promise((resolve,reject) => {
             userModel.findOne({ 'username': userName }, 'username password', function (err, user) {
                 if(err)
@@ -95,11 +99,12 @@ export default class Users {
     }//end validateUser
 
     /**
-     * @param userName must be declared and defined with valid username
+     * @param userIn must be declared and defined with valid username
      * @define fn deletes user from db
      * @returns { Promise }
      * * * */
-    deleteUser(userName) {
+    deleteUser(userIn) {
+        let userName = userIn.toLowerCase();
         return userModel.remove({username: userName});
     }//end deleteUser
 

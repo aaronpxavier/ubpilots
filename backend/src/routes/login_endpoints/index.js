@@ -31,7 +31,6 @@ router.post('/auth', (req, res) => {
     let userName = req.body.username;
     let pass = req.body.pass;
 
-
     token.getToken(userName, pass)
         .then(token => {
             loginResponseJson.success = true;
@@ -41,6 +40,8 @@ router.post('/auth', (req, res) => {
         .catch (error => {
             console.error(error);
             res.status(401);
+            loginResponseJson.token = "";
+            loginResponseJson.success = false;
             res.json(loginResponseJson);
         });
 }); //end router.post(/login)
