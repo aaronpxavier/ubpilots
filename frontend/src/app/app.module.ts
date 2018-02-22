@@ -10,6 +10,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ImgCropperComponent } from './components/img-cropper/img-cropper.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogbookComponent } from './components/logbook/logbook.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 
@@ -22,7 +23,8 @@ import { LogbookComponent } from './components/logbook/logbook.component';
       ImgCropperComponent,
       ImageCropperComponent,
       FooterComponent,
-      LogbookComponent
+      LogbookComponent,
+      SignupComponent
   ],
   imports: [
       BrowserModule,
@@ -35,6 +37,10 @@ import { LogbookComponent } from './components/logbook/logbook.component';
           {
               path: '',
               component: HomeComponent
+          },
+          {
+              path:'signup',
+              component: SignupComponent
           },
           {
               path: 'log',
