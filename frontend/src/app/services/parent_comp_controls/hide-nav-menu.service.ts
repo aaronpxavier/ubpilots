@@ -6,13 +6,13 @@ export class HideNavMenuService {
   constructor() {
     this.menuVisable = true;
   }
-  getMenuState() {
+  getState() {
     return this.menuVisable;
   }
-  hideMenu() {
+  hide() {
     this.menuVisable = false;
   }
-  showMenu() {
+  show() {
     this.menuVisable = true;
   }
 }
