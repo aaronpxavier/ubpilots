@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class HideNavMenuService {
-  private hideMenu: boolean;
+  private menuVisable: boolean;
   constructor() {
-    this.hideMenu = false;
+    this.menuVisable = true;
   }
-  getMenuStateEvent() {
-  
+  getMenuState() {
+    return this.menuVisable;
+  }
+  hideMenu() {
+    this.menuVisable = false;
+  }
+  showMenu() {
+    this.menuVisable = true;
   }
 }
