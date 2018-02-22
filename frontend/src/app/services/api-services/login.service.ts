@@ -1,24 +1,19 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { BaseService } from './base-service.service';
 
 @Injectable()
-export class LoginService {
+export class LoginService extends BaseService {
   private token: string;
-  private 
 
-  constructor(private http: HttpClient) {
-      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      if (currentUser) {
-          this.token = currentUser.token;
-      }
+
+  constructor(http: HttpClient) {
+      super(http);
+      super.setUrl('/');
   }
 
-  hasToken() {
-    if (this.token) return true;
-    else return false;
-  }
 
-  login(username: string, password: string) {
+login(username: string, password: string) {
 
   }
 
