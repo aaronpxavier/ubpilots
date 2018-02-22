@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
         this.menuService.hide();
         this.footerService.hide();
         console.log(this.menuService.getState());
-  }g
+  }
 
   ngOnInit() {
   }
