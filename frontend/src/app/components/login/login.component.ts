@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,14 @@ import { Title } from '@angular/platform-browser';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private titleService: Title) {
+  constructor(private titleService: Title, private router: Router) {
         this.titleService.setTitle("Login");
   }
 
   ngOnInit() {
   }
 
+    signUpClick() {
+        this.router.navigateByUrl('/home');
+   }
 }
