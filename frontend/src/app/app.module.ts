@@ -11,8 +11,8 @@ import { ImgCropperComponent } from './components/img-cropper/img-cropper.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { LogbookComponent } from './components/logbook/logbook.component';
 import { SignupComponent } from './components/signup/signup.component';
-
-
+import { HideNavMenuService } from './services/parent_comp_controls/hide-nav-menu.service';
+import { HideFooterService } from './services/parent_comp_controls/hide-footer-service.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { SignupComponent } from './components/signup/signup.component';
           }
       ])
   ],
-  providers: [Title],
+  providers: [Title, HideNavMenuService, HideFooterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
