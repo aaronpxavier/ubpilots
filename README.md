@@ -24,9 +24,9 @@ flight log data will be stored and retrieved from a mongoDB database.
     Create a page that contains club E-Board. 
      Admin has ability to change content of page through a web application interface.
     </details>
-    <details>
+    
     Prototype: https://youtu.be/kUIHj_HXadQ
-    </details>
+    
     
 
 ## User Story 
