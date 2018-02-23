@@ -1,0 +1,35 @@
+Team Meeting 2
+2 / 21 / 2018
+
+
+Attendance:
+•	Felipe Canales
+•	Derrick Dela Cruz
+•	Arun Mavumkal
+
+
+Summary of Meeting:
+
+•	Went over a few Angular 5 features
+•	Discussed what is needed to make the project better
+•	Discussed where we stood with the project and making the prototype deadline with Professor Hartloff
+
+
+Completed Since Last Meeting:
+
+•	Derrick Dela Cruz - Frontend - Sign up/Login Page 
+•	Felipe Canales - Frontend – Logbook
+•	Arun Mavumkal - Frontend – Introduced Materialize CSS Library 
+
+
+Tasks to Be Completed Before Next Meeting:
+
+•	Felipe Canales – Study Angular Services to begin next step in project
+•	Arun Mavumkal – Fix bug where user auth fails when user name does not match  
+•	Derrick Dela Cruz - Study Angular Services to begin next step in project
+
+
+Task Descriptions:
+
+•	Arun Mavumkal – There is a bug that needs to be fixed where user authentication fails when the user name does not match.
+•	Felipe Canales and Derrick Dela Cruz – Will Study Angular Services in order to move on to the next step.

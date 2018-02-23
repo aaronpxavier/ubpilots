@@ -21,16 +21,24 @@
 **/!.vscode/launch.json
 **/!.vscode/extensions.json
 
+# misc
+frontend/.sass-cache
+frontend/connect.lock
+frontend/coverage
+frontend/libpeerconnection.log
+frontend/npm-debug.log
+frontend/testem.log
+frontend/typings
+
 # System Files
 **/.DS_Store
 **/Thumbs.db
 
 #sensitive_data
-backend/secret.js
+**/remote-conn.json
+backend/src/secret.json
 backend/src/__tests__/test_config.js
-key
-**/token_secret.js
+**/key
+**/secret.json
 **/logs
-
-
 

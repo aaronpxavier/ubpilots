@@ -1,0 +1,6 @@
+{
+    "ssh_host": "fltprep.com",
+    "ssh_user": "ubpilots",
+    "ssh_port": "22",
+    "ssh_remote_dest": "/var/www/ubpilots.fltprep.com"
+}

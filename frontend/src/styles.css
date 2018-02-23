@@ -1,0 +1,78 @@
+/*!* You can add global styles to this file, and also import other style files *!*/
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css");
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Merriweather+Sans|Share+Tech+Mono');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+body {
+    line-height: 1.8;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20px;
+    display: flex;
+    min-height: 92vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+p {font-size: 16px;}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {font-size: 24px}
+
+.page-footer {
+    background-color: #005bbb;
+    color: #f5f6f7;
+}
+
+.margin {margin-bottom: 45px;}
+
+.bg-1 {
+    background-color: #005bbb;
+    color: #f5f6f7;
+    /*background-color: #1abc9c; !* Green */
+}
+.bg-2 {
+    background-color: #474e5d; /* Dark Blue */
+}
+.bg-3 {
+    /*background-color: #ffffff; !* White *!*/
+    background-color: #f3f3f3;
+    color: #555555;
+}
+.bg-4 {
+    background-color: #2f2f2f; /* Black Gray */
+}
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+#footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Height of the footer */
+    background:#6cf;
+}
+
+
+
+
+
+
+/*.navbar-nav  li a:hover {*/
+    /*color: #005bbb !important;*/
+/*}*/

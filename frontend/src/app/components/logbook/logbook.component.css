@@ -1,0 +1,15 @@
+
+.container {
+    border-color: #474e5d;
+    border-width: 1px;
+    padding-top:20px;
+    padding-bottom:20px;
+
+    margin-bottom: 30px;
+}
+
+#table-title {
+    margin-top: 30px;
+    color: #005bbb;
+}
+
