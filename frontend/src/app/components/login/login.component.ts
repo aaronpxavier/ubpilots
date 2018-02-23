@@ -11,7 +11,7 @@ import {HideFooterService} from '../../services/parent_comp_controls/hide-footer
 })
 export class LoginComponent implements OnInit {
 
- 
+
   constructor(private titleService: Title,
               public menuService: HideNavMenuService,
               public footerService: HideFooterService,
@@ -23,8 +23,4 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-
-    signUpClick() {
-        this.router.navigateByUrl('/log');
-   }
 }
