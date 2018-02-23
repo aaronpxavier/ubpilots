@@ -33,13 +33,8 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
               path: 'login',
               component: LoginComponent
           },
-
           {
-              path: '',
-              component: HomeComponent
-          },
-          {
-              path:'signup',
+              path: 'signup',
               component: SignupComponent
           },
           {
@@ -55,6 +50,10 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
               path: 'error',
               pathMatch: 'full',
               component: ErrorComponent
+          },
+          {
+              path: '',
+              component: HomeComponent
           },
           {
               path: "**",
