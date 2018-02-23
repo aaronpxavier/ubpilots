@@ -1,5 +1,15 @@
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
-@import url("https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css");
-@import url("https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css");
-@import url("https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css");
-/*@import url("../../extensions/Editor/css/editor.dataTables.min.css");*/
+
+.container {
+    border-color: #474e5d;
+    border-width: 1px;
+    padding-top:20px;
+    padding-bottom:20px;
+
+    margin-bottom: 30px;
+}
+
+#table-title {
+    margin-top: 30px;
+    color: #005bbb;
+}
+
