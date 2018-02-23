@@ -1,6 +1,6 @@
 
 <body>
-<nav>
+<nav *ngIf="menuService.getState()">
     <div class="nav-wrapper bg-3">
         <a href="/home" class="brand-logo">UB Pilots</a>
         <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -21,7 +21,7 @@
 </nav>
 <router-outlet></router-outlet>
 </body>
-<app-footer></app-footer>
+<app-footer *ngIf="footerService.getState()"></app-footer>
 
 
 
