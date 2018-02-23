@@ -6,6 +6,10 @@
 1. Start node/express development server. (See README in /backend)
 2. Start ng2 development server. (See README in /frontend)
 
+## Production Site (Non Tech User)
+[UBPilots Site](https://ubpilots.fltprep.com)
+
+
 ## Project Description. 
 Project will create a web application that supports the UB pilot's association. 
 1. MVP (minimum viable product) will consist of a landing page, user login & authentication, 
@@ -25,7 +29,7 @@ flight log data will be stored and retrieved from a mongoDB database.
      Admin has ability to change content of page through a web application interface.
     </details>
     
-    Prototype: https://youtu.be/kUIHj_HXadQ
+ Prototype: https://youtu.be/kUIHj_HXadQ
     
     
 
