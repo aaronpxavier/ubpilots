@@ -1,6 +1,10 @@
 import mongoose from '../../node_modules/mongoose';
 
+
+let bcrypt = require('bcrypt');
+const SALT_ROUNDS = 10;
 const SCHEMA = mongoose.Schema;
+
 const UserSchema = new SCHEMA({
     username: {type: String},
     password: {type: String},
@@ -16,16 +20,32 @@ const userModel = mongoose.model('User', UserSchema);
 export default class Users {
     constructor() {}
 
+
     /**
      * @param userName must be defined with valid user string
      * @param pass must be defined with valid password string
      * @param isAdmin default to false must be boolean.
-     * @define creates user in db
+     * @define creates user in db,
+     * returns promise object that resolves true when user is
+     * successfully saved in db, otherwise rejects with error obj. 
      * @returns {Promise}
      */
     saveUser (userName, pass, isAdmin = false) {
+      
         let userName = userName.toLowerCase();
-        return this.createUserModel(userName, pass, isAdmin).save();
+
+        return new Promise((resolve,reject) => {
+            bcrypt.hash(pass, SALT_ROUNDS)
+                .then((hash) => {
+                    return this.createUserModel(userName, hash, isAdmin).save();
+                })
+                .then(() => {
+                    resolve(true);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
     }//end saveUser
 
     /**
@@ -70,7 +90,6 @@ export default class Users {
      * @returns { mongoose.model }
      */
     createUserModel (userName, pass, isAdmin) {
-
         let userJSON = {
             username: userName,
             password: pass,
@@ -90,8 +109,12 @@ export default class Users {
             userModel.findOne({ 'username': userName }, 'username password', function (err, user) {
                 if(err)
                     reject(err);
-                else if(user && user.username === userName && user.password === pass)
-                    resolve(true);
+                else if(user && user.username === userName) {
+                    bcrypt.compare(pass, user.password)
+                        .then((isMatch) => {
+                            resolve(isMatch);
+                        });
+                }
                 else
                     resolve(false);
             });
