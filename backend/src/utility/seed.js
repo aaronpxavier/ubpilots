@@ -25,7 +25,7 @@ let seedAdmin = () => {
 }
 
 let seedUser = () => {
-    users.checkIfRegularUserExists()
+    users.checkIfUserExists()
         .then((hasUser) => {
             if (!hasUser) {
                 users.saveUser(userSeed,userPassSeed);

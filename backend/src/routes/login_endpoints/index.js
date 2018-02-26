@@ -12,10 +12,7 @@ import Users from '../../login/Users'
 const router = express.Router();
 var token = new Token();
 var users = new Users();
-var loginResponseJson = {
-    success:false,
-    token:'n/a'
-};
+
 
 // Routes -------------------------------------------------------------------//
 
@@ -28,9 +25,12 @@ router.get('/',(req,res)=>{
 }); // end router.get(/)
 
 router.post('/auth', (req, res) => {
+    var loginResponseJson = {
+        success:false,
+        token:''
+    };
     let userName = req.body.username;
     let pass = req.body.pass;
-
 
     token.getToken(userName, pass)
         .then(token => {

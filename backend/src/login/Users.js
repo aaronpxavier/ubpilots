@@ -31,6 +31,9 @@ export default class Users {
      * @returns {Promise}
      */
     saveUser (userName, pass, isAdmin = false) {
+      
+        let userName = userName.toLowerCase();
+
         return new Promise((resolve,reject) => {
             bcrypt.hash(pass, SALT_ROUNDS)
                 .then((hash) => {
@@ -51,6 +54,7 @@ export default class Users {
      */
     checkIfAdmin(userName) {
         return new Promise((resolve,reject) => {
+            let userName = userName.toLowerCase();
             userModel.findOne({ 'username': userName }, 'isAdmin', function (err, user) {
                 if(err)
                     reject(err);
@@ -70,6 +74,7 @@ export default class Users {
      * @returns {Promise} that resolves user json if user exists in db
      */
     getUser(userName) {
+        let userName = userName.toLowerCase();
         return new Promise((resolve,reject) => {
             userModel.findOne({ username: userName}, function (err, doc){
                 if (err) reject(err);
@@ -99,6 +104,7 @@ export default class Users {
      * @returns promise object that will resolve true if user is valid;
      * * * */
     validateUser (userName, pass) {
+        let userName = userName.toLowerCase();
         return new Promise((resolve,reject) => {
             userModel.findOne({ 'username': userName }, 'username password', function (err, user) {
                 if(err)
@@ -121,6 +127,7 @@ export default class Users {
      * @returns { Promise }
      * * * */
     deleteUser(userName) {
+        let userName = userName.toLowerCase();
         return userModel.remove({username: userName});
     }//end deleteUser
 
@@ -146,7 +153,7 @@ export default class Users {
      * @define fn checks if a regular user Exists on mongoDB. If there is an non admin user then Promise resolves true. Otherwise returns false
      * @return { Promise }
      **/
-    checkIfRegularUserExists() {
+    checkIfUserExists() {
         return new Promise ((resolve) => {
             userModel.findOne({'isAdmin': false}, 'isAdmin', function (err, user) {
                 console.log(user);
