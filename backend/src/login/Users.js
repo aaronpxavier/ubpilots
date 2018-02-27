@@ -27,7 +27,7 @@ export default class Users {
      * @param isAdmin default to false must be boolean.
      * @define creates user in db,
      * returns promise object that resolves true when user is
-     * successfully saved in db, otherwise rejects with error obj. 
+     * successfully saved in db, otherwise rejects with error obj.
      * @returns {Promise}
      */
     saveUser (userName, pass, isAdmin = false) {
@@ -50,8 +50,9 @@ export default class Users {
      * @returns promise obj that resolves true if user is an admin
      */
     checkIfAdmin(userName) {
+        let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ 'username': userName }, 'isAdmin', function (err, user) {
+            userModel.findOne({ 'username': userLower }, 'isAdmin', function (err, user) {
                 if(err)
                     reject(err);
                 else if (!user)
@@ -70,8 +71,9 @@ export default class Users {
      * @returns {Promise} that resolves user json if user exists in db
      */
     getUser(userName) {
+        let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ username: userName}, function (err, doc){
+            userModel.findOne({ username: userLower}, function (err, doc){
                 if (err) reject(err);
                 else resolve(doc);
             });
@@ -85,8 +87,9 @@ export default class Users {
      * @returns { mongoose.model }
      */
     createUserModel (userName, pass, isAdmin) {
+        let userLower = userName.toLowerCase();
         let userJSON = {
-            username: userName,
+            username: userLower,
             password: pass,
             isAdmin: isAdmin,
         }
@@ -99,11 +102,12 @@ export default class Users {
      * @returns promise object that will resolve true if user is valid;
      * * * */
     validateUser (userName, pass) {
+        let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ 'username': userName }, 'username password', function (err, user) {
+            userModel.findOne({ 'username': userLower }, 'username password', function (err, user) {
                 if(err)
                     reject(err);
-                else if(user && user.username === userName) {
+                else if(user && user.username === userLower) {
                     bcrypt.compare(pass, user.password)
                         .then((isMatch) => {
                             resolve(isMatch);
@@ -121,7 +125,8 @@ export default class Users {
      * @returns { Promise }
      * * * */
     deleteUser(userName) {
-        return userModel.remove({username: userName});
+        let userLower = userName.toLowerCase();
+        return userModel.remove({username: userLower});
     }//end deleteUser
 
     /**

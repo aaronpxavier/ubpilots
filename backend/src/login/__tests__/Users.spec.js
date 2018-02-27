@@ -5,7 +5,7 @@ import Users from '../Users';
 import app from '../../app';
 
 describe('testing Users Class', () => {
-    const userName = 'testuser';
+    let userName = 'TestuSer';
     const pass = 'password%';
     const users = new Users();
 
@@ -13,6 +13,7 @@ describe('testing Users Class', () => {
         users.saveUser(userName, pass)
             .then(() => {
                 console.log('creating test user in db');
+                userName = 'testuser';
                 done();
             })
             .catch((error) => {
@@ -22,6 +23,7 @@ describe('testing Users Class', () => {
     });
 
     afterAll(done => {
+        userName = 'TestUser';
         users.deleteUser(userName)
             .then((error) => {
                 console.log('removing test user from db');
