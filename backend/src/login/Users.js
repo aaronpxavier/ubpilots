@@ -27,14 +27,15 @@ export default class Users {
      * @param isAdmin default to false must be boolean.
      * @define creates user in db,
      * returns promise object that resolves true when user is
-     * successfully saved in db, otherwise rejects with error obj. 
+     * successfully saved in db, otherwise rejects with error obj.
      * @returns {Promise}
      */
     saveUser (userName, pass, isAdmin = false) {
+        let lowerCaseUser = userName.toLowerCase();
         return new Promise((resolve,reject) => {
             bcrypt.hash(pass, SALT_ROUNDS)
                 .then((hash) => {
-                    return this.createUserModel(userName, hash, isAdmin).save();
+                    return this.createUserModel(lowerCaseUser, hash, isAdmin).save();
                 })
                 .then(() => {
                     resolve(true);
