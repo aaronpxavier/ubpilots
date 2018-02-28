@@ -13,7 +13,7 @@ export class Token {
 export class LoginService extends BaseService {
 
     // Variables -------------------------------------------------------------//
-
+    private isLoggedIn = false;
 
     // Constructor -----------------------------------------------------------//
 
@@ -21,17 +21,22 @@ export class LoginService extends BaseService {
         super(http);
     } // constructor
 
+    checkIfTokenIsValid() {
+        console.log('checkIfTokenIsValid');
+    }
+
     // Methods ---------------------------------------------------------------//
 
- // Photo
+    // Photo
     getToken(userName, password): Promise<Token> {
         this.setUrl('/api/login/auth');
         return new Promise<Token>((resolve, reject) => {
             console.log(userName + ' ' + password);
             this.post({username: userName, pass: password}).subscribe((res) => {
-                resolve(res);
+                let token: Token = res;
+                localStorage.setItem('token', token.token);
+                resolve(token);
             });
         });
     }
-
 }
