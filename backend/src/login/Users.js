@@ -20,7 +20,6 @@ const userModel = mongoose.model('User', UserSchema);
 export default class Users {
     constructor() {}
 
-
     /**
      * @param userName must be defined with valid user string
      * @param pass must be defined with valid password string
