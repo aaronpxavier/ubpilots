@@ -1,32 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import {BaseService} from './base-service.service';
 import setup from '../../../setup';
+import { URLSearchParams } from '@angular/http';
+import {BaseService} from './base-service.service';
 
-export class Photo {
-    constructor(public title: string, public categories: string[],
-                public taken: string, public keywords: string[],
-                public photo: PhotoSubset[]) {}
+export class Token {
+    constructor(public success: boolean, public token: string) {}
+}
 
 @Injectable()
 export class LoginService extends BaseService {
 
+    // Variables -------------------------------------------------------------//
+
+
+    // Constructor -----------------------------------------------------------//
+
     constructor(http: HttpClient) {
         super(http);
-        this.setUrl('/api/login/');
     } // constructor
 
+    // Methods ---------------------------------------------------------------//
 
-
-} // Photo
-    getToken(userName, password)Promise<Photo[]> {
-        return new Promise<Photo[]>((resolve, reject) => {
-            let photos: Photo[];
-            this.setUrl(this._photoAPIURL + query); // setURL defined in super
-            this.get().subscribe(response => {
-                photos = response['photos']; // typescript maps json object to typescript array of class Photo
-                resolve(photos);
+ // Photo
+    getToken(userName, password): Promise<Token> {
+        this.setUrl('/api/login/auth');
+        return new Promise<Token>((resolve, reject) => {
+            console.log(userName + ' ' + password);
+            this.post({username: userName, pass: password}).subscribe((res) => {
+                resolve(res);
             });
         });
     }

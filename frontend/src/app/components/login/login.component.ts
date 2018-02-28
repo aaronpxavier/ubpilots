@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HideNavMenuService } from '../../services/parent_comp_controls/hide-nav-menu.service';
 import { HideFooterService } from '../../services/parent_comp_controls/hide-footer-service.service';
-import { LoginService } from '../../services/api-services/login.service';
+import { LoginService, Token} from '../../services/api-services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +22,18 @@ export class LoginComponent implements OnInit {
         this.titleService.setTitle("Login");
         this.menuService.hide();
         this.footerService.hide();
+      this.loginService.getToken('mavrick', 'dangerzoneF14')
+          .then((token: Token) => {
+              console.log(token);
+          });
 
   }
 
   ngOnInit() {
+  }
+
+  submit() {
+      console.log('submit clicked');
+
   }
 }

@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import setup from '../../../setup';
+import { URLSearchParams } from '@angular/http';
 
 @Injectable()
 export class BaseService {
@@ -41,11 +42,35 @@ export class BaseService {
         return this.http.get<Response>(this.url);
     } // get
 
+    // solution found on https://github.com/angular/angular/issues/13241
+
+    getURLEncodedString(data: any): string {
+        // `username=${userName}&pass=${password}`;
+        console.log('encodingString');
+        let count = 0;
+        let outputString = '';
+        for (const key in data) {
+            if (count === 0) {
+                outputString += key + '=';
+            } else {
+                outputString += '&' + key + '=';
+            }
+            outputString += data[key];
+            ++count;
+        }
+        console.log(outputString);
+        return outputString;
+    }
+
     post(data: any): Observable<Response> {
+        // const body = `username=${userName}&pass=${password}`;
+        const body = this.getURLEncodedString(data);
+        console.log(body);
         const options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
-        return this.http.post<Response>(this.url, data, options);
+        console.log(this.url);
+        return this.http.post<Response>(this.url, body, options);
     }
 
     postWithToken(data: any): Observable<Response> {
