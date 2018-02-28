@@ -1,0 +1,33 @@
+2/ 28 /2018
+Team Meeting 3
+
+
+Attendance:
+
+•	Felipe Canales
+•	Derrick Dela Cruz
+•	Arun Mavumkal
+
+
+Summary of Meetings:
+
+•	Discussed what needs to be done before the alpha release
+•	Discussed how far along are we with the project
+•	Established what needs to be done before next meeting
+•	Assign issues
+
+
+Completed Since Last Meeting:
+
+•	Arun Mavumkal – Fixed bug where user auth failed when the user name did not match
+
+•	Felipe Canales and Derrick Dela Cruz – Studied Angular services 
+
+
+Tasks to be Completed Since Last Meeting:
+
+•	Derrick Dela Cruz – Create endpoint for user sign up
+
+•	Felipe Canales – Create a check inside method addUser that rejects an attempt to add a duplicated user in the database. Create form when adding log into logbook
+
+•	Arun Mavumkal – Build authenticated endpoints
