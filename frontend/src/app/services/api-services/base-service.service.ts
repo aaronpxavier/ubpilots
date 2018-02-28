@@ -57,6 +57,7 @@ export class BaseService {
         };
         return this.http.post<Response>(this.url, data, options);
     }
+
     getBaseURL() {
         return this.baseUrl;
     }

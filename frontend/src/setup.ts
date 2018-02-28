@@ -1,7 +1,7 @@
 
 
 export default function () {
-  let baseURL = "https://ubpilots.fltprep.com/api";
+  const baseURL = "https://ubpilots.fltprep.com";
   return {
     "baseURL": baseURL
   };

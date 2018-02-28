@@ -13,6 +13,9 @@ import { LogbookComponent } from './components/logbook/logbook.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HideNavMenuService } from './services/parent_comp_controls/hide-nav-menu.service';
 import { HideFooterService } from './services/parent_comp_controls/hide-footer-service.service';
+import { LoginService } from './services/api-services/login.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
   ],
   imports: [
       BrowserModule,
+      HttpClientModule,
       RouterModule.forRoot([
           {
               path: 'login',
@@ -61,7 +65,7 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
           }
       ])
   ],
-  providers: [Title, HideNavMenuService, HideFooterService],
+  providers: [ Title, HideNavMenuService, HideFooterService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
