@@ -14,29 +14,43 @@ export class LoginService extends BaseService {
 
     // Variables -------------------------------------------------------------//
     private isLoggedIn = false;
-
+    private localStorageTokenKey = 'token';
+    private previousRoute;
     // Constructor -----------------------------------------------------------//
 
     constructor(http: HttpClient) {
         super(http);
+        if (localStorage.getItem(this.localStorageTokenKey) !== null) {
+            console.log('local storage: ' + localStorage.getItem(this.localStorageTokenKey));
+        }
     } // constructor
 
-    checkIfTokenIsValid() {
-        console.log('checkIfTokenIsValid');
+    checkIfTokenIsValid(): Promise<boolean> {
+        this.setUrl('/api/login/authcheck')
+        return new Promise< boolean >((resolve, reject) => {
+                this.getWithToken().subscribe((res) => {
+                    console.log(res);
+                if (res['success']) {
+                    resolve  (true);
+                } else {
+                    resolve (false);
+                }
+            });
+        });
     }
 
     // Methods ---------------------------------------------------------------//
 
-    // Photo
     getToken(userName, password): Promise<Token> {
         this.setUrl('/api/login/auth');
         return new Promise<Token>((resolve, reject) => {
             console.log(userName + ' ' + password);
             this.post({username: userName, pass: password}).subscribe((res) => {
-                let token: Token = res;
-                localStorage.setItem('token', token.token);
+                const token: Token = res;
+                localStorage.setItem(this.localStorageTokenKey, token.token);
                 resolve(token);
             });
         });
     }
+
 }

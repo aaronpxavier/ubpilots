@@ -13,13 +13,14 @@ export class BaseService {
 
     // Variables -------------------------------------------------------------//
 
-    private baseUrl = setup().baseURL;
+    private BASE_URL = setup().baseURL;
     private url: string;
 
     // Constructor -----------------------------------------------------------//
 
     constructor(private http: HttpClient) {
-        this.url = this.baseUrl;
+        this.url = this.BASE_URL;
+        console.log('BASE_URL'+ this.BASE_URL);
     } // constructor
 
     // Methods ---------------------------------------------------------------//
@@ -32,7 +33,7 @@ export class BaseService {
      */
     setUrl(url: string): Boolean {
         if (url !== undefined) {
-          this.url = this.baseUrl + url;
+          this.url = this.BASE_URL + url;
           return true;
         }
         return false;
@@ -74,17 +75,30 @@ export class BaseService {
     }
 
     postWithToken(data: any): Observable<Response> {
+        const body = this.getURLEncodedString(data);
         const options = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAxOC0wMi0xM1QwMjo0NTowNC4yNzVaIiwiX2lkIjoiNWE4MjUxMzBhZDIwY2YyNzVhMWI1NGUwIiwidXNlcm5hbWUiOiJtYXZyaWNrIiwicGFzc3dvcmQiOiJkYW5nZXJ6b25lRjE0IiwiaXNBZG1pbiI6dHJ1ZSwiX192IjowLCJpYXQiOjE1MTkyMDA0NDUsImV4cCI6MTUxOTIxMTI0NX0.HVmrPzrpCz2iVwyv0MR_OAHIoiFqxv9AlLWCkQFBMQY'
+                'Authorization': localStorage.getItem('token')
             })
         };
-        return this.http.post<Response>(this.url, data, options);
+        return this.http.post<Response>(this.url, body, options);
+    }
+
+    getWithToken(): Observable<Response> {
+        // if (localStorage.getItem('token') === null)
+        //     throw new Error ('token is not defined');
+        const options = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': localStorage.getItem('token')
+            })
+        };
+        return this.http.get<Response>(this.url, options);
     }
 
     getBaseURL() {
-        return this.baseUrl;
+        return this.BASE_URL;
     }
 
 }
