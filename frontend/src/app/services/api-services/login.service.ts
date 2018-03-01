@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import setup from '../../../setup';
-import { URLSearchParams } from '@angular/http';
 import {BaseService} from './base-service.service';
 
 export class Token {
@@ -13,20 +11,18 @@ export class Token {
 export class LoginService extends BaseService {
 
     // Variables -------------------------------------------------------------//
-    private isLoggedIn = false;
-    private localStorageTokenKey = 'token';
-    private previousRoute;
+
     // Constructor -----------------------------------------------------------//
 
     constructor(http: HttpClient) {
         super(http);
-        if (localStorage.getItem(this.localStorageTokenKey) !== null) {
-            console.log('local storage: ' + localStorage.getItem(this.localStorageTokenKey));
+        if (localStorage.getItem(this.tokenKey) !== null) {
+            console.log('local storage: ' + localStorage.getItem(this.tokenKey));
         }
     } // constructor
 
     checkIfTokenIsValid(): Promise<boolean> {
-        this.setUrl('/api/login/authcheck')
+        this.setUrl('/api/login/authcheck');
         return new Promise< boolean >((resolve, reject) => {
                 this.getWithToken().subscribe((res) => {
                     console.log(res);
@@ -35,7 +31,9 @@ export class LoginService extends BaseService {
                 } else {
                     resolve (false);
                 }
-            });
+            }, (err) => {
+                        reject(err);
+                    });
         });
     }
 
@@ -47,10 +45,16 @@ export class LoginService extends BaseService {
             console.log(userName + ' ' + password);
             this.post({username: userName, pass: password}).subscribe((res) => {
                 const token: Token = res;
-                localStorage.setItem(this.localStorageTokenKey, token.token);
+                localStorage.setItem(this.tokenKey, token.token);
                 resolve(token);
+            }, (err) => {
+                reject(err);
             });
         });
+    }
+
+    signOut() {
+        localStorage.removeItem(this.tokenKey);
     }
 
 }

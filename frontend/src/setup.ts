@@ -1,8 +1,8 @@
 
 
 export default function () {
-  const baseURL = "https://ubpilots.fltprep.com";
+  const BASE_URL = "https://ubpilots.fltprep.com";
   return {
-    "baseURL": baseURL
+    "baseURL": BASE_URL
   };
 }

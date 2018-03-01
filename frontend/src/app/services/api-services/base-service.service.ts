@@ -15,12 +15,13 @@ export class BaseService {
 
     private BASE_URL = setup().baseURL;
     private url: string;
+    public tokenKey;
 
     // Constructor -----------------------------------------------------------//
 
     constructor(private http: HttpClient) {
         this.url = this.BASE_URL;
-        console.log('BASE_URL'+ this.BASE_URL);
+        console.log('BASE_URL' + this.BASE_URL);
     } // constructor
 
     // Methods ---------------------------------------------------------------//
@@ -79,19 +80,21 @@ export class BaseService {
         const options = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': localStorage.getItem('token')
+                'Authorization': localStorage.getItem(this.tokenKey)
             })
         };
         return this.http.post<Response>(this.url, body, options);
     }
 
     getWithToken(): Observable<Response> {
-        // if (localStorage.getItem('token') === null)
-        //     throw new Error ('token is not defined');
+         if (localStorage.getItem(this.tokenKey) === null) {
+             throw new Error ('token Is null');
+         }
+
         const options = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': localStorage.getItem('token')
+                'Authorization': localStorage.getItem(this.tokenKey)
             })
         };
         return this.http.get<Response>(this.url, options);
