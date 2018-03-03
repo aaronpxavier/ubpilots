@@ -1,8 +1,9 @@
 
 
 export default function () {
-  let baseURL = "https://ubpilots.fltprep.com/api";
+  // const BASE_URL = "https://ubpilots.fltprep.com";
+  const BASE_URL = "http://localhost:3000";
   return {
-    "baseURL": baseURL
+    "baseURL": BASE_URL
   };
 }

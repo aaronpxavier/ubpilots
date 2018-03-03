@@ -18,7 +18,14 @@
     color: #f5f6f7;
 }
 
+#login-error {
+    color: red;
+}
+
 form {
     margin-top: 250px;
 }
 
+#loginScreen {
+
+}

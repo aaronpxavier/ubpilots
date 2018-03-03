@@ -1,0 +1,27 @@
+<!-- Dropdown Structure -->
+<ul id="userDropDown" class="dropdown-content">
+  <li></li>
+  <li *ngIf="isAdmin"><a href="#">admin Menu</a></li>
+  <li><a id="logout-btn" class="waves-effect waves-light btn" (click)="signOut()">Logout</a></li>
+</ul>
+<nav >
+  <div class="nav-wrapper bg-3">
+    <a href="/home" class="brand-logo">UB Pilots</a>
+    <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="/log">Flight Logs</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li> <a href="#">About Us</a></li>
+      <li *ngIf="showLoginButton"><a href="/login" id="login-btn" class="waves-effect waves-light btn">Login</a></li>
+      <li *ngIf="showUserMenu"><a class="dropdown-button" href="#!" data-activates="userDropDown">{{'Welcome '+userName}}<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-menu">
+      <h2 class="center-align"><strong><u>Menu</u></strong></h2>
+      <li><a href="/log">Flight Logs</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li> <a href="#">About Us</a></li>
+      <li *ngIf="showLoginButton"><a href="/login" id="login-btn-collapsable" class="waves-effect waves-light btn">Login</a></li>
+      <!--<li *ngIf="showUserMenu"><a class="dropdown-button" href="#!" data-activates="userDropDown">{{'Welcome '+userName}}<i class="material-icons right">arrow_drop_down</i></a></li>-->
+    </ul>
+  </div>
+</nav>
