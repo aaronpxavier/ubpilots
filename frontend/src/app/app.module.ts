@@ -15,6 +15,7 @@ import { HideNavMenuService } from './services/parent_comp_controls/hide-nav-men
 import { HideFooterService } from './services/parent_comp_controls/hide-footer-service.service';
 import { LoginService } from './services/api-services/login.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
       ImageCropperComponent,
       FooterComponent,
       LogbookComponent,
-      SignupComponent
+      SignupComponent,
+      NavComponent
   ],
   imports: [
       BrowserModule,

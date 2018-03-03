@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import {BaseService} from './base-service.service';
+import { Token } from './base-service.service';
 
-export class Token {
-    constructor(public success: boolean, public token: string) {}
-}
 
 @Injectable()
 export class LoginService extends BaseService {
@@ -16,17 +13,18 @@ export class LoginService extends BaseService {
 
     constructor(http: HttpClient) {
         super(http);
-        if (localStorage.getItem(this.tokenKey) !== null) {
-            console.log('local storage: ' + localStorage.getItem(this.tokenKey));
-        }
     } // constructor
 
     checkIfTokenIsValid(): Promise<boolean> {
         this.setUrl('/api/login/authcheck');
+
         return new Promise< boolean >((resolve, reject) => {
+                if (localStorage.getItem(this.tokenKey) == null) {
+                    resolve(false);
+                }
                 this.getWithToken().subscribe((res) => {
                     console.log(res);
-                if (res['success']) {
+                if (res.success) {
                     resolve  (true);
                 } else {
                     resolve (false);
@@ -43,9 +41,14 @@ export class LoginService extends BaseService {
         this.setUrl('/api/login/auth');
         return new Promise<Token>((resolve, reject) => {
             console.log(userName + ' ' + password);
-            this.post({username: userName, pass: password}).subscribe((res) => {
-                const token: Token = res;
-                localStorage.setItem(this.tokenKey, token.token);
+            this.post({username: userName, pass: password}).subscribe((token) => {
+                const tokenJSON = {
+                    success: token.success,
+                    isAdmin: token.isAdmin,
+                    token: token.token
+                }
+                localStorage.setItem(this.tokenKey, JSON.stringify(tokenJSON));
+                localStorage.setItem(this.userKey, userName);
                 resolve(token);
             }, (err) => {
                 reject(err);
@@ -55,6 +58,12 @@ export class LoginService extends BaseService {
 
     signOut() {
         localStorage.removeItem(this.tokenKey);
+        localStorage.removeItem(this.userKey);
+    }
+
+    getTokenFromLocal (): Token {
+        let token: Token;
+        return token = JSON.parse(localStorage.getItem(this.tokenKey));
     }
 
 }

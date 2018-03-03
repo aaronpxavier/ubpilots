@@ -1,0 +1,69 @@
+.btn {
+    background-color: #005bbb;
+}
+#login-btn {
+    color: #f5f6f7;
+}
+
+#login-btn:hover {
+    background-color: #007aed;
+    color: #f5f6f7;
+}
+
+#login-btn-collapsable {
+    color: #f5f6f7;
+    background-color: #007aed;
+    width: 50%;
+}
+
+#login-btn-collapsable:hover {
+    background-color: #007aed;
+    color: #f5f6f7;
+}
+
+#logout-btn {
+    color: #f5f6f7;
+    background-color: #006570;
+    letter-spacing: 0;
+}
+
+#logout-btn:hover {
+    color: #f5f6f7;
+}
+
+#logout-btn-collapsable {
+    color: #f5f6f7;
+    background-color: #007aed;
+    width: 50%;
+}
+
+#logout-btn-collapsable:hover {
+    background-color: #007aed;
+    color: #f5f6f7;
+}
+
+.button-collapse i{
+    color: #777;
+}
+.nav-link a{
+    padding-top: 22px;
+}
+
+.navbar-brand {
+    padding-top: 22px;
+}
+
+.nav-wrapper>ul>li>a {
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+
+.brand-logo {
+    font-family: 'Share Tech Mono', monospace;
+    color: #777;
+    padding-left: 20px;
+    font-size: 20px;
+    letter-spacing: 5px;
+}
