@@ -1,3 +1,6 @@
+/**
+ * API Version 1.0
+ */
 
 // Imports ------------------------------------------------------------------//
 import express from '../../../node_modules/express';

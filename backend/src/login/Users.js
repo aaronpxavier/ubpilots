@@ -1,6 +1,7 @@
+// Imports ------------------------------------------------------------------//
 import mongoose from '../../node_modules/mongoose';
 
-
+// Variables ------------------------------------------------------------------//
 let bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 const SCHEMA = mongoose.Schema;
@@ -17,6 +18,7 @@ const UserSchema = new SCHEMA({
 
 const userModel = mongoose.model('User', UserSchema);
 
+// Exports ------------------------------------------------------------------//
 export default class Users {
     constructor() {}
 

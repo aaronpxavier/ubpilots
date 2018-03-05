@@ -1,5 +1,8 @@
+
+// Imports ------------------------------------------------------------------//
 import mongoose from '../../node_modules/mongoose';
 
+// Variables ------------------------------------------------------------------//
 const SCHEMA = mongoose.Schema;
 const LOGBOOK_SCHEMA = new SCHEMA({
     pic: [{firstName: String}, {lastName: String}],
@@ -22,9 +25,9 @@ const LOGBOOK_SCHEMA = new SCHEMA({
         default: Date.now
     }
 });
-
 const LOGBOOK_SHEMA_MODEL = mongoose.model('User', LOGBOOK_SCHEMA);
 
+// Exports ------------------------------------------------------------------//
 export default class LogBook {
 
     constructor() {
@@ -55,6 +58,7 @@ export default class LogBook {
                 {
                     pic: pilot,
                     sic: secondInComnd,
+                    isConfirmed: isConfirmed,
                     acType: ac,
                     departure: dep,
                     destination: dest,
@@ -71,6 +75,7 @@ export default class LogBook {
                     pic: pilot,
                     sic: secondInComnd,
                     acType: ac,
+                    isConfirmed: isConfirmed,
                     departure: dep,
                     destination: dest,
                     isTurbine: isJet,
