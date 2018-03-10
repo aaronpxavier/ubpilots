@@ -5,7 +5,6 @@ import { HideNavMenuService } from '../../services/parent_comp_controls/hide-nav
 import { HideFooterService } from '../../services/parent_comp_controls/hide-footer-service.service';
 import { LoginService } from '../../services/api-services/login.service';
 import { Location } from '@angular/common';
-import sleep from '../../utility/sleep';
 
 @Component({
   selector: 'app-login',
@@ -36,13 +35,9 @@ export class LoginComponent implements OnInit {
             .then ((isValid) => {
                 if (isValid) {
                     console.log('isValid token in local');
-                    sleep(1).then ( () => {
-                        location.back();
-                    });
+                    location.back();
                 } else {
-                    sleep(1).then ( () => {
-                        this.setDefaultState();
-                    });
+                    this.setDefaultState();
                 }
             })
             .catch((error) => {
@@ -99,14 +94,11 @@ export class LoginComponent implements OnInit {
         this.setWaitingState();
         this.loginService.getToken(this.userName, this.password)
             .then(() => {
-                sleep(1).then ( () => {
-                    this.location.back();
-                });
+                this.location.back();
+
             })
             .catch((err) => {
-                sleep(1).then ( () => {
-                    this.setLogInFailedState();
-                });
+                this.setLogInFailedState();
             });
     }
 
