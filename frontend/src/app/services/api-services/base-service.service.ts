@@ -5,7 +5,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import setup from '../../../setup';
+import { environment } from '../../../environments/environment';
 import { URLSearchParams } from '@angular/http';
 
 export class Token {
@@ -20,7 +20,7 @@ export class BaseService {
 
     // Variables -------------------------------------------------------------//
 
-    private BASE_URL = setup().baseURL;
+    private BASE_URL = environment.baseURL;
     private url: string;
     public tokenKey = 'token';
     public userKey = 'user';
