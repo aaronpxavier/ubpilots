@@ -1,4 +1,3 @@
-
 import Users from './Users';
 import jwt from '../../node_modules/jsonwebtoken';
 import cfg from '../cfg';
@@ -57,5 +56,4 @@ export default class Token {
             });
         });
     }
-
 }

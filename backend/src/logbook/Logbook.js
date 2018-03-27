@@ -33,10 +33,30 @@ export default class LogBook {
     constructor() {
     }
 
-    createLogBook (pilot, secondInComnd = '', isConfirmed = false, ac, dep, dest, isJet = false,
-                   takeoffsNum, landingsNum, totalTime = 0,
-                   imcTime = 0, nightTime = 0, dateTime) {
+    // createLogBook (pilot, secondInComnd = '', isConfirmed = false, ac, dep, dest, isJet = false,
+    //                takeoffsNum, landingsNum, totalTime = 0,
+    //                imcTime = 0, nightTime = 0, dateTime) {
+    //
+    // }
+    //
 
+    getLogbookEntryJSON () {
+      return entryJSON =
+          {
+              pic: pilot,
+              sic: secondInComnd,
+              acType: ac,
+              isConfirmed: isConfirmed,
+              departure: dep,
+              destination: dest,
+              isTurbine: isJet,
+              imc: imcTime,
+              night: nightTime,
+              total: totalTime,
+              takeoffs: takeoffsNum,
+              landings: landingsNum,
+          }
+      
     }
 
     logbookEntryJSON(logBookJson) {
