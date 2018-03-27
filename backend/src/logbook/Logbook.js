@@ -1,4 +1,3 @@
-
 // Imports ------------------------------------------------------------------//
 import mongoose from '../../node_modules/mongoose';
 
@@ -8,11 +7,11 @@ const LOGBOOK_SCHEMA = new SCHEMA({
     pic: [{firstName: String}, {lastName: String}],
     sic: [{firstName: String}, {lastName: String}],
     isConfirmed: {type: Boolean},
-    aircraft: [{
+    aircraft: {
         abreviation: String,
         isTurbine: Boolean,
         numberOfEngines: Number
-    }],
+    },
     departure: {type: String},
     destination: {type: String},
     imc: {type: Number},
@@ -25,7 +24,7 @@ const LOGBOOK_SCHEMA = new SCHEMA({
         default: Date.now
     }
 });
-const LOGBOOK_SHEMA_MODEL = mongoose.model('User', LOGBOOK_SCHEMA);
+const LOGBOOK_SHEMA_MODEL = mongoose.model('Logbook', LOGBOOK_SCHEMA);
 
 // Exports ------------------------------------------------------------------//
 export default class LogBook {
@@ -40,28 +39,27 @@ export default class LogBook {
     // }
     //
 
+
     getLogbookEntryJSON () {
       return entryJSON =
           {
-              pic: pilot,
-              sic: secondInComnd,
-              acType: ac,
-              isConfirmed: isConfirmed,
-              departure: dep,
-              destination: dest,
-              isTurbine: isJet,
-              imc: imcTime,
-              night: nightTime,
-              total: totalTime,
-              takeoffs: takeoffsNum,
-              landings: landingsNum,
+              pic: [],
+              sic: [],
+              ac: {},
+              isConfirmed: false,
+              departure: '',
+              destination: '',
+              imc: 0,
+              night: 0,
+              total: 0,
+              takeoffs: 0,
+              landings: 0,
+              date: null
           }
       
     }
 
-    logbookEntryJSON(logBookJson) {
-        return new LOGBOOK_SHEMA_MODEL(logBookJSON).save();
-    }
+
 
     /**
      * @param pilot must be defined with valid user string
@@ -69,44 +67,40 @@ export default class LogBook {
      * @param isAdmin default to false must be boolean.
      * @returns promise obj after creating user in database
      */
-    logbookEntry (pilot, secondInComnd = '', isConfirmed = false, ac, dep, dest, takeoffsNum,
-                  landingsNum, dateTime, imcTime = 0,
-                  nightTime = 0, totalTime = 0,) {
-        let entryJSON;
-        if (dateTime) {
-            entryJSON =
-                {
-                    pic: pilot,
-                    sic: secondInComnd,
-                    isConfirmed: isConfirmed,
-                    acType: ac,
-                    departure: dep,
-                    destination: dest,
-                    total: totalTime,
-                    takeoffs: takeoffsNum,
-                    landings: landingsNum,
-                    imc: imcTime,
-                    night: nightTime,
-                    date: dateTime
-                }
+    // logbookEntry (pilot, secondInComnd = '', isConfirmed = false, ac, dep, dest, takeoffsNum,
+    //               totalTime = 0, landingsNum, dateTime, imcTime = 0, nightTime = 0) {
+    logbookEntry (logBookJSON) {
+        if (logBookJSON.date) {
+          return LOGBOOK_SHEMA_MODEL.save();
         } else {
             entryJSON =
                 {
-                    pic: pilot,
-                    sic: secondInComnd,
-                    acType: ac,
-                    isConfirmed: isConfirmed,
-                    departure: dep,
-                    destination: dest,
-                    isTurbine: isJet,
-                    imc: imcTime,
-                    night: nightTime,
-                    total: totalTime,
-                    takeoffs: takeoffsNum,
-                    landings: landingsNum,
+                    pic: logBookJSON.pic,
+                    sic: logBookJSON.sic,
+                    acType: logBookJSON.acType,
+                    isConfirmed: logBookJSON.isConfirmed,
+                    departure: logBookJSON.departure,
+                    destination: logBookJSON.destination,
+                    imc: logBookJSON.imc,
+                    night: logBookJSON.night,
+                    total: logBookJSON.total,
+                    takeoffs: logBookJSON.takeoffs,
+                    landings: logBookJSON.landings,
                 }
         }
         return LOGBOOK_SHEMA_MODEL(entryJSON).save();
+    }
+
+    getAllEntries() {
+        return LOGBOOK_SHEMA_MODEL.find({});
+    }
+
+    getEntriesForUser(first, last) {
+        return LOGBOOK_SHEMA_MODEL.find({pic: [{firstName: first, lastName: last}]});
+    }
+
+    deleteEntry(id) {
+        return LOGBOOK_SHEMA_MODEL.remove({_id:id});
     }
 
 }
