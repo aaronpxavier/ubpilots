@@ -16,6 +16,44 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
 import { LoginService } from './services/api-services/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './components/nav/nav.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+
+} from '@angular/material';
+import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
 
 
 @NgModule({
@@ -29,11 +67,15 @@ import { NavComponent } from './components/nav/nav.component';
       FooterComponent,
       LogbookComponent,
       SignupComponent,
-      NavComponent
+      NavComponent,
+      LogbookFormComponent,
   ],
   imports: [
       BrowserModule,
+      BrowserAnimationsModule,
       HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule,
       RouterModule.forRoot([
           {
               path: 'login',
@@ -46,6 +88,10 @@ import { NavComponent } from './components/nav/nav.component';
           {
               path: 'log',
               component: LogbookComponent
+          },
+          {
+              path: 'log/form',
+              component: LogbookFormComponent
           },
           {
               path: 'home',
@@ -65,7 +111,39 @@ import { NavComponent } from './components/nav/nav.component';
               path: "**",
               redirectTo: "error"
           }
-      ])
+      ]),
+      MatAutocompleteModule,
+      MatButtonModule,
+      MatButtonToggleModule,
+      MatCardModule,
+      MatCheckboxModule,
+      MatChipsModule,
+      MatDatepickerModule,
+      MatDialogModule,
+      MatDividerModule,
+      MatExpansionModule,
+      MatGridListModule,
+      MatIconModule,
+      MatInputModule,
+      MatListModule,
+      MatMenuModule,
+      MatNativeDateModule,
+      MatPaginatorModule,
+      MatProgressBarModule,
+      MatProgressSpinnerModule,
+      MatRadioModule,
+      MatRippleModule,
+      MatSelectModule,
+      MatSidenavModule,
+      MatSliderModule,
+      MatSlideToggleModule,
+      MatSnackBarModule,
+      MatSortModule,
+      MatStepperModule,
+      MatTableModule,
+      MatTabsModule,
+      MatToolbarModule,
+      MatTooltipModule
   ],
   providers: [ Title, HideNavMenuService, HideFooterService, LoginService],
   bootstrap: [AppComponent]

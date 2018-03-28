@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LoginService } from "../../services/api-services/login.service";
+import { EventEmitter} from "@angular/core";
+import { MatDialog } from '@angular/material';
+
+
 
 @Component({
   selector: 'app-logbook',
@@ -12,8 +16,10 @@ export class LogbookComponent implements OnInit {
 
   public isAdmin = false;
   public isSignedIn = false;
+  private logoutEventEmitter: EventEmitter<number>;
 
-  constructor(private titleService: Title, private loginService: LoginService) {
+  constructor(private titleService: Title, private loginService: LoginService,
+              public dialog: MatDialog) {
     this.titleService.setTitle("UBPA Logbook");
     const TOKEN = loginService.getTokenFromLocal();
     if (TOKEN == null) {
@@ -27,6 +33,26 @@ export class LogbookComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.loginService.getSignOutEmiiter()
+          .subscribe(item => {
+            this.isSignedIn = false;
+            this.isAdmin = false;
+          });
   }
 
+  newBtnClick() {
+      const dialogRef = this.dialog.open(DialogComponent, {
+          height: '350px'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+      });
+  }
+
+
+
 }
+
+
+
+
