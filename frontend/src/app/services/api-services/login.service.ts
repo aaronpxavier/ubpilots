@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BaseService} from './base-service.service';
 import { Token } from './base-service.service';
 
-
 @Injectable()
 export class LoginService extends BaseService {
 
@@ -63,7 +62,12 @@ export class LoginService extends BaseService {
 
     getTokenFromLocal (): Token {
         let token: Token;
-        return token = JSON.parse(localStorage.getItem(this.tokenKey));
+        const TEMP_TOKEN = localStorage.getItem(this.tokenKey);
+        token = null;
+        if (TEMP_TOKEN) {
+            token = JSON.parse(TEMP_TOKEN);
+        }
+        return token;
     }
 
 }

@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { URLSearchParams } from '@angular/http';
+
 
 export class Token {
     constructor (public success, public isAdmin, public token) {}
