@@ -8,6 +8,8 @@ const SCHEMA = mongoose.Schema;
 
 const UserSchema = new SCHEMA({
     username: {type: String},
+    firstName: {type: String},
+    lastName: {type: String},
     password: {type: String},
     isAdmin: {type: Boolean},
     date: {
@@ -16,11 +18,13 @@ const UserSchema = new SCHEMA({
     }
 });
 
-const userModel = mongoose.model('User', UserSchema);
+
 
 // Exports ------------------------------------------------------------------//
 export default class Users {
-    constructor() {}
+    constructor() {
+        this.userModel = mongoose.model('User', UserSchema);
+    }
 
     /**
      * @param userName must be defined with valid user string
@@ -31,11 +35,11 @@ export default class Users {
      * successfully saved in db, otherwise rejects with error obj.
      * @returns {Promise}
      */
-    saveUser (userName, pass, isAdmin = false) {
+    saveUser (userName, firstname, lastname, pass, isAdmin = false) {
         return new Promise((resolve,reject) => {
             bcrypt.hash(pass, SALT_ROUNDS)
                 .then((hash) => {
-                    return this.createUserModel(userName, hash, isAdmin).save();
+                    return this.createUserModel(userName, firstname, lastname, hash, isAdmin).save();
                 })
                 .then(() => {
                     resolve(true);
@@ -53,7 +57,7 @@ export default class Users {
     checkIfAdmin(userName) {
         let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ 'username': userLower }, 'isAdmin', function (err, user) {
+            this.userModel.findOne({ 'username': userLower }, 'isAdmin', function (err, user) {
                 if(err)
                     reject(err);
                 else if (!user)
@@ -74,7 +78,7 @@ export default class Users {
     getUser(userName) {
         let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ username: userLower}, function (err, doc){
+            this.userModel.findOne({ username: userLower}, function (err, doc){
                 if (err) reject(err);
                 else resolve(doc);
             });
@@ -87,14 +91,16 @@ export default class Users {
      * @param isAdmin must be defined with boolean
      * @returns { mongoose.model }
      */
-    createUserModel (userName, pass, isAdmin) {
+    createUserModel (userName, firstname, lastname, pass, isAdmin) {
         let userLower = userName.toLowerCase();
         let userJSON = {
             username: userLower,
+            firstName: firstname,
+            lastName: lastname,
             password: pass,
             isAdmin: isAdmin,
         }
-        return new userModel(userJSON)
+        return new this.userModel(userJSON)
     }//end createUserModel
 
     /**
@@ -105,7 +111,7 @@ export default class Users {
     validateUser (userName, pass) {
         let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ 'username': userLower }, 'username password', function (err, user) {
+            this.userModel.findOne({ 'username': userLower }, 'username password', function (err, user) {
                 if(err)
                     reject(err);
                 else if(user && user.username === userLower) {
@@ -127,7 +133,7 @@ export default class Users {
      * * * */
     deleteUser(userName) {
         let userLower = userName.toLowerCase();
-        return userModel.remove({username: userLower});
+        return this.userModel.remove({username: userLower});
     }//end deleteUser
 
     /**
@@ -136,7 +142,7 @@ export default class Users {
      **/
     checkIfAdminUserExists() {
         return new Promise ((resolve) => {
-            userModel.findOne({'isAdmin': true}, 'isAdmin', function (err, user) {
+            this.userModel.findOne({'isAdmin': true}, 'isAdmin', function (err, user) {
                 console.log(user);
                 if (err)
                     resolve(false);
@@ -154,7 +160,7 @@ export default class Users {
      **/
     checkIfRegularUserExists() {
         return new Promise ((resolve) => {
-            userModel.findOne({'isAdmin': false}, 'isAdmin', function (err, user) {
+            this.userModel.findOne({'isAdmin': false}, 'isAdmin', function (err, user) {
                 console.log(user);
                 if (err)
                     resolve(false);

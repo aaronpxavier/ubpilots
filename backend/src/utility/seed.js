@@ -11,12 +11,13 @@ let adminPassSeed = seedData.adminPassSeed;
 let userSeed = seedData.userSeed;
 let userPassSeed = seedData.userPassSeed;
 
+
 //functions -----------------------------------------------------------------//
 let seedAdmin = () => {
     users.checkIfAdminUserExists()
         .then((hasAdmin) => {
             if (!hasAdmin) {
-                users.saveUser(adminUserSeed,adminPassSeed,true);
+                users.saveUser(adminUserSeed, seedData.adminUserFirst, seedData.adminUserLast, adminPassSeed, true);
             }
         })
         .catch((err) => {
@@ -28,7 +29,7 @@ let seedUser = () => {
     users.checkIfRegularUserExists()
         .then((hasUser) => {
             if (!hasUser) {
-                users.saveUser(userSeed,userPassSeed);
+                users.saveUser(userSeed, seedData.userFirst, seedData.userLast, userPassSeed);
             }
         })
         .catch((err) => {

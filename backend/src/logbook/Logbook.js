@@ -2,12 +2,27 @@
 import mongoose from '../../node_modules/mongoose';
 
 // Variables ------------------------------------------------------------------//
-const SCHEMA = mongoose.Schema;
-const LOGBOOK_SCHEMA = new SCHEMA({
-    pic: [{firstName: String}, {lastName: String}],
-    sic: [{firstName: String}, {lastName: String}],
+var Schema = mongoose.Schema;
+
+var blogSchema = new Schema({
+    title:  String,
+    author: String,
+    body:   String,
+    comments: [{ body: String, date: Date }],
+    date: { type: Date, default: Date.now },
+    hidden: Boolean,
+    meta: {
+        votes: Number,
+        favs:  Number
+    }
+});
+
+var LOGBOOK_SCHEMA = new Schema({
+
+    pic: {firstName: String, lastName: String},
+    sic: {firstName: String, lastName: String},
     isConfirmed: {type: Boolean},
-    aircraft: {
+    ac: {
         abreviation: String,
         isTurbine: Boolean,
         numberOfEngines: Number
@@ -24,12 +39,11 @@ const LOGBOOK_SCHEMA = new SCHEMA({
         default: Date.now
     }
 });
-const LOGBOOK_SHEMA_MODEL = mongoose.model('Logbook', LOGBOOK_SCHEMA);
 
 // Exports ------------------------------------------------------------------//
 export default class LogBook {
-
     constructor() {
+        this.logbookModel = mongoose.model('Logbook', LOGBOOK_SCHEMA);
     }
 
     // createLogBook (pilot, secondInComnd = '', isConfirmed = false, ac, dep, dest, isJet = false,
@@ -39,10 +53,20 @@ export default class LogBook {
     // }
     //
 
+    /**
+     * @param userName must be defined with valid string
+     * @param pass must be defined with string
+     * @param isAdmin must be defined with boolean
+     * @returns { mongoose.model }
+     */
+    createLogbookModel (entryJson) {
+
+
+        return new this.logbookModel(entryJson);
+    }//end createUserModel
 
     getLogbookEntryJSON () {
-      return entryJSON =
-          {
+        let entryJSON = {
               pic: [],
               sic: [],
               ac: {},
@@ -56,10 +80,8 @@ export default class LogBook {
               landings: 0,
               date: null
           }
-      
+          return entryJSON;
     }
-
-
 
     /**
      * @param pilot must be defined with valid user string
@@ -71,7 +93,7 @@ export default class LogBook {
     //               totalTime = 0, landingsNum, dateTime, imcTime = 0, nightTime = 0) {
     logbookEntry (logBookJSON) {
         if (logBookJSON.date) {
-          return LOGBOOK_SHEMA_MODEL.save();
+          return this.createLogbookModel(logBookJSON).save();
         } else {
             entryJSON =
                 {
@@ -88,19 +110,18 @@ export default class LogBook {
                     landings: logBookJSON.landings,
                 }
         }
-        return LOGBOOK_SHEMA_MODEL(entryJSON).save();
+        return this.logbookModel(entryJSON).save();
     }
 
     getAllEntries() {
-        return LOGBOOK_SHEMA_MODEL.find({});
+        return this.logbookModel.find({});
     }
 
     getEntriesForUser(first, last) {
-        return LOGBOOK_SHEMA_MODEL.find({pic: [{firstName: first, lastName: last}]});
+        return this.logbookModel.find( { $or: [ {pic: {firstName: first, lastName: last}}, {sic: {firstName: first, lastName: last}} ]});
     }
 
     deleteEntry(id) {
-        return LOGBOOK_SHEMA_MODEL.remove({_id:id});
+        return this.logbookModel.remove({_id:id});
     }
-
 }
