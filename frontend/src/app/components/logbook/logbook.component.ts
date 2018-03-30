@@ -5,7 +5,6 @@ import { EventEmitter} from "@angular/core";
 import { MatDialog } from '@angular/material';
 import { Router } from "@angular/router";
 
-
 @Component({
   selector: 'app-logbook',
   templateUrl: './logbook.component.html',
@@ -17,7 +16,7 @@ export class LogbookComponent implements OnInit {
   public isAdmin = false;
   public isSignedIn = false;
   private logoutEventEmitter: EventEmitter<number>;
-
+  public isLinear = false;
   constructor(private titleService: Title, private loginService: LoginService,
               public dialog: MatDialog, private router:Router) {
     this.titleService.setTitle("UBPA Logbook");
@@ -43,7 +42,7 @@ export class LogbookComponent implements OnInit {
   }
 
     newBtnClick() {
-      this.router.navigateByUrl('log/form');
+      this.isLinear = true;
     }
 
 
