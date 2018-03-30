@@ -1,92 +1,34 @@
-<!--<form action="/action_page.php">-->
-  <!--<h2>PIC</h2>-->
-  <!--First name:<br>-->
-  <!--<input type="text" name="firstname" value="Mickey">-->
-  <!--<br>-->
-  <!--Last name:<br>-->
-  <!--<input type="text" name="lastname" value="Mouse">-->
-  <!--<br><br>-->
-  <!--<h2>PIC</h2>-->
-  <!--First name:<br>-->
-  <!--<input type="text" name="firstname" value="Mickey">-->
-  <!--<br>-->
-  <!--Last name:<br>-->
-  <!--<input type="text" name="lastname" value="Mouse">-->
-  <!--<br><br>-->
-  <!--Choose A/C: <br>-->
-  <!--<select>-->
-    <!--<option value="C-172">C-172</option>-->
-    <!--<option value="PA-28">PA-28</option>-->
-  <!--</select>-->
-  <!--<br>-->
-  <!--acAbrev:'C-172'-->
-  <!--isJet:false-->
-  <!--noEngines:1-->
-  <!--dep:kfpr-->
-  <!--dest:kvrb-->
-  <!--imc:0-->
-  <!--to:1-->
-  <!--lands:1-->
-  <!--<input type="submit" value="Submit">-->
-<!--</form>-->
-<div class="example-container">
-
-
-</div>
-<mat-grid-list cols="12" rowHeight="50px">
-  <mat-grid-tile [colspan]="12">Logbook Form</mat-grid-tile>
-  <mat-grid-tile [colspan]="1"><h2 class="section-title">pic</h2></mat-grid-tile>
-    <mat-grid-tile [colspan]="11"></mat-grid-tile>
-    <mat-grid-tile [colspan]="2">
-    <mat-form-field>
-      <input matInput placeholder="First Name">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2">
-    <mat-form-field>
-      <input matInput placeholder="Last Name">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="12"></mat-grid-tile>
-  <mat-grid-tile [colspan]="1"><h2 class="section-title">sic</h2></mat-grid-tile>
-  <mat-grid-tile [colspan]="11"></mat-grid-tile>
-  <!--<mat-grid-tile [colspan]="10"></mat-grid-tile>-->
-  <mat-grid-tile [colspan]="2">
-    <mat-form-field>
-      <input matInput placeholder="First Name">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2">
-    <mat-form-field>
-      <input matInput placeholder="Last Name">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="12"></mat-grid-tile>
-
-</mat-grid-list>
-
-<mat-form-field>
-  <mat-select placeholder="Select A/C">
-    <mat-option value="option">Option</mat-option>
-  </mat-select>
-</mat-form-field>
-
-<div class="container">
-  <h1>Hero Form</h1>
-  <form>
-    <div class="form-group">
-      <label for="name">PIC</label>
-      <mat-input-container type="text" class="form-control" id="name" required>
-      <input>
+<mat-button-toggle (click)="isLinear = true"></mat-button-toggle>
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>PIC Info</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
-
-    <div class="form-group">
-      <label for="alterEgo">Alter Ego</label>
-      <input type="text" class="form-control" id="alterEgo">
-    </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
-
-  </form>
-</div>
-
+  </mat-step>
+</mat-horizontal-stepper>

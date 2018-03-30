@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { LoginService } from "../../services/api-services/login.service";
 import { EventEmitter} from "@angular/core";
 import { MatDialog } from '@angular/material';
-
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -19,7 +19,7 @@ export class LogbookComponent implements OnInit {
   private logoutEventEmitter: EventEmitter<number>;
 
   constructor(private titleService: Title, private loginService: LoginService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog, private router:Router) {
     this.titleService.setTitle("UBPA Logbook");
     const TOKEN = loginService.getTokenFromLocal();
     if (TOKEN == null) {
@@ -37,17 +37,15 @@ export class LogbookComponent implements OnInit {
           .subscribe(item => {
             this.isSignedIn = false;
             this.isAdmin = false;
+
           });
+
   }
 
-  newBtnClick() {
-      const dialogRef = this.dialog.open(DialogComponent, {
-          height: '350px'
-      });
-      dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result}`);
-      });
-  }
+    newBtnClick() {
+      this.router.navigateByUrl('log/form');
+    }
+
 
 
 
