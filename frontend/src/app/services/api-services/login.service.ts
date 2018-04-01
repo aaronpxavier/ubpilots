@@ -39,7 +39,6 @@ export class LoginService extends BaseService {
     // Methods ---------------------------------------------------------------//
 
     getToken(userName, password): Promise<Token> {
-        console.log('getTOkenCalled');
         this.setUrl('/api/login/auth');
         return new Promise<Token>((resolve, reject) => {
             console.log(userName + ' ' + password);

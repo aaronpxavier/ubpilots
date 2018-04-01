@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from "@angular/platform-browser";
 import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
-import { LogEntry } from "../../services/api-services/logbook.service";
+import { LoginService } from "../../services/api-services/login.service";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-logbook-form',
@@ -25,38 +26,42 @@ export class LogbookFormComponent implements OnInit {
   public landings: number;
 
   constructor(private title: Title, private hideFooterService: HideFooterService,
-              private logService:LogbookService) {
+              private logService:LogbookService, private loginService: LoginService, private location: Location) {
     this.title.setTitle('Logbook Form');
     this.hideFooterService.hide();
   }
 
   ngOnInit() {
-
+      this.loginService.getSignOutEmitter().subscribe(() => {
+          this.location.back();
+      })
   }
-  buildJson(): JSON {
-      let jsonEntry = `
+
+  buildJson(): any {
+      let jsonEntry =
           {
-              picFirst: ${this.picFirst}, 
-              picLast: ${this.picLast},
-              sicFirst: ${this.sicFirst},
-              sicLast: ${this.sicLast},
-              acAbrev: ${this.ac},
-              isJet: "false",
-              noEngines: "1",
-              dep: ${this.dep},
-              dest: ${this.dest},
-              imc: ${this.imc},
-              to: ${this.takeoffs},
-              lands: ${this.landings},
-              total: ${this.total},
-              night: ${this.night}
-          }`
-          return JSON.parse(jsonEntry);
+              picFirst: this.picFirst,
+              picLast: this.picLast,
+              sicFirst: this.sicFirst,
+              sicLast: this.sicLast,
+              acAbrev: this.ac,
+              isJet: false,
+              noEngines: 1,
+              dep: this.dep,
+              dest: this.dest,
+              imc: this.imc,
+              to: this.takeoffs,
+              lands: this.landings,
+              total: this.total,
+              night: this.night
+          };
+          jsonEntry.acAbrev = 'c-172';
+          return jsonEntry;
     }
 
-
-
   submit() {
+    console.log(this.buildJson());
     this.logService.postLogs(this.buildJson());
   }
+
 }

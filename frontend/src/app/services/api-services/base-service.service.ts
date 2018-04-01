@@ -78,15 +78,17 @@ export class BaseService {
         return this.http.post<Token>(this.url, body, options);
     }
 
-    postWithToken(data: any): Observable<Response> {
+    postWithToken(data: any): Observable<any> {
+        console.log('inside post with token');
         const body = this.getURLEncodedString(data);
+
         const options = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
             })
         };
-        return this.http.post<Response>(this.url, body, options);
+        return this.http.post<any>(this.url, body, options);
     }
 
     getWithToken(): Observable<Success> {

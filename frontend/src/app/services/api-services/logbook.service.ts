@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BaseService} from './base-service.service';
 import { Token } from './base-service.service';
 import { LoginService } from "./login.service";
+import { Success } from "./base-service.service";
 
 export class Pilot {
   constructor(public firstName:string, public lastName:string) {}
@@ -46,8 +47,17 @@ export class LogbookService extends BaseService {
         });
     });
   }
-  postLogs(logsJSON) {
-      this.postWithToken(logsJSON);
+
+  postLogs(logsJSON): Promise<Success> {
+      console.log('inside log service');
+      return new Promise<Success>((resolve, reject) => {
+          this.postWithToken(logsJSON).subscribe(data => {
+              resolve(data);
+          }, err => {
+              reject(err);
+          });
+      });
+
   }
 
 }
