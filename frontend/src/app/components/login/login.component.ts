@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
         this.showWaiting = false;
         this.showForm = false;
         this.waitingMessage = 'Your Logged In!!!';
-
     }
 
     setLogInFailedState() {

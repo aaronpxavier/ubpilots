@@ -29,6 +29,7 @@ let seedUser = () => {
     users.checkIfRegularUserExists()
         .then((hasUser) => {
             if (!hasUser) {
+                //console.log(userSeed, seedData.userFirst, seedData.userLast, userPassSeed)
                 users.saveUser(userSeed, seedData.userFirst, seedData.userLast, userPassSeed);
             }
         })

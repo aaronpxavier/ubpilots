@@ -1,13 +1,7 @@
-.example-container {
-    display: flex;
-    flex-direction: column;
-}
 
-.example-container > * {
-    width: 100%;
-}
 
-.section-title {
-    padding-bottom: 20px;
-    color: #005bbb;
+form {
+    margin-top: 60px;
+    padding-left: 150px;
+    padding-right: 150px;
 }

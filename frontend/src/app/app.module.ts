@@ -14,6 +14,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HideNavMenuService } from './services/parent_comp_controls/hide-nav-menu.service';
 import { HideFooterService } from './services/parent_comp_controls/hide-footer-service.service';
 import { LoginService } from './services/api-services/login.service';
+import { LogbookService } from "./services/api-services/logbook.service";
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './components/nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -147,7 +148,7 @@ import { LogbookFormComponent } from './components/logbook-form/logbook-form.com
       MatTooltipModule,
       NgbModule.forRoot()
   ],
-  providers: [ Title, HideNavMenuService, HideFooterService, LoginService],
+  providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

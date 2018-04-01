@@ -24,8 +24,10 @@ let createLogEntry = (req, isConfirmed = false) => {
     logBookEntry.departure = req.body.dep;
     logBookEntry.destination = req.body.dest;
     logBookEntry.imc = req.body.imc;
+    logBookEntry.night = req.body.night;
     logBookEntry.takeoffs = req.body.to;
     logBookEntry.landings = req.body.lands;
+    logBookEntry.total = req.body.total;
     logBookEntry.date = new Date();
     return logBookEntry;
 }
@@ -33,27 +35,30 @@ let createLogEntry = (req, isConfirmed = false) => {
 
 // default version 1.0 route
 router.get('/',(req,res)=>{
-    res.json({
-        msg: 'forms end point root works'
-    });
+    logbook.getAllEntries()
+        .then(doc => {
+            res.json(doc);
+        });
 }); // end router.get(/)
 
 router.post('/',(req,res)=>{
 
-
-
+    console.log('req.body: ' + req.body.total);
   var authResponseJson = {
       success: false,
   };
 
   const bearer = req.headers['authorization'];
-    console.log(bearer);
   token.resolveToken(bearer)
       .then(decoded => {
-          console.log(decoded);
-          let entry = createLogEntry(req, true);
+          let entry;
+          if(decoded.isAdmin) {
+              entry = createLogEntry(req, true);
+          } else {
+              entry = createLogEntry(req);
+          }
           console.log(entry);
-          return logbook.logbookEntry(createLogEntry(req, true));
+          return logbook.logbookEntry(entry);
       })
       .then(() => {
           authResponseJson.success = true;

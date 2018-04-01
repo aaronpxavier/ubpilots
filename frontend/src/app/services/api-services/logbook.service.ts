@@ -34,10 +34,10 @@ export class LogbookService extends BaseService {
 
   constructor(http: HttpClient, loginService: LoginService) {
       super(http);
+      this.setUrl('/api/log');
   }
 
   getLogs(): Promise<LogEntry[]> {
-    this.setUrl('/api/log');
     return new Promise<LogEntry[]>((resolve, reject) => {
         this.get().subscribe((logs) => {
             resolve (logs);
@@ -46,4 +46,8 @@ export class LogbookService extends BaseService {
         });
     });
   }
+  postLogs(logsJSON) {
+      this.postWithToken(logsJSON);
+  }
+
 }

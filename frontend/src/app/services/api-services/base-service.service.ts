@@ -54,10 +54,7 @@ export class BaseService {
 
     // solution found on https://github.com/angular/angular/issues/13241
 
-
     getURLEncodedString(data: any): string {
-        // `username=${userName}&pass=${password}`;
-        console.log('encodingString');
         let count = 0;
         let outputString = '';
         for (const key in data) {
@@ -69,18 +66,15 @@ export class BaseService {
             outputString += encodeURIComponent(data[key]);
             ++count;
         }
-        console.log(outputString);
         return outputString;
     }
 
     post(data: any): Observable<Token> {
         // const body = `username=${userName}&pass=${password}`;
         const body = this.getURLEncodedString(data);
-        console.log(body);
         const options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
-        console.log(this.url);
         return this.http.post<Token>(this.url, body, options);
     }
 
@@ -89,7 +83,7 @@ export class BaseService {
         const options = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': localStorage.getItem(this.tokenKey)
+                'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
             })
         };
         return this.http.post<Response>(this.url, body, options);

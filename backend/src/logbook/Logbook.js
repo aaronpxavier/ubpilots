@@ -60,8 +60,6 @@ export default class LogBook {
      * @returns { mongoose.model }
      */
     createLogbookModel (entryJson) {
-
-
         return new this.logbookModel(entryJson);
     }//end createUserModel
 

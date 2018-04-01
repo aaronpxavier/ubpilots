@@ -1,7 +1,7 @@
 <h2 id="table-title" class="center-align"> Flight Logs </h2>
 <div class="container">
-    <button (click)="newBtnClick()" *ngIf="!isSignedIn">New</button> <button type="" *ngIf="isAdmin">Edit</button> <button *ngIf="isAdmin" type="">Delete</button>
-    <table id = "myTable" class="striped responsive-table" cellspacing="0" width="100%">
+    <button (click)="newBtnClick()" *ngIf="isSignedIn">New</button> <button type="" *ngIf="isAdmin">Edit</button> <button *ngIf="isAdmin" type="">Delete</button>
+    <table id = "myTable" class="table-hover" cellspacing="0" width="100%">
         <thead>
         <tr>
             <th class="center-align">Date</th>
@@ -15,151 +15,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">Felipe</td>
-            <td class="center-align">PA-28</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.3</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">Arun</td>
-            <td class="center-align">C-172</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KALB</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.5</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">Derrick</td>
-            <td class="center-align">C-172</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.7</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">PA-28</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.5</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">C-172</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.5</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">C-172</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">3.6</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">C-172</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.5</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">C-172</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.5</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">PA-28</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.2</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">C-172</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1.3</td>
-        </tr>
-        <tr>
-            <td class="center-align">2/26/18</td>
-            <td class="center-align">John</td>
-            <td class="center-align">PA-28</td>
-            <td class="center-align">KBUF</td>
-            <td class="center-align">KHPN</td>
-            <td class="center-align">1</td>
-            <td class="center-align">1</td>
-            <td class="center-align">2.6</td>
+        <tr *ngFor="let log of logs">
+            <td class="center-align">{{log.date}}</td>
+            <td class="center-align">{{log.pic.firstName}} {{log.pic.lastName}}</td>
+            <td class="center-align">{{log.ac.abreviation}}</td>
+            <td class="center-align">{{log.departure}}</td>
+            <td class="center-align">{{log.destination}}</td>
+            <td class="center-align">{{log.takeoffs}}</td>
+            <td class="center-align">{{log.landings}}</td>
+            <td class="center-align">{{log.total}}</td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<mat-button-toggle *ngIf="isLinear"></mat-button-toggle>
-<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>PIC Info</ng-template>
-            <mat-form-field>
-                <input matInput placeholder="Last name, First Name" formControlName="firstCtl" required>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-                <input matInput placeholder="Address" formControlName="secondCtrl" required>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        You are now done.
-        <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-    </mat-step>
-</mat-horizontal-stepper>
