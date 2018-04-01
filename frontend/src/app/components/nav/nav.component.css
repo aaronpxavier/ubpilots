@@ -1,8 +1,18 @@
-.btn {
-    background-color: #005bbb;
-}
+
 #login-btn {
     color: #f5f6f7;
+}
+
+.navbar-nav  li a:hover {
+    color: #005bbb !important;
+}
+
+
+.btn {
+    background-color: #005bbb;
+    margin-top: -2px;
+    margin-left: 15px;
+    margin-right: 15px
 }
 
 #login-btn:hover {

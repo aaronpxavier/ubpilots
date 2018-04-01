@@ -15,7 +15,6 @@ export class LogbookComponent implements OnInit {
 
   public isAdmin = false;
   public isSignedIn = false;
-  private logoutEventEmitter: EventEmitter<number>;
   public isLinear = false;
   constructor(private titleService: Title, private loginService: LoginService,
               public dialog: MatDialog, private router:Router) {
@@ -32,11 +31,10 @@ export class LogbookComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.loginService.getSignOutEmiiter()
+      this.loginService.getSignOutEmitter()
           .subscribe(item => {
             this.isSignedIn = false;
             this.isAdmin = false;
-
           });
 
   }

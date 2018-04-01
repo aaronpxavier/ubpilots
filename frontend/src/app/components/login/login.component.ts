@@ -28,13 +28,12 @@ export class LoginComponent implements OnInit {
                 private location: Location) {
 
         this.titleService.setTitle("Login");
-        this.menuService.hide();
-        this.footerService.hide();
         this.setWaitingState();
         this.loginService.checkIfTokenIsValid()
             .then ((isValid) => {
                 if (isValid) {
                     console.log('isValid token in local');
+
                     location.back();
                 } else {
                     this.setDefaultState();
@@ -42,6 +41,8 @@ export class LoginComponent implements OnInit {
             })
             .catch((error) => {
                 this.setDefaultState();
+                this.menuService.hide();
+                this.footerService.hide();
                 console.log(error);
             });
     }
@@ -94,8 +95,10 @@ export class LoginComponent implements OnInit {
         this.setWaitingState();
         this.loginService.getToken(this.userName, this.password)
             .then(() => {
+                this.menuService.show();
+                this.footerService.show();
+                this.loginService.signInEventTrigger();
                 this.location.back();
-
             })
             .catch((err) => {
                 this.setLogInFailedState();

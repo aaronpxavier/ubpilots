@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/api-services/login.service';
+import { Router } from "@angular/router";
+import { EventEmitter} from "@angular/core";
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +15,10 @@ export class NavComponent implements OnInit {
   public showUserMenu: boolean;
   public userName: string;
   public isAdmin: boolean;
-  constructor(private loginService: LoginService) {
+  private loginEventEmitter: EventEmitter<number>;
+
+  constructor(private loginService: LoginService, private router:Router) {
+      this.loginEventEmitter = loginService.getSignInEmitter();
       this.loginService.checkIfTokenIsValid()
           .then((isLoggedIn) => {
               if (isLoggedIn) {
@@ -28,6 +33,19 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.loginService.getSignInEmitter()
+          .subscribe(item => {
+              this.setLoggedInState();
+          });
+      this.loginService.getSignOutEmitter()
+          .subscribe(item => {
+              this.setNotLoggedInState();
+          });
+  }
+
+  loginBtnClick() {
+      console.log('login click');
+      this.router.navigateByUrl('/login')
   }
 
   signOut() {

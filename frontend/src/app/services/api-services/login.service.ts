@@ -9,6 +9,7 @@ export class LoginService extends BaseService {
 
     // Variables -------------------------------------------------------------//
     private logoutEventEmitter: EventEmitter<number> = new EventEmitter();
+    private signInEventEmitter: EventEmitter<number> = new EventEmitter();
     // Constructor -----------------------------------------------------------//
 
     constructor(http: HttpClient) {
@@ -62,8 +63,16 @@ export class LoginService extends BaseService {
         this.logoutEventEmitter.emit(0);
     }
 
-    getSignOutEmiiter (): EventEmitter<number> {
+    signInEventTrigger() {
+        this.signInEventEmitter.emit(0);
+    }
+
+    getSignOutEmitter (): EventEmitter<number> {
         return this.logoutEventEmitter;
+    }
+
+    getSignInEmitter (): EventEmitter<number> {
+        return this.signInEventEmitter;
     }
 
     getTokenFromLocal (): Token {

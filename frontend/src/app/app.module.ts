@@ -53,6 +53,7 @@ import {
     MatTooltipModule,
 
 } from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
 
 
@@ -143,7 +144,8 @@ import { LogbookFormComponent } from './components/logbook-form/logbook-form.com
       MatTableModule,
       MatTabsModule,
       MatToolbarModule,
-      MatTooltipModule
+      MatTooltipModule,
+      NgbModule.forRoot()
   ],
   providers: [ Title, HideNavMenuService, HideFooterService, LoginService],
   bootstrap: [AppComponent]
