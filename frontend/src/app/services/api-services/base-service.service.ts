@@ -47,8 +47,9 @@ export class BaseService {
         return false;
     } // setUrl
 
-    get(): Observable<Response> {
-        return this.http.get<Response>(this.url);
+    get(): Observable<any> {
+        console.log('get called');
+        return this.http.get<any>(this.url);
     } // get
 
     // solution found on https://github.com/angular/angular/issues/13241
