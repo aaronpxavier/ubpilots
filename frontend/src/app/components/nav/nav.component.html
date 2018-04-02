@@ -26,28 +26,50 @@
   <!--</div>-->
 <!--</nav>-->
 
-
-
-<!-- Nav tabs -->
-<nav>
-  <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link active" routerLink="/home">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/log">Logs</a>
-    </li>
-    <li *ngIf="showLoginButton" id="login-nav-item" class="nav-item">
-      <button id="login-btn" (click)="loginBtnClick()" class="btn btn-primary">Login</button>
-    </li>
-
-      <div *ngIf="showUserMenu" ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Welcome {{userName}}</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+    <ul id="nav-list" class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/log">Flight Logs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Aviation Wx</a>
+      </li>
+      <li *ngIf="showLoginButton" id="lastNav" class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <div *ngIf="showUserMenu" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (click)="myDrop.open()">Welcome {{userName}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
           <button *ngIf="isAdmin" class="dropdown-item">Admin Menu</button>
-          <button (click)="signOut()" class="dropdown-item">Sign Out</button>
+          <button class="dropdown-item" (click)="signOut()">Log Out</button>
         </div>
       </div>
-
-  </ul>
+    </ul>
+  </div>
 </nav>
+
+<!-- Nav tabs -->
+<!--<nav>-->
+  <!--<ul class="nav justify-content-end">-->
+    <!--<li class="nav-item">-->
+      <!--<a class="nav-link active" routerLink="/home">Home</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a class="nav-link" routerLink="/log">Logs</a>-->
+    <!--</li>-->
+    <!--<li *ngIf="showLoginButton" id="login-nav-item" class="nav-item">-->
+      <!--<button id="login-btn" (click)="loginBtnClick()" class="btn btn-primary">Login</button>-->
+    <!--</li>-->
+
+      <!--<div *ngIf="showUserMenu" ngbDropdown class="d-inline-block">-->
+        <!--<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Welcome {{userName}}</button>-->
+        <!--<div ngbDropdownMenu aria-labelledby="dropdownBasic1">-->
+          <!--<button *ngIf="isAdmin" class="dropdown-item">Admin Menu</button>-->
+          <!--<button (click)="signOut()" class="dropdown-item">Sign Out</button>-->
+        <!--</div>-->
+      <!--</div>-->
+
+  <!--</ul>-->
+<!--</nav>-->

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/api-services/login.service';
 import { Router } from "@angular/router";
 import { EventEmitter} from "@angular/core";
+import { HideNavMenuService} from "../../services/parent_comp_controls/hide-nav-menu.service";
 
 @Component({
   selector: 'app-nav',
@@ -17,8 +18,9 @@ export class NavComponent implements OnInit {
   public isAdmin: boolean;
   private loginEventEmitter: EventEmitter<number>;
 
-  constructor(private loginService: LoginService, private router:Router) {
+  constructor(private loginService: LoginService, private router:Router, private hideMenuService: HideNavMenuService) {
       this.loginEventEmitter = loginService.getSignInEmitter();
+      this.showUserMenu = hideMenuService.getState();
       this.loginService.checkIfTokenIsValid()
           .then((isLoggedIn) => {
               if (isLoggedIn) {
