@@ -27,6 +27,7 @@ router.get('/',(req,res)=>{
 router.post('/auth', (req, res) => {
     let userName = req.body.username;
     let pass = req.body.pass;
+    console.log('username: ' + userName + ' pass: ' + pass);
     var loginResponseJson = {
         success: false,
         isAdmin: false,

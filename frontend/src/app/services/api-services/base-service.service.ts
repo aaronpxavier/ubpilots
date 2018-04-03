@@ -5,8 +5,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import setup from '../../../setup';
-import { URLSearchParams } from '@angular/http';
+import { environment } from '../../../environments/environment';
+
 
 export class Token {
     constructor (public success, public isAdmin, public token) {}
@@ -20,7 +20,7 @@ export class BaseService {
 
     // Variables -------------------------------------------------------------//
 
-    private BASE_URL = setup().baseURL;
+    private BASE_URL = environment.baseURL;
     private url: string;
     public tokenKey = 'token';
     public userKey = 'user';
@@ -47,16 +47,14 @@ export class BaseService {
         return false;
     } // setUrl
 
-    get(): Observable<Response> {
-        return this.http.get<Response>(this.url);
+    get(): Observable<any> {
+        console.log('get called');
+        return this.http.get<any>(this.url);
     } // get
 
     // solution found on https://github.com/angular/angular/issues/13241
 
-
     getURLEncodedString(data: any): string {
-        // `username=${userName}&pass=${password}`;
-        console.log('encodingString');
         let count = 0;
         let outputString = '';
         for (const key in data) {
@@ -68,30 +66,29 @@ export class BaseService {
             outputString += encodeURIComponent(data[key]);
             ++count;
         }
-        console.log(outputString);
         return outputString;
     }
 
     post(data: any): Observable<Token> {
         // const body = `username=${userName}&pass=${password}`;
         const body = this.getURLEncodedString(data);
-        console.log(body);
         const options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
-        console.log(this.url);
         return this.http.post<Token>(this.url, body, options);
     }
 
-    postWithToken(data: any): Observable<Response> {
+    postWithToken(data: any): Observable<any> {
+        console.log('inside post with token');
         const body = this.getURLEncodedString(data);
+
         const options = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': localStorage.getItem(this.tokenKey)
+                'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
             })
         };
-        return this.http.post<Response>(this.url, body, options);
+        return this.http.post<any>(this.url, body, options);
     }
 
     getWithToken(): Observable<Success> {

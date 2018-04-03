@@ -5,12 +5,14 @@ import app from '../../app';
 
 describe('testing Token Class', () => {
     const userName = 'testuser';
+    const firstname = 'john';
+    const lastname = 'smith';
     const pass = 'password%';
     const users = new Users();
     const token = new Token();
 
     beforeAll(done => {
-        users.saveUser(userName, pass)
+        users.saveUser(userName, firstname, lastname, pass)
             .then(() => {
                 console.log('creating test user in db');
                 done();

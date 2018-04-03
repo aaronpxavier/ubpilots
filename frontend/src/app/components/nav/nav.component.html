@@ -1,27 +1,75 @@
-<!-- Dropdown Structure -->
-<ul id="userDropDown" class="dropdown-content">
-  <li></li>
-  <li *ngIf="isAdmin"><a href="#">admin Menu</a></li>
-  <li><a id="logout-btn" class="waves-effect waves-light btn" (click)="signOut()">Logout</a></li>
-</ul>
-<nav >
-  <div class="nav-wrapper bg-3">
-    <a href="/home" class="brand-logo">UB Pilots</a>
-    <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="/log">Flight Logs</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li> <a href="#">About Us</a></li>
-      <li *ngIf="showLoginButton"><a href="/login" id="login-btn" class="waves-effect waves-light btn">Login</a></li>
-      <li *ngIf="showUserMenu"><a class="dropdown-button" data-activates="userDropDown">{{'Welcome '+userName}}<i class="material-icons right">arrow_drop_down</i></a></li>
-    </ul>
-    <ul class="side-nav" id="mobile-menu">
-      <h2 class="center-align"><strong><u>Menu</u></strong></h2>
-      <li><a href="/log">Flight Logs</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li> <a href="#">About Us</a></li>
-      <li *ngIf="showLoginButton"><a href="/login" id="login-btn-collapsable" class="waves-effect waves-light btn">Login</a></li>
-      <!--<li *ngIf="showUserMenu"><a class="dropdown-button" href="#!" data-activates="userDropDown">{{'Welcome '+userName}}<i class="material-icons right">arrow_drop_down</i></a></li>-->
+<!--&lt;!&ndash; Dropdown Structure &ndash;&gt;-->
+<!--<ul id="userDropDown" class="dropdown-content">-->
+  <!--<li></li>-->
+  <!--<li *ngIf="isAdmin"><a href="#">admin Menu</a></li>-->
+  <!--<li><a id="logout-btn" class="waves-effect waves-light btn" (click)="signOut()">Logout</a></li>-->
+<!--</ul>-->
+<!--<nav >-->
+  <!--<div class="nav-wrapper bg-3">-->
+    <!--<a href="/home" class="brand-logo">UB Pilots</a>-->
+    <!--<a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>-->
+    <!--<ul class="right hide-on-med-and-down">-->
+      <!--<li><a href="/log">Flight Logs</a></li>-->
+      <!--<li><a href="#">Gallery</a></li>-->
+      <!--<li> <a href="#">About Us</a></li>-->
+      <!--<li *ngIf="showLoginButton"><a href="/login" id="login-btn" class="waves-effect waves-light btn">Login</a></li>-->
+      <!--<li *ngIf="showUserMenu"><a class="dropdown-button" data-activates="userDropDown">{{'Welcome '+userName}}<i class="material-icons right">arrow_drop_down</i></a></li>-->
+    <!--</ul>-->
+    <!--<ul class="side-nav" id="mobile-menu">-->
+      <!--<h2 class="center-align"><strong><u>Menu</u></strong></h2>-->
+      <!--<li><a href="/log">Flight Logs</a></li>-->
+      <!--<li><a href="#">Gallery</a></li>-->
+      <!--<li> <a href="#">About Us</a></li>-->
+      <!--<li *ngIf="showLoginButton"><a href="/login" id="login-btn-collapsable" class="waves-effect waves-light btn">Login</a></li>-->
+      <!--&lt;!&ndash;<li *ngIf="showUserMenu"><a class="dropdown-button" href="#!" data-activates="userDropDown">{{'Welcome '+userName}}<i class="material-icons right">arrow_drop_down</i></a></li>&ndash;&gt;-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</nav>-->
+
+<nav *ngIf="showMenu" class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">UBPA</a>
+    <ul id="nav-list" class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/log">Flight Logs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Aviation Wx</a>
+      </li>
+      <li *ngIf="showLoginButton" id="lastNav" class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <div *ngIf="showUserMenu" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (click)="myDrop.open()">Welcome {{userName}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button *ngIf="isAdmin" class="dropdown-item">Admin Menu</button>
+          <button class="dropdown-item" (click)="signOut()">Log Out</button>
+        </div>
+      </div>
     </ul>
   </div>
 </nav>
+
+<!-- Nav tabs -->
+<!--<nav>-->
+  <!--<ul class="nav justify-content-end">-->
+    <!--<li class="nav-item">-->
+      <!--<a class="nav-link active" routerLink="/home">Home</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a class="nav-link" routerLink="/log">Logs</a>-->
+    <!--</li>-->
+    <!--<li *ngIf="showLoginButton" id="login-nav-item" class="nav-item">-->
+      <!--<button id="login-btn" (click)="loginBtnClick()" class="btn btn-primary">Login</button>-->
+    <!--</li>-->
+
+      <!--<div *ngIf="showUserMenu" ngbDropdown class="d-inline-block">-->
+        <!--<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Welcome {{userName}}</button>-->
+        <!--<div ngbDropdownMenu aria-labelledby="dropdownBasic1">-->
+          <!--<button *ngIf="isAdmin" class="dropdown-item">Admin Menu</button>-->
+          <!--<button (click)="signOut()" class="dropdown-item">Sign Out</button>-->
+        <!--</div>-->
+      <!--</div>-->
+
+  <!--</ul>-->
+<!--</nav>-->

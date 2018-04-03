@@ -1,69 +1,88 @@
-.btn {
-    background-color: #005bbb;
-}
-#login-btn {
-    color: #f5f6f7;
-}
-
-#login-btn:hover {
-    background-color: #007aed;
-    color: #f5f6f7;
-}
-
-#login-btn-collapsable {
-    color: #f5f6f7;
-    background-color: #007aed;
-    width: 50%;
-}
-
-#login-btn-collapsable:hover {
-    background-color: #007aed;
-    color: #f5f6f7;
-}
-
-#logout-btn {
-    color: #f5f6f7;
+.bg-secondary {
     background-color: #006570;
-    letter-spacing: 0;
 }
 
-#logout-btn:hover {
-    color: #f5f6f7;
+.container {
+
+    margin-right: 20px;
+    padding-left: 0px;
+    margin-left: 0px;
 }
 
-#logout-btn-collapsable {
-    color: #f5f6f7;
-    background-color: #007aed;
-    width: 50%;
-}
-
-#logout-btn-collapsable:hover {
-    background-color: #007aed;
-    color: #f5f6f7;
-}
-
-.button-collapse i{
-    color: #777;
-}
-.nav-link a{
-    padding-top: 22px;
+#nav-list {
+    margin-top: 10px;
 }
 
 .navbar-brand {
-    padding-top: 22px;
+    float: left;
 }
 
-.nav-wrapper>ul>li>a {
-    font-family: 'Merriweather Sans', sans-serif;
-    color: #777;
-    font-size: 12px;
-    letter-spacing: 5px;
+.container  {
+    width: 80%;
 }
 
-.brand-logo {
-    font-family: 'Share Tech Mono', monospace;
-    color: #777;
-    padding-left: 20px;
-    font-size: 20px;
-    letter-spacing: 5px;
+.nav {
+    color: #ffffff;
+}
+
+#mainNav {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 700;
+    font-family: 'Montserrat';
+}
+
+#mainNav .navbar-brand {
+    color: #fff;
+}
+
+#mainNav .navbar-nav {
+    margin-top: 1rem;
+    letter-spacing: 0.0625rem;
+}
+
+#mainNav .nav li.nav-item a.nav-link {
+    color: #fff;
+}
+
+
+
+
+#mainNav .navbar-toggler {
+    font-size: 80%;
+    padding: 0.8rem;
+}
+
+@media (min-width: 992px) {
+    #mainNav {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+        -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+        transition: padding-top 0.3s, padding-bottom 0.3s;
+    }
+    #mainNav .navbar-brand {
+        font-size: 2em;
+        -webkit-transition: font-size 0.3s;
+        -moz-transition: font-size 0.3s;
+        transition: font-size 0.3s;
+    }
+    #mainNav .navbar-nav {
+        margin-top: 0;
+    }
+    #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
+        color: #fff;
+        background: #18BC9C;
+    }
+    #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
+        color: #fff;
+        background: #18BC9C;
+    }
+    #mainNav.navbar-shrink {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    #mainNav.navbar-shrink .navbar-brand {
+        font-size: 1.5em;
+    }
 }

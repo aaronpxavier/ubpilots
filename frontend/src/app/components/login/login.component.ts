@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HideNavMenuService } from '../../services/parent_comp_controls/hide-nav-menu.service';
 import { HideFooterService } from '../../services/parent_comp_controls/hide-footer-service.service';
 import { LoginService } from '../../services/api-services/login.service';
-import { Location } from '@angular/common';
+import {Location, PlatformLocation} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -25,16 +25,16 @@ export class LoginComponent implements OnInit {
                 public footerService: HideFooterService,
                 public loginService: LoginService,
                 private router: Router,
-                private location: Location) {
+                private location: Location,
+                private platformLocation: PlatformLocation) {
 
         this.titleService.setTitle("Login");
-        this.menuService.hide();
-        this.footerService.hide();
         this.setWaitingState();
         this.loginService.checkIfTokenIsValid()
             .then ((isValid) => {
                 if (isValid) {
                     console.log('isValid token in local');
+
                     location.back();
                 } else {
                     this.setDefaultState();
@@ -42,12 +42,16 @@ export class LoginComponent implements OnInit {
             })
             .catch((error) => {
                 this.setDefaultState();
+                this.footerService.hide();
                 console.log(error);
             });
     }
 
     ngOnInit() {
-
+        this.platformLocation.onPopState(() => {
+            this.menuService.show();
+            this.footerService.show();
+        });
     }
 
     setDefaultState () {
@@ -55,6 +59,8 @@ export class LoginComponent implements OnInit {
         this.showWaiting = false;
         this.showForm = true;
         this.errorMessage = '';
+        this.menuService.hide();
+        this.footerService.hide();
     }
 
     setWaitingState () {
@@ -67,7 +73,6 @@ export class LoginComponent implements OnInit {
         this.showWaiting = false;
         this.showForm = false;
         this.waitingMessage = 'Your Logged In!!!';
-
     }
 
     setLogInFailedState() {
@@ -94,8 +99,8 @@ export class LoginComponent implements OnInit {
         this.setWaitingState();
         this.loginService.getToken(this.userName, this.password)
             .then(() => {
+                this.loginService.signInEventTrigger();
                 this.location.back();
-
             })
             .catch((err) => {
                 this.setLogInFailedState();

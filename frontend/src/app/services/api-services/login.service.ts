@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BaseService} from './base-service.service';
 import { Token } from './base-service.service';
-
+import { EventEmitter } from '@angular/core';
 
 @Injectable()
 export class LoginService extends BaseService {
 
     // Variables -------------------------------------------------------------//
-
+    private logoutEventEmitter: EventEmitter<number> = new EventEmitter();
+    private signInEventEmitter: EventEmitter<number> = new EventEmitter();
     // Constructor -----------------------------------------------------------//
 
     constructor(http: HttpClient) {
@@ -46,7 +47,7 @@ export class LoginService extends BaseService {
                     success: token.success,
                     isAdmin: token.isAdmin,
                     token: token.token
-                }
+                };
                 localStorage.setItem(this.tokenKey, JSON.stringify(tokenJSON));
                 localStorage.setItem(this.userKey, userName);
                 resolve(token);
@@ -59,11 +60,29 @@ export class LoginService extends BaseService {
     signOut() {
         localStorage.removeItem(this.tokenKey);
         localStorage.removeItem(this.userKey);
+        this.logoutEventEmitter.emit(0);
+    }
+
+    signInEventTrigger() {
+        this.signInEventEmitter.emit(0);
+    }
+
+    getSignOutEmitter (): EventEmitter<number> {
+        return this.logoutEventEmitter;
+    }
+
+    getSignInEmitter (): EventEmitter<number> {
+        return this.signInEventEmitter;
     }
 
     getTokenFromLocal (): Token {
         let token: Token;
-        return token = JSON.parse(localStorage.getItem(this.tokenKey));
+        const TEMP_TOKEN = localStorage.getItem(this.tokenKey);
+        token = null;
+        if (TEMP_TOKEN) {
+            token = JSON.parse(TEMP_TOKEN);
+        }
+        return token;
     }
 
 }

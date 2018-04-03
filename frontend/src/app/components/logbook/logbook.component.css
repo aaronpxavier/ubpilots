@@ -1,15 +1,4 @@
-
-.container {
-    border-color: #474e5d;
-    border-width: 1px;
-    padding-top:20px;
-    padding-bottom:20px;
-
-    margin-bottom: 30px;
+#logsTable {
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
-
-#table-title {
-    margin-top: 30px;
-    color: #005bbb;
-}
-
