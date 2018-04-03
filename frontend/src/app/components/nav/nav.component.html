@@ -26,9 +26,9 @@
   <!--</div>-->
 <!--</nav>-->
 
-<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+<nav *ngIf="showMenu" class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">UBPA</a>
     <ul id="nav-list" class="nav justify-content-end">
       <li class="nav-item">
         <a class="nav-link active" routerLink="/log">Flight Logs</a>

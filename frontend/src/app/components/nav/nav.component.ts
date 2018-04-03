@@ -16,10 +16,12 @@ export class NavComponent implements OnInit {
   public showUserMenu: boolean;
   public userName: string;
   public isAdmin: boolean;
+  public showMenu: boolean;
   private loginEventEmitter: EventEmitter<number>;
 
   constructor(private loginService: LoginService, private router:Router, private hideMenuService: HideNavMenuService) {
       this.loginEventEmitter = loginService.getSignInEmitter();
+      this.showMenu = true;
       this.showUserMenu = hideMenuService.getState();
       this.loginService.checkIfTokenIsValid()
           .then((isLoggedIn) => {
@@ -43,6 +45,15 @@ export class NavComponent implements OnInit {
           .subscribe(item => {
               this.setNotLoggedInState();
           });
+      this.hideMenuService.getEventEmitter()
+          .subscribe(value => {
+              if (value == 0) {
+                  console.log('set False');
+                  this.showMenu = false;
+              } else if (value == 1) {
+                  this.showMenu = true;
+              }
+          })
   }
 
   loginBtnClick() {

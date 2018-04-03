@@ -5,7 +5,8 @@ import { MatDialog } from '@angular/material';
 import { Router } from "@angular/router";
 import { LogEntry } from "../../services/api-services/logbook.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
-import { Observable } from "rxjs/Observable";
+import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
+import { PlatformLocation } from '@angular/common'
 
 @Component({
   selector: 'app-logbook',
@@ -24,7 +25,9 @@ export class LogbookComponent implements OnInit, AfterViewInit {
               private loginService: LoginService,
               public dialog: MatDialog,
               private router:Router,
-              private logService: LogbookService)
+              private logService: LogbookService,
+              private footerService: HideFooterService,
+              private platFormLocation: PlatformLocation)
   {
     this.titleService.setTitle("UBPA Logbook");
     const TOKEN = loginService.getTokenFromLocal();
@@ -47,14 +50,16 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+      this.footerService.hide();
+      this.platFormLocation.onPopState(() => {
+          this.footerService.show();
+      });
       this.loginService.getSignOutEmitter()
           .subscribe(item => {
             this.isSignedIn = false;
             this.isAdmin = false;
           });
-
       // get our data every subsequent 10 seconds
-
   }
 
   ngAfterViewInit() {
@@ -65,8 +70,16 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl('/log/form');
     }
 
+    formatDate(dateIn: string): string {
+      let months = [ "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep",
+            "Oct", "Nov", "Dec"];
+      let formatedDate: string;
+      var date = new Date (dateIn);
+      formatedDate = months[date.getMonth()] + ' ';
+      formatedDate += date.getDate() + ', ';
+      formatedDate += date.getFullYear();
+      return formatedDate;
+    }
 }
-
-
-
-

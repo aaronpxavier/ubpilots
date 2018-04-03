@@ -1,7 +1,7 @@
 <h2 id="table-title" class="center-align"> Flight Logs </h2>
 <div class="container">
     <button (click)="newBtnClick()" *ngIf="isSignedIn">New</button> <button type="" *ngIf="isAdmin">Edit</button> <button *ngIf="isAdmin" type="">Delete</button>
-    <table id = "myTable" class="table-hover" cellspacing="0" width="100%">
+    <table id = "logsTable" class="table-hover" cellspacing="10" width="100%">
         <thead>
         <tr>
             <th class="center-align">Date</th>
@@ -16,7 +16,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let log of logs">
-            <td class="center-align">{{log.date}}</td>
+            <td class="center-align">{{formatDate(log.date)}}</td>
             <td class="center-align">{{log.pic.firstName}} {{log.pic.lastName}}</td>
             <td class="center-align">{{log.ac.abreviation}}</td>
             <td class="center-align">{{log.departure}}</td>
