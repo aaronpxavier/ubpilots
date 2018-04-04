@@ -4,19 +4,6 @@ import mongoose from '../../node_modules/mongoose';
 // Variables ------------------------------------------------------------------//
 var Schema = mongoose.Schema;
 
-var blogSchema = new Schema({
-    title:  String,
-    author: String,
-    body:   String,
-    comments: [{ body: String, date: Date }],
-    date: { type: Date, default: Date.now },
-    hidden: Boolean,
-    meta: {
-        votes: Number,
-        favs:  Number
-    }
-});
-
 var LOGBOOK_SCHEMA = new Schema({
 
     pic: {firstName: String, lastName: String},
