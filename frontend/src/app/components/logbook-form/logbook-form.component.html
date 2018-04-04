@@ -35,9 +35,8 @@
         </div>
         <div class="form-group">
             <h2>Select A/C</h2>
-            <select  [(ngModel)]="ac" style="width: 100px" class="form-control" id="acSelect">
-                <option [ngValue]="C-172" >C-172</option>
-                <option [ngValue]="PA-28">PA-28</option>
+            <select  [(ngModel)]="ac" name="ac" style="width: 100px" class="form-control" id="acSelect">
+                <option *ngFor="let ac of aircafts" [ngValue]="ac" >{{ac}}</option>
             </select>
         </div>
         <div class="form-group">
@@ -58,10 +57,10 @@
             <h2>Enter Number Of T/O and Landings</h2>
             <div class="row">
                 <div  class="col-md-2">
-                    <input [(ngModel)]="takeoffs" style="width: 100px" name="night" type="text" class="form-control" placeholder="T/O">
+                    <input [(ngModel)]="takeoffs" name="takeoffs" style="width: 100px" name="night" type="text" class="form-control" placeholder="T/O">
                 </div>
                 <div class="col-md-2">
-                    <input  [(ngModel)]="landings" style="width: 100px" name="imc" type="text" class="form-control" placeholder="Landings">
+                    <input  [(ngModel)]="landings" name="landings" style="width: 100px" name="imc" type="text" class="form-control" placeholder="Landings">
                 </div>
             </div>
         </div>

@@ -18,8 +18,10 @@ export class LogbookComponent implements OnInit, AfterViewInit {
 
   public isAdmin = false;
   public isSignedIn = false;
-  public isLinear = false;
+  public  columnsDef = ['date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
   public logs: LogEntry[];
+
+
 
   constructor(private titleService: Title,
               private loginService: LoginService,
@@ -42,6 +44,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.logService.getLogs()
           .then( data => {
               this.logs = data;
+
               console.log(this.logs);
           })
           .catch(err => {
@@ -63,7 +66,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
   }
 
     newBtnClick() {
@@ -83,3 +85,4 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       return formatedDate;
     }
 }
+
