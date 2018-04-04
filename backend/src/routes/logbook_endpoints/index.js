@@ -37,6 +37,7 @@ let createLogEntry = (req, isConfirmed = false) => {
 router.get('/',(req,res)=>{
     logbook.getAllEntries()
         .then(doc => {
+            console.log(doc);
             res.json(doc);
         });
 }); // end router.get(/)

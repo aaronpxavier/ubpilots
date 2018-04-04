@@ -41,6 +41,7 @@ export class LogbookService extends BaseService {
   getLogs(): Promise<LogEntry[]> {
     return new Promise<LogEntry[]>((resolve, reject) => {
         this.get().subscribe((logs) => {
+
             resolve (logs);
         }, (err) => {
             reject(err);

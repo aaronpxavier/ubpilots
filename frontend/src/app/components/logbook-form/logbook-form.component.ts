@@ -4,6 +4,7 @@ import { HideFooterService } from "../../services/parent_comp_controls/hide-foot
 import { LogbookService } from "../../services/api-services/logbook.service";
 import { LoginService } from "../../services/api-services/login.service";
 import { Location } from '@angular/common';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-logbook-form',
@@ -18,6 +19,7 @@ export class LogbookFormComponent implements OnInit {
   public sicLast: string;
   public dep: string;
   public dest: string;
+  public aircafts = ['C-172','PA-28'];
   public ac: string;
   public night: number;
   public imc: number;
@@ -25,8 +27,12 @@ export class LogbookFormComponent implements OnInit {
   public takeoffs: number;
   public landings: number;
 
-  constructor(private title: Title, private hideFooterService: HideFooterService,
-              private logService:LogbookService, private loginService: LoginService, private location: Location) {
+  constructor(private title: Title,
+              private hideFooterService: HideFooterService,
+              private logService:LogbookService,
+              private loginService: LoginService,
+              private location: Location,
+              private router:Router) {
     this.title.setTitle('Logbook Form');
     this.hideFooterService.hide();
   }
@@ -44,7 +50,7 @@ export class LogbookFormComponent implements OnInit {
               picLast: this.picLast,
               sicFirst: this.sicFirst,
               sicLast: this.sicLast,
-              acAbrev: this.ac,
+              acAbrev: '',
               isJet: false,
               noEngines: 1,
               dep: this.dep,
@@ -55,13 +61,18 @@ export class LogbookFormComponent implements OnInit {
               total: this.total,
               night: this.night
           };
-          jsonEntry.acAbrev = 'c-172';
+          jsonEntry.acAbrev = this.ac;
           return jsonEntry;
     }
 
   submit() {
-    console.log(this.buildJson());
-    this.logService.postLogs(this.buildJson());
+
+    this.logService.postLogs(this.buildJson())
+
+        .then(() => {
+            this.router.navigateByUrl('/log');
+        }).catch(err => console.log(err));
+
   }
 
 }
