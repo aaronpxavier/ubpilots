@@ -1,0 +1,35 @@
+Team Meeting 
+4 / 4 / 2018
+
+
+Attendance:
+•	Felipe Canales
+•	Derrick Dela Cruz
+•	Arun Mavumkal
+
+Summary of Meeting:
+
+•	Discussed making up the alpha/ releasing the alpha
+•	Making video for the alpha 
+•	Discussed what is needed to make the beta
+•	Use Case prep
+
+Completed Since Last Meeting:
+
+•	Derrick Dela Cruz - redid login frontend
+•	Felipe Canales - sign up errors - when password and confirmation pw dont match - when fields are left blank, created component for error messages, user signup schema
+•	Arun Mavumkal -  Login Endpoints, Refurnished landing page, logbook endpoints, admin page
+
+
+Tasks to Be Completed Before Next Meeting:
+
+•	Felipe Canales – validation for logbook text fields if left empty/invalid input arguments
+•	Arun Mavumkal –  create module for admin page, create endpoints for user signup, create service for user singup
+•	Derrick Dela Cruz - Admin page skeleton
+
+
+Task Descriptions:
+
+•	Arun Mavumkal – Admin page to confirm user logs to logbooks
+•	Felipe Canales  - validation forms for logbook text fields
+•	Derrick Dela Cruz – Frontend of the admin page
