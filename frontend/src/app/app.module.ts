@@ -13,6 +13,50 @@ import { LogbookComponent } from './components/logbook/logbook.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HideNavMenuService } from './services/parent_comp_controls/hide-nav-menu.service';
 import { HideFooterService } from './services/parent_comp_controls/hide-footer-service.service';
+import { LoginService } from './services/api-services/login.service';
+import { LogbookService } from "./services/api-services/logbook.service";
+import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './components/nav/nav.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+
+} from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
+
 
 @NgModule({
   declarations: [
@@ -24,10 +68,16 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
       ImageCropperComponent,
       FooterComponent,
       LogbookComponent,
-      SignupComponent
+      SignupComponent,
+      NavComponent,
+      LogbookFormComponent,
   ],
   imports: [
       BrowserModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule,
       RouterModule.forRoot([
           {
               path: 'login',
@@ -40,6 +90,10 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
           {
               path: 'log',
               component: LogbookComponent
+          },
+          {
+              path: 'log/form',
+              component: LogbookFormComponent
           },
           {
               path: 'home',
@@ -59,9 +113,42 @@ import { HideFooterService } from './services/parent_comp_controls/hide-footer-s
               path: "**",
               redirectTo: "error"
           }
-      ])
+      ]),
+      MatAutocompleteModule,
+      MatButtonModule,
+      MatButtonToggleModule,
+      MatCardModule,
+      MatCheckboxModule,
+      MatChipsModule,
+      MatDatepickerModule,
+      MatDialogModule,
+      MatDividerModule,
+      MatExpansionModule,
+      MatGridListModule,
+      MatIconModule,
+      MatInputModule,
+      MatListModule,
+      MatMenuModule,
+      MatNativeDateModule,
+      MatPaginatorModule,
+      MatProgressBarModule,
+      MatProgressSpinnerModule,
+      MatRadioModule,
+      MatRippleModule,
+      MatSelectModule,
+      MatSidenavModule,
+      MatSliderModule,
+      MatSlideToggleModule,
+      MatSnackBarModule,
+      MatSortModule,
+      MatStepperModule,
+      MatTableModule,
+      MatTabsModule,
+      MatToolbarModule,
+      MatTooltipModule,
+      NgbModule.forRoot()
   ],
-  providers: [Title, HideNavMenuService, HideFooterService],
+  providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

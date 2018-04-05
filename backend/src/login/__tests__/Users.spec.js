@@ -5,14 +5,17 @@ import Users from '../Users';
 import app from '../../app';
 
 describe('testing Users Class', () => {
-    const userName = 'testuser';
+    let userName = 'TestuSer';
+    let firstname = 'john';
+    let lastname = 'smith';
     const pass = 'password%';
     const users = new Users();
 
     beforeAll(done => {
-        users.saveUser(userName, pass)
+        users.saveUser(userName, firstname, lastname, pass)
             .then(() => {
                 console.log('creating test user in db');
+                userName = 'testuser';
                 done();
             })
             .catch((error) => {
@@ -22,6 +25,7 @@ describe('testing Users Class', () => {
     });
 
     afterAll(done => {
+        userName = 'TestUser';
         users.deleteUser(userName)
             .then((error) => {
                 console.log('removing test user from db');
@@ -73,7 +77,7 @@ describe('testing Users Class', () => {
         const adminUser = 'testAdmin';
         const adminPass = 'testAdmin^Pass';
         expect.assertions(2);
-        users.saveUser(adminUser,adminPass, true)
+        users.saveUser(adminUser, firstname, lastname, adminPass, true)
             .then(() => {
                 return users.checkIfAdmin(adminUser);
             })
@@ -104,7 +108,7 @@ describe('testing Users Class', () => {
         const deleteUser = 'deleteTestUser';
         const deletePass = 'deleteTest^Pass';
         expect.assertions(2);
-        users.saveUser(deleteUser, deletePass)
+        users.saveUser(deleteUser, firstname, lastname, deletePass)
             .then(() => {
                 return users.validateUser(deleteUser, deletePass);
             })

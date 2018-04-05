@@ -12,10 +12,7 @@ import Users from '../../login/Users'
 const router = express.Router();
 var token = new Token();
 var users = new Users();
-var loginResponseJson = {
-    success:false,
-    token:'n/a'
-};
+
 
 // Routes -------------------------------------------------------------------//
 
@@ -30,12 +27,22 @@ router.get('/',(req,res)=>{
 router.post('/auth', (req, res) => {
     let userName = req.body.username;
     let pass = req.body.pass;
-
+    console.log('username: ' + userName + ' pass: ' + pass);
+    var loginResponseJson = {
+        success: false,
+        isAdmin: false,
+        token: 'n/a'
+    };
 
     token.getToken(userName, pass)
         .then(token => {
             loginResponseJson.success = true;
             loginResponseJson.token = token;
+            console.log(token);
+            return users.checkIfAdmin(userName);
+        })
+        .then(isAdmin => {
+            loginResponseJson.isAdmin = isAdmin;
             res.json(loginResponseJson);
         })
         .catch (error => {
@@ -45,14 +52,19 @@ router.post('/auth', (req, res) => {
         });
 }); //end router.post(/login)
 
-router.get('/protected', (req, res) => {
+router.get('/authcheck', (req, res) => {
+    var authResponseJson = {
+        success: false,
+    };
     const bearer = req.headers['authorization'];
     token.resolveToken(bearer)
         .then(decoded => {
-            res.send(decoded.username);
+            authResponseJson.success = true;
+            res.send(authResponseJson);
         })
         .catch(() => {
-            res.send(403);
+            res.status(403);
+            res.json(authResponseJson);
         });
 }); //end router.get(/protected)
 

@@ -1,0 +1,69 @@
+<div class="container">
+    <form>
+        <div class="form-group">
+            <h2>PIC</h2>
+            <div class="row">
+                <div class="col">
+                    <input [(ngModel)]="picFirst" name="picFirst" type="text" class="form-control" placeholder="First name">
+                </div>
+                <div class="col">
+                    <input [(ngModel)]="picLast" name="picLast" type="text" class="form-control" placeholder="Last name">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <h2>SIC</h2>
+            <div class="row">
+                <div class="col">
+                    <input [(ngModel)]="sicFirst" name="sicFirst" type="text" class="form-control" placeholder="First name">
+                </div>
+                <div class="col">
+                    <input [(ngModel)]="sicLast" name="sicLast" type="text" class="form-control" placeholder="Last name">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <h2>Route</h2>
+            <div class="row">
+                <div class="col">
+                    <input [(ngModel)]="dep" name="dep" type="text" class="form-control" placeholder="Dep">
+                </div>
+                <div class="col">
+                    <input  [(ngModel)]="dest" name="dest" type="text" class="form-control" placeholder="Dest">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <h2>Select A/C</h2>
+            <select  [(ngModel)]="ac" name="ac" style="width: 100px" class="form-control" id="acSelect">
+                <option *ngFor="let ac of aircafts" [ngValue]="ac" >{{ac}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <h2>Enter Time</h2>
+            <div class="row">
+                <div class="col">
+                    <input [(ngModel)]="night" name="night" type="text" class="form-control" placeholder="Night">
+                </div>
+                <div class="col">
+                    <input [(ngModel)]="imc" name="imc" type="text" class="form-control" placeholder="IMC">
+                </div>
+                <div class="col">
+                    <input [(ngModel)]="total" name="total" type="text" class="form-control" placeholder="Total">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <h2>Enter Number Of T/O and Landings</h2>
+            <div class="row">
+                <div  class="col-md-2">
+                    <input [(ngModel)]="takeoffs" name="takeoffs" style="width: 100px" name="night" type="text" class="form-control" placeholder="T/O">
+                </div>
+                <div class="col-md-2">
+                    <input  [(ngModel)]="landings" name="landings" style="width: 100px" name="imc" type="text" class="form-control" placeholder="Landings">
+                </div>
+            </div>
+        </div>
+        <button (click)="submit()" class="btn btn-primary">Submit</button>
+    </form>
+</div>
