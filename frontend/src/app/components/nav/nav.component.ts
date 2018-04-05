@@ -79,4 +79,8 @@ export class NavComponent implements OnInit {
       this.isAdmin = false;
   }
 
+  goHome() {
+      this.router.navigateByUrl('/home');
+  }
+
 }

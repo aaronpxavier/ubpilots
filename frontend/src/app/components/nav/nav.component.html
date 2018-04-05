@@ -51,7 +51,7 @@
 <!--</nav>-->
 <div>
   <mat-toolbar color="primary">
-    <span><img id="logo-img" src="../../../assets/logo/ubpa_logo_blue.png"></span>
+    <span><img (click)="goHome()" id="logo-img" src="../../../assets/logo/ubpa_logo_blue.png"></span>
     <span class="spacer"></span>
     <button mat-icon-button [mat-menu-trigger-for]="menu">
       <mat-icon *ngIf="showUserMenu">account_box</mat-icon>
