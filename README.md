@@ -30,6 +30,7 @@ flight log data will be stored and retrieved from a mongoDB database.
     </details>
     
  Prototype: https://youtu.be/kUIHj_HXadQ
+ Alpha: https://youtu.be/ZYCBLVYwpwQ
     
     
 
