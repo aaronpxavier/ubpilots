@@ -130,6 +130,10 @@ header.masthead h2 {
     }
 }
 
+.spacer {
+    flex: 1 1 auto;
+}
+
 .portfolio {
     margin-bottom: -15px;
 }
