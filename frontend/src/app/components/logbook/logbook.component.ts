@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LoginService } from "../../services/api-services/login.service";
 import { MatDialog } from '@angular/material';
@@ -7,6 +7,8 @@ import { LogEntry } from "../../services/api-services/logbook.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
 import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
 import { PlatformLocation } from '@angular/common'
+import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { EventEmitter } from "@angular/core";
 
 @Component({
   selector: 'app-logbook',
@@ -19,10 +21,8 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public isAdmin = false;
   public isSignedIn = false;
   public  columnsDef = ['date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
-  public logs: LogEntry[];
-
-
-
+  private dataSource:MatTableDataSource<LogEntry>;
+  private logsDataRetrievedEvent = new EventEmitter<number> ();
   constructor(private titleService: Title,
               private loginService: LoginService,
               public dialog: MatDialog,
@@ -41,15 +41,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       }
       this.isSignedIn = true;
     }
-      this.logService.getLogs()
-          .then( data => {
-              this.logs = data;
-
-              console.log(this.logs);
-          })
-          .catch(err => {
-              console.error(err);
-          })
   }
 
   ngOnInit() {
@@ -65,7 +56,17 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       // get our data every subsequent 10 seconds
   }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   ngAfterViewInit() {
+      this.logService.getLogs()
+          .then( data => {
+              this.dataSource = new MatTableDataSource<LogEntry>(data);
+              this.dataSource.paginator = this.paginator;
+          })
+          .catch(err => {
+              console.error(err);
+          })
   }
 
     newBtnClick() {

@@ -1,7 +1,19 @@
 .container {
-    margin-top: 200px;
+    margin-top: 60px;
     margin-bottom: 100px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     min-width: 300px;
 }
+
+#add-button {
+    margin: 0px;
+    padding: 0px;
+    background-color: #006570;;
+}
+
+.mat-accent {
+    background-color: #005bbb;
+}
+
