@@ -23,7 +23,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public  columnsDef = ['date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
   private dataSource:MatTableDataSource<LogEntry>;
   private logsDataRetrievedEvent = new EventEmitter<number> ();
-    constructor(private titleService: Title,
+  constructor(private titleService: Title,
               private loginService: LoginService,
               public dialog: MatDialog,
               private router:Router,
