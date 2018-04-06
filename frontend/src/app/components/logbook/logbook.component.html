@@ -31,9 +31,9 @@
 
 <div class="container mat-elevation-z8">
     <div class="row">
-        <button (click)="newBtnClick()" *ngIf="isSignedIn">New</button> <button type="" *ngIf="isAdmin">Edit</button> <button *ngIf="isAdmin" type="">Delete</button>
+        <mat-icon>add</mat-icon> <button type="" *ngIf="isAdmin">Edit</button> <button *ngIf="isAdmin" type="">Delete</button>
     </div>
-    <mat-table #table [dataSource]="logs">
+    <mat-table #table [dataSource]="dataSource">
     <ng-container matColumnDef="date">
         <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
         <mat-cell *matCellDef="let log"> {{formatDate(log.date)}} </mat-cell>
@@ -74,5 +74,10 @@
     <mat-header-row *matHeaderRowDef="columnsDef"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: columnsDef"></mat-row>
     </mat-table>
-
+    <mat-paginator
+            #paginator
+                    [length]="100"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
 </div>
