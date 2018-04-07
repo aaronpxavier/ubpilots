@@ -1,6 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ModuleRouting } from "./app.routing";
 import { ImageCropperComponent } from 'ng2-img-cropper';
 
 import { AppComponent } from './app.component';
@@ -78,42 +78,7 @@ import { LogbookFormComponent } from './components/logbook-form/logbook-form.com
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      RouterModule.forRoot([
-          {
-              path: 'login',
-              component: LoginComponent
-          },
-          {
-              path: 'signup',
-              component: SignupComponent
-          },
-          {
-              path: 'log',
-              component: LogbookComponent
-          },
-          {
-              path: 'log/form',
-              component: LogbookFormComponent
-          },
-          {
-              path: 'home',
-              pathMatch: 'full',
-              component: HomeComponent
-          },
-          {
-              path: 'error',
-              pathMatch: 'full',
-              component: ErrorComponent
-          },
-          {
-              path: '',
-              component: HomeComponent
-          },
-          {
-              path: "**",
-              redirectTo: "error"
-          }
-      ]),
+      ModuleRouting,
       MatAutocompleteModule,
       MatButtonModule,
       MatButtonToggleModule,
