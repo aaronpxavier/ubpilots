@@ -1,6 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ModuleRouting } from "./app.routing";
+import { AppRouting } from "./app.routing";
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -77,7 +77,7 @@ import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      ModuleRouting,
+      AppRouting,
       MatAutocompleteModule,
       MatButtonModule,
       MatButtonToggleModule,

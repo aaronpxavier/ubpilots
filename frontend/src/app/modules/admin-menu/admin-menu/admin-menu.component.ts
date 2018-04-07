@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HideFooterService } from "../../../services/parent_comp_controls/hide-footer-service.service";
 
 @Component({
   selector: 'app-admin-menu',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private footerService: HideFooterService) {
+  }
 
   ngOnInit() {
+    this.footerService.hide();
   }
 
 }

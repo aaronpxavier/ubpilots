@@ -47,4 +47,4 @@ const routes: Routes = [
     }
 ];
 
-export const ModuleRouting: ModuleWithProviders = RouterModule.forRoot(routes);
+export const AppRouting: ModuleWithProviders = RouterModule.forRoot(routes);

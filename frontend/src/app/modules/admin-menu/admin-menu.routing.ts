@@ -9,4 +9,4 @@ const routes: Routes = [
     }
 ];
 
-export const ModuleRouting: ModuleWithProviders = RouterModule.forChild(routes);
+export const AdminMenuRouting: ModuleWithProviders = RouterModule.forChild(routes);
