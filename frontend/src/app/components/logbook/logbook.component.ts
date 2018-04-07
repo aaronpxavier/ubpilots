@@ -73,6 +73,11 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl('/log/form');
     }
 
+    homeBtnClick() {
+      this.router.navigateByUrl('/home');
+      this.footerService.show();
+    }
+
     formatDate(dateIn: string): string {
       let months = [ "Jan", "Feb", "Mar",
             "Apr", "May", "Jun",
