@@ -2,7 +2,6 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModuleRouting } from "./app.routing";
 import { ImageCropperComponent } from 'ng2-img-cropper';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -56,7 +55,7 @@ import {
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
-
+import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
 
 @NgModule({
   declarations: [
@@ -111,7 +110,8 @@ import { LogbookFormComponent } from './components/logbook-form/logbook-form.com
       MatTabsModule,
       MatToolbarModule,
       MatTooltipModule,
-      NgbModule.forRoot()
+      NgbModule.forRoot(),
+      AdminMenuModule
   ],
   providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService],
   bootstrap: [AppComponent]

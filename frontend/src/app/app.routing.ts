@@ -1,13 +1,15 @@
-import {ErrorComponent} from "./components/error/error.component";
-import {LogbookComponent} from "./components/logbook/logbook.component";
-import {Routes, RouterModule} from "@angular/router";
-import {LoginComponent} from "./components/login/login.component";
-import {HomeComponent} from "./components/home/home.component";
-import {LogbookFormComponent} from "./components/logbook-form/logbook-form.component";
-import {SignupComponent} from "./components/signup/signup.component";
+
+import {Routes, RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
+import {LoginComponent} from "./components/login/login.component";
+import {SignupComponent} from "./components/signup/signup.component";
+import {LogbookComponent} from "./components/logbook/logbook.component";
+import {LogbookFormComponent} from "./components/logbook-form/logbook-form.component";
+import {HomeComponent} from "./components/home/home.component";
+import {ErrorComponent} from "./components/error/error.component";
 
 const routes: Routes = [
+
     {
         path: 'login',
         component: LoginComponent
@@ -38,6 +40,7 @@ const routes: Routes = [
         path: '',
         component: HomeComponent
     },
+
     {
         path: "**",
         redirectTo: "error"
