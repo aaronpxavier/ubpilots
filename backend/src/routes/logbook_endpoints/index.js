@@ -17,12 +17,12 @@ let createLogEntry = (req, isConfirmed = false) => {
 
     if(req.body.sicFirst && req.body.sicLast)
         logBookEntry.sic = {firstName: req.body.sicFirst, lastName: req.body.sicLast};
+    else if (req.body.sicFirst == '' && req.body.sicLast == '')
+        logBookEntry.sic = {firstName: '', lastName: ''};
     else if(req.body.sicFirst)
         logBookEntry.sic = {firstName: req.body.sicFirst, lastName: ''};
     else if (req.body.sicLast)
         logBookEntry.sic = {firstName: '', lastName: req.body.sicLast};
-    else
-        logBookEntry.sic = {firstName: '', lastName: ''};
 
     logBookEntry.ac = {
         abreviation:req.body.acAbrev,
@@ -34,8 +34,6 @@ let createLogEntry = (req, isConfirmed = false) => {
     logBookEntry.destination = req.body.dest;
     if(req.body.imc)
         logBookEntry.imc = req.body.imc;
-    else
-
     logBookEntry.night = req.body.night;
     logBookEntry.takeoffs = req.body.to;
     logBookEntry.landings = req.body.lands;
