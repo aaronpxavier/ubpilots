@@ -12,6 +12,22 @@ import {Router} from "@angular/router";
   styleUrls: ['./logbook-form.component.css']
 })
 export class LogbookFormComponent implements OnInit {
+    model = {
+        picFirst: "",
+        picLast: "",
+        sicFirst: "",
+        sicLast: "",
+        dep: "",
+        dest: "",
+        aircafts: [],
+        ac: "",
+        night: 0,
+        imc: 0,
+        total: "",
+        takeoffs: "",
+        landings: "",
+    }
+
 
   public picFirst: string;
   public picLast: string;
