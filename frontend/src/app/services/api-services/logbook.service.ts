@@ -17,6 +17,7 @@ export class LogEntry  {
   constructor(
       public pic:Pilot,
       public sic:Pilot,
+      public username: string = '',
       public ac: AC,
       public date:Date,
       public _id:string,
