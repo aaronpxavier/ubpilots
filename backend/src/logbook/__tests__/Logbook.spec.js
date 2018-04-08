@@ -7,12 +7,14 @@ describe('testing Logbook Class', () => {
     let logbook = new Logbook();
     let picFirst = 'han';
     let picLast = 'solo';
+    let username = 'testuser11'
     let logbookInstanceId;
     beforeAll(done => {
 
         let logBookEntry = logbook.getLogbookEntryJSON();
         logBookEntry.pic = {firstName: picFirst, lastName: picLast};
         logBookEntry.sic = {firstName: 'luke', lastName: 'skywalker'};
+        logBookEntry.username = username;
         logBookEntry.ac = {
             abreviation:'C-172',
             isTurbine: false,
@@ -46,12 +48,12 @@ describe('testing Logbook Class', () => {
 
     });
 
-    test('test method getEntriesForUser', (done) => {
+    test('test method getEntriesFirstLast', (done) => {
        expect.assertions(2);
-       logbook.getEntriesForUser(picFirst,picLast)
+       logbook.getEntriesFirstLast(picFirst,picLast)
            .then((doc) => {
                expect(doc).toBeTruthy();
-               return logbook.getEntriesForUser('luke', 'skywalker')
+               return logbook.getEntriesFirstLast('luke', 'skywalker')
            })
            .then((doc) => {
                expect(doc).toBeTruthy();
@@ -61,6 +63,22 @@ describe('testing Logbook Class', () => {
                if (err) console.log(err);
                done();
            });
+    });
+
+    test('test method getEntriesUsername', (done) => {
+        expect.assertions(2);
+        logbook.getEntriesUsername(username)
+            .then((doc) => {
+                expect(doc).toBeTruthy();
+            })
+            .then((doc) => {
+                expect(doc).toBeTruthy();
+                done();
+            })
+            .catch(err => {
+                if (err) console.log(err);
+                done();
+            });
     });
 
     afterAll(done => {

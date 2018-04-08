@@ -1,8 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { AppRouting } from "./app.routing";
 import { ImageCropperComponent } from 'ng2-img-cropper';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -56,7 +55,7 @@ import {
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
-
+import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
 
 @NgModule({
   declarations: [
@@ -78,42 +77,7 @@ import { LogbookFormComponent } from './components/logbook-form/logbook-form.com
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      RouterModule.forRoot([
-          {
-              path: 'login',
-              component: LoginComponent
-          },
-          {
-              path: 'signup',
-              component: SignupComponent
-          },
-          {
-              path: 'log',
-              component: LogbookComponent
-          },
-          {
-              path: 'log/form',
-              component: LogbookFormComponent
-          },
-          {
-              path: 'home',
-              pathMatch: 'full',
-              component: HomeComponent
-          },
-          {
-              path: 'error',
-              pathMatch: 'full',
-              component: ErrorComponent
-          },
-          {
-              path: '',
-              component: HomeComponent
-          },
-          {
-              path: "**",
-              redirectTo: "error"
-          }
-      ]),
+      AppRouting,
       MatAutocompleteModule,
       MatButtonModule,
       MatButtonToggleModule,
@@ -146,7 +110,8 @@ import { LogbookFormComponent } from './components/logbook-form/logbook-form.com
       MatTabsModule,
       MatToolbarModule,
       MatTooltipModule,
-      NgbModule.forRoot()
+      NgbModule.forRoot(),
+      AdminMenuModule
   ],
   providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService],
   bootstrap: [AppComponent]

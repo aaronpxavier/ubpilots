@@ -63,7 +63,7 @@
   </mat-toolbar>
   <mat-menu x-position="before" #menu="matMenu">
     <button *ngIf="showLoginButton" routerLink="/login" mat-menu-item>Login</button>
-    <button *ngIf="showUserMenu" mat-menu-item>Admin Menu</button>
+    <button *ngIf="showUserMenu" routerLink="/admin" mat-menu-item>Admin Menu</button>
     <button  *ngIf="showUserMenu" (click)="signOut()" mat-menu-item>Sign Out</button>
   </mat-menu>
 
