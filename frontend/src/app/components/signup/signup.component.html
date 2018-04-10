@@ -39,7 +39,7 @@
             </div>
             <br>
             <br>
-            <input type="submit" [disabled]="!form.valid " value= "Join Us!">
+            <input type="submit" ng-disabled="myForm.$invalid || myForm.$pending"  value= "Join Us!">
     </form>
     
   </div>

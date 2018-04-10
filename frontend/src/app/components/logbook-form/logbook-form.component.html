@@ -44,10 +44,7 @@
                 <div class="row">
                     <div class="col">
                             <!--<input type="number" class="form-control" id="night"  [(ngModel)]="model.night" #night = "ngModel" required placeholder="Night" name="night"[ngModelOptions]="{ updateOn: 'change' }">-->
-                        <input type="number" class="form-control" id="night"  name="night" [(ngModel)]="night" >
-                            <div [hidden]="night.valid || night.pristine" class="alert alert-danger">
-                                    Night is required
-                                  </div>
+                        <input type="number" class="form-control" id="night" required name="night" [(ngModel)]="night" >
                         
                     </div>
                     <div class="col">
@@ -69,6 +66,6 @@
                     </div>
                 </div>
             </div>
-            <button (click)="submit()" [disabled]="!form.valid " class="btn btn-primary">Submit</button>
+            <button (click)="submit()" ng-disabled="form.$invalid" class="btn btn-primary">Submit</button>
         </form>
     </div>
