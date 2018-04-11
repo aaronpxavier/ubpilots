@@ -1,0 +1,35 @@
+Team Meeting 
+4 / 11 / 2018
+
+
+Attendance:
+•	Felipe Canales
+•	Derrick Dela Cruz
+•	Arun Mavumkal
+
+Summary of Meeting:
+
+•	Discussed what is needed to make the beta
+•	Dicussed workflow - committing more github branches so we know what each other's progress is at
+•	Discussion of fixing Use Cases
+•	Admin page debugging
+
+Completed Since Last Meeting:
+
+•	Derrick Dela Cruz - Created admin page skeleton (no good)
+•	Felipe Canales - Created form validation for Sign up and Logbook pages. Modified sign up form fields.
+•	Arun Mavumkal -  Modified skeleton for admin page.
+
+
+Tasks to Be Completed Before Next Meeting:
+
+•	Felipe Canales – Confirmation page for admins
+•	Arun Mavumkal –  Create sign up endpoints/sign up service
+•	Derrick Dela Cruz - Admin page menu
+
+
+Task Descriptions:
+
+•	Arun Mavumkal – Backend for signup 
+•	Felipe Canales  - Confirmation page for admins to confirm or deny logbook entries
+•	Derrick Dela Cruz – Admin page menu
