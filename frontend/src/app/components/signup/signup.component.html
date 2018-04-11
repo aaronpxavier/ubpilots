@@ -1,47 +1,58 @@
-
-
 <div class = "wrap">
-  <form>
+    <form  name = "form" (ngSubmit)="onSubmit()" #signup>
+        <h2> Join Us For Flight!</h2>
+        <br>
+      <div class = "input-field" class="form-group">
+        <input type="text" class="form-control" id="firstname" required [(ngModel)]="model.firstname" placeholder = "First Name" name="firstname" #firstname="ngModel" [ngModelOptions]="{ updateOn: 'change' }">
+        <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
+          First name is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <input type="text" class="form-control" id="lastname" required [(ngModel)]="model.lastname" placeholder="Last Name" name="lastname" #lastname="ngModel" [ngModelOptions]="{ updateOn: 'change' }">
+        <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">
+          Last name is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+          <input type="email" class="form-control" email ubEmail id="email"  required [(ngModel)]="model.email" placeholder="Email" name="email" #email="ngModel" [ngModelOptions]="{ updateOn: 'change' }">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Valid @buffalo.edu Email Required
+          </div>
+        </div>
+  
+        <div class="form-group">
+            <input type="password" class="form-control" minlength="6"  id="password" required [(ngModel)]="model.password" placeholder="Password" name="password" #password="ngModel" [ngModelOptions]="{ updateOn: 'change' }">
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+              Password must be a minimum of 6 characters
+            </div>
+           
+          </div>
+  
+          <div class="form-group">
+              <input type="password" class="form-control" id="password2" required [(ngModel)]="model.password2" [confirmPass]="password" placeholder="Confirm Password" name="password2" #password2="ngModel" [ngModelOptions]="{ updateOn: 'change' }">
+              <div [hidden]="password2.valid || password2.pristine" class="alert alert-danger">
+                  Passwords do not match
+                </div>
+            </div>
+            <br>
+            <br>
+            <input type="submit" ng-disabled="form.$invalid || form.$pending"  value= "Join Us!">
+            <br>
+            <br>
+            <div class="form-group">
+            <div class="row">
+                <div  class="col-md-2">
+            <label type = "text" id = "sign"style="width: 200px">Already have an account?</label> 
+            </div>
+            <div class = "col-md-2">
+            <input type="button" onclick="location.href='https://ubpilots.fltprep.com/login';" style="width: 100px" value="Sign in" />
+          </div>
+          </div>
+        </div>
 
-    <h2> Join Us For Flight!</h2>
-    <br>
-
-
-    <div class="input-field">
-      <!--<i class="material-icons">account_box</i>-->
-    <input type= "text" name ="first" placeholder="First Name">
-    </div>
-
-    <div class="input-field">
-      <!--<i class="material-icons">account_box</i>-->
-      <input type= "text" name ="last" placeholder="Last Name">
-    </div>
-
-
-    <div class="input-field">
-      <input type= "email" name ="email" placeholder="Email">
-    </div>
-
-    <div class="input-field">
-      <input type= "text" name ="username" placeholder="Username">
-    </div>
-
-    <div class="input-field">
-      <input type= "password" name ="password" placeholder="Password">
-    </div>
-    <!--        <input type= "confirm" name ="repassword" placeholder="Confirm Password">-->
-
-    <!--<option> Level of Expertise </option>-->
-    <!--<select name = "Level Of Expreince" >-->
-      <!--<option value = "beginner"> Beginner </option>-->
-      <!--<option value = "intermidiate"> Intermidiate </option>-->
-      <!--<option value = "expert"> Expert </option>-->
-    <!--</select>-->
-    <br>
-    <br>
-    <input type="submit" value= "Join Us!">
-  </form>
-</div>
-
-
-
+    </form>
+    
+  </div>

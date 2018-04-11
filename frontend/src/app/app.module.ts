@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './components/nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {UBEmailValidator} from './components/Validators/ub-email-validator.directive'
+import {ConfirmPassword} from './components/Validators/confirm-password-validator.directive'
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -59,6 +61,8 @@ import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
 
 @NgModule({
   declarations: [
+      ConfirmPassword,
+      UBEmailValidator,
       AppComponent,
       LoginComponent,
       HomeComponent,
