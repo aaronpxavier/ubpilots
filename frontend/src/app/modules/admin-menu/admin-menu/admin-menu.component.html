@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Starter Template for Bootstrap</title>
+    <link href="css/require_admin.min.css" rel="stylesheet">
+    <link href="css/admin-menu.component.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Ub pilot Association</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+
+                <!-- links of to what needs to be connected -->
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">Dashboard</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- links of to what needs to be connected -->
+                <li><a href="#">Welcome Admin </a></li>
+                <li><a href="#about">Dashboard</a></li>
+                <li><a href="#logout">Log out</a></li>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<header id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><small> Admin Management site</small></h1>
+            </div>
+            <div class="col-md-2">
+
+                <div class="dropdown create">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Create Content
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Add page</a></li>
+                        <li><a href="#">Add User</a></li>
+                        <li><a href="#"> View Users</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Admin Dashboard navbar -->
+<section id="breadcrumb">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class= "active"> Admin Dashboard </li>
+        </ol>
+    </div>
+</section>
+
+<!-- Side bar of the main Admin Page -->
+
+
+<section id="breadcrumb">
+    <div class = "container">
+        <div class = "row">
+            <div class= "col-md-3">
+                <div class="list-group">
+
+                    <!-- badge indicates the number of notifications -->
+                    <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                        <span class="badge"> 12 </span></a>
+                    <a href="#" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Host <span class="badge"> 10 </span></a>
+                    <a href="#" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a>
+                    <a href="#" class="list-group-item"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Admin</a>
+                </div>
+
+                <!-- <div class="well">
+                  <h4> Disk Space used </h4>
+                  <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                          60%
+                          </div>
+                      </div>
+                </div> -->
+
+                <!-- Weather API Information -->
+            </div>
+
+
+
+            <div class="col-md-9">
+                <!-- website over view -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">UB-Pilot Software Overview</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-3">
+                            <div class="well dash-box">
+                                <h2><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> 21 </h2>
+                                <h4> Users</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="well">
+                                <h2><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> 32 </h2>
+                                <h4> Pages</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="well dash-box">
+                                <h2><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> 13 </h2>
+                                <h4> Admin </h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="well dash-box">
+                                <h2><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> 33 </h2>
+                                <h4> Visitors </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest User table Update  -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Laset Users</h3>
+                </div>
+                <div class="panel-body">
+                    <table class= "table table-striped table-hover">
+                        <tr>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Username </th>
+                            <th> Joined </th>
+                        </tr>
+                        <tr>
+                            <td> Derrick Dickerson </td>
+                            <td> Ddick@buffalo.buffalo.edu </td>
+                            <td> ddickson
+                            <td> March 31, 2018 </td>
+                        </tr>
+                        <tr>
+                            <td> cathy fatterson </td>
+                            <td> cathfat@buffalo.buffalo.edu </td>
+                            <td> fatterson
+                            <td> March 29, 2018 </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+</body>
+</html>
