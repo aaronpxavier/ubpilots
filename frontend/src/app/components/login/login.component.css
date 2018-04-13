@@ -1,0 +1,50 @@
+.wrap{
+    width: 350px;
+    margin:auto;
+    background: #f3f3f3;
+    margin-top: 80px;
+    padding: 5px;
+}
+
+
+form{
+    padding:10px;
+    font-family: serif;
+    border: 1px  RoyalBlue;
+    margin: 15px;
+
+}
+
+h2{
+    text-align: center;
+    background: #005bbb;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+input[type= password] {
+    width: 90%;
+}
+
+input[type= text]{
+    width: 90%;
+}
+
+a[id = submit-btn]{
+    width: 85%;
+    background: #E8E8E8;
+    cursor: pointer;
+    font-size: 15;
+    font-weight: bold;
+    color:black;
+    position: relative;
+    left: 90px;
+
+
+}
+
+a[id = signup-btn]{
+    position:  relative;
+    left: 100px;
+}
