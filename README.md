@@ -29,8 +29,10 @@ flight log data will be stored and retrieved from a mongoDB database.
      Admin has ability to change content of page through a web application interface.
     </details>
     
- Prototype: https://youtu.be/kUIHj_HXadQ
- Alpha: https://youtu.be/ZYCBLVYwpwQ
+ Prototype: https://youtu.be/kUIHj_HXadQ <br />
+ Alpha: https://youtu.be/ZYCBLVYwpwQ <br />
+ Beta: https://youtu.be/LZ4thBqFBZw
+
     
     
 
