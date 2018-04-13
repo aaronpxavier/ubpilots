@@ -1,21 +1,31 @@
-<div class="container" >
+<html>
+<head>
+  <title>Log in form </title>
+</head>
+<body>
+<div class="wrap">
+  <h2> UB-Pilots Association</h2>
   <form  action="#" *ngIf="showForm">
     <div class="input-field">
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
           <i class="material-icons prefix">account_box</i>
-          <input [style.border-bottom]="isInvlaidCreds ? '1px solid red' : ''" placeholder="User Name" type="text"  id="email" (keyup)=setUser($event)>
+          <input [style.border-bottom]="isInvlaidCreds ? '1px solid red' : ''" placeholder="UserName" type="text"  id="email" (keyup)=setUser($event)>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
           <i class="material-icons prefix">lock</i>
           <input id="password" placeholder="Password" type="password" (keyup)=setPassword($event)>
+
         </div>
       </div>
       <div class="row">
         <div class="col s4 m7 offset-s1 offset-m2">
-          <a id="submit-btn"  (click)="submit()" class="waves-effect waves-light btn" >Submit</a>
+          <br>
+          <a id="submit-btn"  (click)="submit()" class="waves-effect waves-light btn" >Login</a>
+          <br>
           <a id="signup-btn"  class="waves-effect waves-light btn" routerLink="/signup">Signup</a>
         </div>
         <div class="col s4 m7 offset-s1 offset-m2">
@@ -45,5 +55,5 @@
     </div>
   </div>
 </div>
-
-
+</body>
+</html>
