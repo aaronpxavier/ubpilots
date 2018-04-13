@@ -58,6 +58,7 @@ import {
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
 import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
+import { SignupService } from "./services/api-services/signup.service";
 
 @NgModule({
   declarations: [
@@ -117,7 +118,7 @@ import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
       NgbModule.forRoot(),
       AdminMenuModule
   ],
-  providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService],
+  providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService, SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

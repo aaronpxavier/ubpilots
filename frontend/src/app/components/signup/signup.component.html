@@ -1,6 +1,6 @@
 <div class = "wrap">
     <form  name = "form" (ngSubmit)="onSubmit()" #signup>
-        <h2> Join Us For Flight!</h2>
+        <h2> Join Us </h2>
         <br>
       <div class = "input-field" class="form-group">
         <input type="text" class="form-control" id="firstname" required [(ngModel)]="model.firstname" placeholder = "First Name" name="firstname" #firstname="ngModel" [ngModelOptions]="{ updateOn: 'change' }">
@@ -37,6 +37,7 @@
                   Passwords do not match
                 </div>
             </div>
+            <p *ngIf="showAlert" class="alert alert-danger">{{alertMessage}}</p>
             <br>
             <br>
             <input type="submit" ng-disabled="form.$invalid || form.$pending"  value= "Join Us!">
