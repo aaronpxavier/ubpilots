@@ -10,10 +10,39 @@
 #add-button {
     margin: 0px;
     padding: 0px;
-    background-color: #006570;;
+    background-color: #006570;
 }
 
-.mat-accent {
+#delete-button{
+    margin: 0px;
+    padding: 0px;
+    background-color: #990000;
+}
+
+#verify-button{
+    margin: 0px;
+    padding: 0px;
+    background-color: #2f9fd0;
+}
+
+#home-button {
     background-color: #005bbb;
 }
 
+.mat-column-select {
+    overflow: visible;
+    
+  }
+
+  .mat-row:active {
+    background: #cacaca;
+  }
+
+  .mat-row:hover{
+    background: #cacaca;
+  }
+
+  #confirm-log{
+      width: 15%;
+      background:   #2f9fd0;
+  }
