@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HideFooterService } from "../../../services/parent_comp_controls/hide-footer-service.service";
+import { LogbookService, LogEntry } from "../../../services/api-services/logbook.service";
 
 @Component({
   selector: 'app-admin-menu',
@@ -8,11 +9,22 @@ import { HideFooterService } from "../../../services/parent_comp_controls/hide-f
 })
 export class AdminMenuComponent implements OnInit {
 
-  constructor(private footerService: HideFooterService) {
+  public logs: LogEntry[];
+  constructor(private footerService: HideFooterService, private logbookService: LogbookService) {
+    logbookService.getLogs()
+        .then(doc => {
+            this.logs = doc
+            console.log(this.logs);
+        });
+
   }
 
   ngOnInit() {
     this.footerService.hide();
   }
+
+    approveClick(i) {
+
+    }
 
 }

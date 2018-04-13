@@ -4,8 +4,8 @@
 
 // Imports ------------------------------------------------------------------//
 import express from '../../../node_modules/express';
-import Token from '../../login/Token'
-import Logbook from '../../logbook/Logbook'
+import Token from '../../login/Token';
+import Logbook from '../../logbook/Logbook';
 
 // Variables ------------------------------------------------------------------//
 const router = express.Router();
@@ -77,11 +77,68 @@ router.post('/',(req,res)=>{
       })
       .catch((err) => {
           if (err) console.error(err);
-          res.status(501);
+          res.status(500);
           res.json(authResponseJson);
       });
 }); // end router.get(/)
 
+router.delete('/',(req,res)=> {
+    let responseJson = {
+        success: false
+    }
+    if (req.body.id) {
+        const bearer = req.headers['authorization'];
+        token.resolveToken(bearer)
+            .then(decoded => {
+                if(decoded.isAdmin) {
+                    console.log(decoded);
+                    return logbook.deleteEntry(req.body.id);
+                } else {
+                    res.json(responseJson);
+                }
+            })
+            .then(() => {
+                responseJson.success = true;
+                res.json(responseJson);
+            })
+            .catch((err) => {
+                if (err) console.error(err);
+                res.status(500);
+                res.json(responseJson);
+            });
+    } else {
+        res.json(responseJson);
+    }
+});
+
+router.update('/',(req,res)=> {
+    let responseJson = {
+        success: false
+    }
+    if (req.body.id) {
+        const bearer = req.headers['authorization'];
+        token.resolveToken(bearer)
+            .then(decoded => {
+                if(decoded.isAdmin) {
+                    console.log(decoded);
+                    return logbook.confirmEntry(req.body.id);
+                } else {
+                    res.json(responseJson);
+                }
+            })
+            .then(() => {
+                responseJson.success = true;
+                res.json(responseJson);
+            })
+            .catch((err) => {
+                if (err) console.error(err);
+                res.status(500);
+                res.json(responseJson);
+            });
+    } else {
+        res.json(responseJson);
+    }
+});
 
 
 // Exports ------------------------------------------------------------------//

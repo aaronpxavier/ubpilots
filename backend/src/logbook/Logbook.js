@@ -116,4 +116,8 @@ export default class LogBook {
     deleteEntry(id) {
         return this.logbookModel.remove({_id:id});
     }
+
+    confirmEntry(id) {
+        return this.logbookModel.set({_id:id}, {isConfirmed: true});
+    }
 }
