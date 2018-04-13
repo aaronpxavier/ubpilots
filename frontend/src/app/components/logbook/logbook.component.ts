@@ -90,10 +90,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.footerService.show();
     }
 
-    verify(){
-      
-    }
-
     formatDate(dateIn: string): string {
       let months = [ "Jan", "Feb", "Mar",
             "Apr", "May", "Jun",
@@ -117,7 +113,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     masterToggle() {
       this.isAllSelected() ?
           this.selection.clear() :
-          this.dataSource.data.forEach(row => this.selection.select(row));
+          this.dataSource.data.forEach(row => this.selection.select());
     }
   }
-

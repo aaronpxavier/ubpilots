@@ -30,7 +30,7 @@
 <!--</div>-->
 
 <mat-card>
-
+                     
     <span class="done">
         <button (click)="homeBtnClick()" id="home-button" mat-fab>
           <mat-icon>home</mat-icon>
@@ -48,12 +48,6 @@
         <mat-icon>delete</mat-icon>
         </button>
     </span>
-
-    <span *ngIf = "isAdmin" class = "done">
-            <button (click) = "verify()" id = "verify-button" mat-fab>
-            <mat-icon>thumb_up</mat-icon>
-            </button>
-        </span>
 
 
 </mat-card>
