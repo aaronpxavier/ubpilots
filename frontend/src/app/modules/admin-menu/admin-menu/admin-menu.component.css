@@ -1,0 +1,108 @@
+
+.container{
+    width: 95%;
+    overflow: hidden;
+    background: #ffff;
+    margin: 20px auto;
+    padding: 20px 0px;
+    border-radius: 80px;
+
+}
+
+.container ul{
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.container ul li{
+    border-radius: 25px;
+    list-style: none;
+    float: left;
+    width: 20%;
+    height: 325px;
+    background: #DCDCDC;
+    margin: 200px 100px 100px 300px
+    /* box-sizing: border-box; */
+    /* border: 2px solid white; */
+}
+
+.container ul li .title{
+    border-radius: 20px;
+    font-family: serif;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #005bbb;
+    text-align: center;
+    font-size: 30px;
+}
+
+.container ul li .text{
+    width: 100%;
+    height: 50px;
+    line-height: 70px;
+    text-align: center;
+
+}
+
+.button {
+    display: inline-block;
+    border-radius: 15px;
+    background: #666666;
+    border: none;
+    color: #ffff;
+    max-width: 200px;
+    text-align: center;
+    opacity: 0.9;
+    font-size: 20px;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 35px;
+}
+
+.button:hover{
+    background-color: #ffc72c;
+    opacity: 3;
+}
+
+.button2 {
+    display: inline-block;
+    border-radius: 15px;
+    background: #666666;
+    opacity: 0.9;
+    border: none;
+    color: #ffff;
+    max-width: 200px;
+    text-align: center;
+    font-size: 20px;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 35px;
+
+}
+
+.button2:hover{
+    background-color: #ffc72c;
+    opacity: 3;
+}
+
+.label {
+    color: black;
+    padding: 8px;
+    font-family: Arial;
+}
+
+.success {
+    background-color: #ebec00;
+    color: red;
+    border-radius: 15px;
+    font-style: italic;
+    font-size: 15px;
+    padding: 30px 15px;
+
+}
