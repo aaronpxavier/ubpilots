@@ -1,34 +1,11 @@
-/* Small Devices, Tablets */
-@media only screen and (min-width : 800px) {
-    #app-component-sim-banner {
-        padding: 0;
-        display: block;
-        background-image: url(../../../assets/sim_banner.jpg);
-        height: 608px;
-        background-size: cover;
-    }
-}
-.img-thumbnail {
-    background-color: #474e5d;
-}
-.thumbnail-row {
-    padding-right: 5px;
-    padding-left: 5px;
+#logo-img {
+    width: 35%;
 }
 
-#cool-phrase {
-    margin-top: 7%;
+#sim-banner {
+    width: 100%;
 }
-/* Large Devices, Wide Screens */
-/*@media only screen and (min-width : 100px) and (max-width: 800px){*/
+.mat-accent {
+    background-color: #005bbb;
+}
 
-/*#app-component-sim-banner  {*/
-/*padding: 0;*/
-/*display: block;*/
-/*background-image: url(../assets/aero_mexico_767.jpg);*/
-/*max-width: 800px;*/
-/*background-size: contain;*/
-/*background-repeat: no-repeat;*/
-/*}*/
-
-/*}*/

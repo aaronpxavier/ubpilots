@@ -12,10 +12,6 @@ import Users from '../../login/Users'
 const router = express.Router();
 var token = new Token();
 var users = new Users();
-var loginResponseJson = {
-    success:false,
-    token:'n/a'
-};
 
 // Routes -------------------------------------------------------------------//
 
@@ -30,12 +26,22 @@ router.get('/',(req,res)=>{
 router.post('/auth', (req, res) => {
     let userName = req.body.username;
     let pass = req.body.pass;
-
+    console.log('username: ' + userName + ' pass: ' + pass);
+    var loginResponseJson = {
+        success: false,
+        isAdmin: false,
+        token: 'n/a'
+    };
 
     token.getToken(userName, pass)
         .then(token => {
             loginResponseJson.success = true;
             loginResponseJson.token = token;
+            console.log(token);
+            return users.checkIfAdmin(userName);
+        })
+        .then(isAdmin => {
+            loginResponseJson.isAdmin = isAdmin;
             res.json(loginResponseJson);
         })
         .catch (error => {
@@ -45,16 +51,53 @@ router.post('/auth', (req, res) => {
         });
 }); //end router.post(/login)
 
-router.get('/protected', (req, res) => {
+router.get('/authcheck', (req, res) => {
+    var authResponseJson = {
+        success: false,
+    };
     const bearer = req.headers['authorization'];
     token.resolveToken(bearer)
         .then(decoded => {
-            res.send(decoded.username);
+            authResponseJson.success = true;
+            res.send(authResponseJson);
         })
         .catch(() => {
-            res.send(403);
+            res.status(403);
+            res.json(authResponseJson);
         });
 }); //end router.get(/protected)
+
+router.post('/signup', (req, res) => {
+    let username = req.body.username;
+    let first = req.body.first;
+    let last = req.body.last;
+    let pass = req.body.pass;
+
+    let responseJson = {
+        success: false,
+        userAlreadyExists: false,
+    }
+
+    if (username && first && last && pass) {
+        users.checkIfUserExists(username)
+            .then(userExists => {
+                if (userExists) {
+                    responseJson.userAlreadyExists = true;
+                    res.json(responseJson);
+                } else {
+                    responseJson.success = true;
+                    users.saveUser(username,first,last,pass);
+                    res.json(responseJson);
+                }
+            })
+            .catch((err) => {
+                print(err);
+                res.json(responseJson);
+            });
+    }
+    else
+        res.json(responseJson);
+});
 
 // Exports ------------------------------------------------------------------//
 

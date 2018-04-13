@@ -1,8 +1,15 @@
+// Imports ------------------------------------------------------------------//
 import mongoose from '../../node_modules/mongoose';
 
+// Variables ------------------------------------------------------------------//
+let bcrypt = require('bcrypt');
+const SALT_ROUNDS = 10;
 const SCHEMA = mongoose.Schema;
+
 const UserSchema = new SCHEMA({
     username: {type: String},
+    firstName: {type: String},
+    lastName: {type: String},
     password: {type: String},
     isAdmin: {type: Boolean},
     date: {
@@ -11,20 +18,36 @@ const UserSchema = new SCHEMA({
     }
 });
 
-const userModel = mongoose.model('User', UserSchema);
 
+
+// Exports ------------------------------------------------------------------//
 export default class Users {
-    constructor() {}
+    constructor() {
+        this.userModel = mongoose.model('User', UserSchema);
+    }
 
     /**
      * @param userName must be defined with valid user string
      * @param pass must be defined with valid password string
      * @param isAdmin default to false must be boolean.
-     * @define creates user in db
+     * @define creates user in db,
+     * returns promise object that resolves true when user is
+     * successfully saved in db, otherwise rejects with error obj.
      * @returns {Promise}
      */
-    saveUser (userName, pass, isAdmin = false) {
-        return this.createUserModel(userName, pass, isAdmin).save();
+    saveUser (userName, firstname, lastname, pass, isAdmin = false) {
+        return new Promise((resolve,reject) => {
+            bcrypt.hash(pass, SALT_ROUNDS)
+                .then((hash) => {
+                    return this.createUserModel(userName, firstname, lastname, hash, isAdmin).save();
+                })
+                .then(() => {
+                    resolve(true);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
     }//end saveUser
 
     /**
@@ -32,8 +55,9 @@ export default class Users {
      * @returns promise obj that resolves true if user is an admin
      */
     checkIfAdmin(userName) {
+        let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ 'username': userName }, 'isAdmin', function (err, user) {
+            this.userModel.findOne({ 'username': userLower }, 'isAdmin', function (err, user) {
                 if(err)
                     reject(err);
                 else if (!user)
@@ -52,8 +76,9 @@ export default class Users {
      * @returns {Promise} that resolves user json if user exists in db
      */
     getUser(userName) {
+        let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ username: userName}, function (err, doc){
+            this.userModel.findOne({ username: userLower}, function (err, doc){
                 if (err) reject(err);
                 else resolve(doc);
             });
@@ -66,14 +91,16 @@ export default class Users {
      * @param isAdmin must be defined with boolean
      * @returns { mongoose.model }
      */
-    createUserModel (userName, pass, isAdmin) {
-
+    createUserModel (userName, firstname, lastname, pass, isAdmin) {
+        let userLower = userName.toLowerCase();
         let userJSON = {
-            username: userName,
+            username: userLower,
+            firstName: firstname,
+            lastName: lastname,
             password: pass,
             isAdmin: isAdmin,
         }
-        return new userModel(userJSON)
+        return new this.userModel(userJSON)
     }//end createUserModel
 
     /**
@@ -82,12 +109,17 @@ export default class Users {
      * @returns promise object that will resolve true if user is valid;
      * * * */
     validateUser (userName, pass) {
+        let userLower = userName.toLowerCase();
         return new Promise((resolve,reject) => {
-            userModel.findOne({ 'username': userName }, 'username password', function (err, user) {
+            this.userModel.findOne({ 'username': userLower }, 'username password', function (err, user) {
                 if(err)
                     reject(err);
-                else if(user && user.username === userName && user.password === pass)
-                    resolve(true);
+                else if(user && user.username === userLower) {
+                    bcrypt.compare(pass, user.password)
+                        .then((isMatch) => {
+                            resolve(isMatch);
+                        });
+                }
                 else
                     resolve(false);
             });
@@ -100,7 +132,8 @@ export default class Users {
      * @returns { Promise }
      * * * */
     deleteUser(userName) {
-        return userModel.remove({username: userName});
+        let userLower = userName.toLowerCase();
+        return this.userModel.remove({username: userLower});
     }//end deleteUser
 
     /**
@@ -109,12 +142,26 @@ export default class Users {
      **/
     checkIfAdminUserExists() {
         return new Promise ((resolve) => {
-            userModel.findOne({'isAdmin': true}, 'isAdmin', function (err, user) {
+            this.userModel.findOne({'isAdmin': true}, 'isAdmin', function (err, user) {
                 console.log(user);
                 if (err)
                     resolve(false);
                 else if (user)
                     user.isAdmin ? resolve(true) : resolve(false);
+                else
+                    resolve(false);
+            });
+        });
+    }
+
+    checkIfUserExists(username) {
+        return new Promise ((resolve) => {
+            this.userModel.findOne({'username': username}, 'username', function (err, user) {
+                console.log(user);
+                if (err)
+                    resolve(false);
+                else if (user)
+                    resolve(true);
                 else
                     resolve(false);
             });
@@ -127,7 +174,7 @@ export default class Users {
      **/
     checkIfRegularUserExists() {
         return new Promise ((resolve) => {
-            userModel.findOne({'isAdmin': false}, 'isAdmin', function (err, user) {
+            this.userModel.findOne({'isAdmin': false}, 'isAdmin', function (err, user) {
                 console.log(user);
                 if (err)
                     resolve(false);

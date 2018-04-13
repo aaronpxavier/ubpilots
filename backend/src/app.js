@@ -10,6 +10,7 @@ import mongoose from '../node_modules/mongoose'; //mongoose middleware
 import config from './cfg'; // application configuration
 import formEndpoints from './routes/form_endpoints'; // version 1 routes
 import loginEndpoints from './routes/login_endpoints'; // version 1 routes
+import logbookEndpoints from './routes/logbook_endpoints';
 import seed from './utility/seed';
 // Variables ----------------------------------------------------------------//
 
@@ -45,6 +46,7 @@ app.use(parser.urlencoded({extended: true}));
 
 app.use('/api/forms',formEndpoints);
 app.use('/api/login',loginEndpoints);
+app.use('/api/log',logbookEndpoints);
 // // route to login endpoints
 // app.use('/api/login', loginEndpoints);
 

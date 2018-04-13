@@ -1,27 +1,9 @@
 
 <body>
-<nav *ngIf="menuService.getState()">
-    <div class="nav-wrapper bg-3">
-        <a href="/home" class="brand-logo">UB Pilots</a>
-        <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="/log">Flight Logs</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li> <a href="#">About Us</a></li>
-            <li><a href="/login" id="login-btn" class="waves-effect waves-light btn">Login</a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-menu">
-            <h2 class="center-align"><strong><u>Menu</u></strong></h2>
-            <li><a href="/log">Flight Logs</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li> <a href="#">About Us</a></li>
-            <li><a href="/login" id="login-btn-collapsable" class="waves-effect waves-light btn">Login</a></li>
-        </ul>
-    </div>
-</nav>
+<app-nav></app-nav>
 <router-outlet></router-outlet>
 </body>
-<app-footer *ngIf="footerService.getState()"></app-footer>
+<app-footer></app-footer>
 
 
 
