@@ -8,6 +8,7 @@ var LOGBOOK_SCHEMA = new Schema({
 
     pic: {firstName: String, lastName: String},
     sic: {firstName: String, lastName: String},
+    username: String,
     isConfirmed: {type: Boolean},
     ac: {
         abreviation: String,
@@ -54,6 +55,7 @@ export default class LogBook {
         let entryJSON = {
               pic: [],
               sic: [],
+              username: '',
               ac: {},
               isConfirmed: false,
               departure: '',
@@ -84,6 +86,7 @@ export default class LogBook {
                 {
                     pic: logBookJSON.pic,
                     sic: logBookJSON.sic,
+                    username: logBookJSON.username,
                     acType: logBookJSON.acType,
                     isConfirmed: logBookJSON.isConfirmed,
                     departure: logBookJSON.departure,
@@ -102,11 +105,19 @@ export default class LogBook {
         return this.logbookModel.find({});
     }
 
-    getEntriesForUser(first, last) {
+    getEntriesFirstLast(first, last) {
         return this.logbookModel.find( { $or: [ {pic: {firstName: first, lastName: last}}, {sic: {firstName: first, lastName: last}} ]});
+    }
+
+    getEntriesUsername(username) {
+        return this.logbookModel.find({username: username});
     }
 
     deleteEntry(id) {
         return this.logbookModel.remove({_id:id});
+    }
+
+    confirmEntry(id) {
+        return this.logbookModel.update({_id:id}, {isConfirmed: true});
     }
 }

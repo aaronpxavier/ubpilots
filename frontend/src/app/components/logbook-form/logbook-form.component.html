@@ -1,5 +1,5 @@
 <div class="container">
-    <form>
+    <form name = "form" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <h2>PIC</h2>
             <div class="row">
@@ -26,16 +26,16 @@
             <h2>Route</h2>
             <div class="row">
                 <div class="col">
-                    <input [(ngModel)]="dep" name="dep" type="text" class="form-control" placeholder="Dep">
+                    <input [(ngModel)]="dep" name="dep" type="text"  class="form-control" required placeholder="Departure">
                 </div>
                 <div class="col">
-                    <input  [(ngModel)]="dest" name="dest" type="text" class="form-control" placeholder="Dest">
+                    <input  [(ngModel)]="dest" name="dest" type="text" class="form-control" required placeholder="Destination">
                 </div>
             </div>
         </div>
         <div class="form-group">
             <h2>Select A/C</h2>
-            <select  [(ngModel)]="ac" name="ac" style="width: 100px" class="form-control" id="acSelect">
+            <select  [(ngModel)]="ac" name="ac" style="width: 100px" required class="form-control" id="acSelect">
                 <option *ngFor="let ac of aircafts" [ngValue]="ac" >{{ac}}</option>
             </select>
         </div>
@@ -43,13 +43,15 @@
             <h2>Enter Time</h2>
             <div class="row">
                 <div class="col">
-                    <input [(ngModel)]="night" name="night" type="text" class="form-control" placeholder="Night">
+                        <!--<input type="number" class="form-control" id="night"  [(ngModel)]="model.night" #night = "ngModel" required placeholder="Night" name="night"[ngModelOptions]="{ updateOn: 'change' }">-->
+                    <input type="number" class="form-control" id="night" required name="night" [(ngModel)]="night" >
+                    
                 </div>
                 <div class="col">
-                    <input [(ngModel)]="imc" name="imc" type="text" class="form-control" placeholder="IMC">
+                    <input [(ngModel)]="imc" name="imc" type="number" required class="form-control" placeholder="IMC">
                 </div>
                 <div class="col">
-                    <input [(ngModel)]="total" name="total" type="text" class="form-control" placeholder="Total">
+                    <input [(ngModel)]="total" name="total" type="number" required class="form-control" placeholder="Total">
                 </div>
             </div>
         </div>
@@ -57,13 +59,13 @@
             <h2>Enter Number Of T/O and Landings</h2>
             <div class="row">
                 <div  class="col-md-2">
-                    <input [(ngModel)]="takeoffs" name="takeoffs" style="width: 100px" name="night" type="text" class="form-control" placeholder="T/O">
+                    <input [(ngModel)]="takeoffs" name="takeoffs" style="width: 100px" required name="takeoffs" type="number" class="form-control" placeholder="T/O">
                 </div>
                 <div class="col-md-2">
-                    <input  [(ngModel)]="landings" name="landings" style="width: 100px" name="imc" type="text" class="form-control" placeholder="Landings">
+                    <input  [(ngModel)]="landings" name="landings" style="width: 100px" required name="landings" type="number" class="form-control" placeholder="Landings">
                 </div>
             </div>
         </div>
-        <button (click)="submit()" class="btn btn-primary">Submit</button>
+        <button (click)="submit()" ng-disabled="form.$invalid || form.$pending" class="btn btn-primary">Submit</button>
     </form>
 </div>

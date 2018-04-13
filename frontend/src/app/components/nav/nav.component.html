@@ -26,29 +26,54 @@
   <!--</div>-->
 <!--</nav>-->
 
-<nav *ngIf="showMenu" class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">UBPA</a>
-    <ul id="nav-list" class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="/log">Flight Logs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Aviation Wx</a>
-      </li>
-      <li *ngIf="showLoginButton" id="lastNav" class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
-      </li>
-      <div *ngIf="showUserMenu" ngbDropdown #myDrop="ngbDropdown">
-        <button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (click)="myDrop.open()">Welcome {{userName}}</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownManual">
-          <button *ngIf="isAdmin" class="dropdown-item">Admin Menu</button>
-          <button class="dropdown-item" (click)="signOut()">Log Out</button>
-        </div>
-      </div>
-    </ul>
-  </div>
-</nav>
+<!--<nav *ngIf="showMenu" class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">-->
+  <!--<div class="container">-->
+    <!--<a class="navbar-brand js-scroll-trigger" href="#page-top">UBPA</a>-->
+    <!--<ul id="nav-list" class="nav justify-content-end">-->
+      <!--<li class="nav-item">-->
+        <!--<a class="nav-link active" routerLink="/log">Flight Logs</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item">-->
+        <!--<a class="nav-link" href="#">Aviation Wx</a>-->
+      <!--</li>-->
+      <!--<li *ngIf="showLoginButton" id="lastNav" class="nav-item">-->
+        <!--<a class="nav-link" routerLink="/login">Login</a>-->
+      <!--</li>-->
+      <!--<div *ngIf="showUserMenu" ngbDropdown #myDrop="ngbDropdown">-->
+        <!--<button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (click)="myDrop.open()">Welcome {{userName}}</button>-->
+        <!--<div ngbDropdownMenu aria-labelledby="dropdownManual">-->
+          <!--<button *ngIf="isAdmin" class="dropdown-item">Admin Menu</button>-->
+          <!--<button class="dropdown-item" (click)="signOut()">Log Out</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</nav>-->
+<div *ngIf="showMenu">
+  <mat-toolbar color="primary">
+    <span><img (click)="goHome()" id="logo-img" src="../../../assets/logo/ubpa_logo_blue.png"></span>
+    <span class="spacer"></span>
+    <button mat-icon-button [mat-menu-trigger-for]="menu">
+      <mat-icon *ngIf="showUserMenu">account_box</mat-icon>
+    </button>
+    <button mat-icon-button [mat-menu-trigger-for]="menu">
+      <mat-icon *ngIf="showLoginButton">view_headline</mat-icon>
+    </button>
+
+  </mat-toolbar>
+  <mat-menu x-position="before" #menu="matMenu">
+    <button *ngIf="showLoginButton" routerLink="/login" mat-menu-item>Login</button>
+    <button *ngIf="isAdmin" routerLink="/admin" mat-menu-item>Admin Menu</button>
+    <button  *ngIf="showUserMenu" (click)="signOut()" mat-menu-item>Sign Out</button>
+  </mat-menu>
+
+
+  <!--<span class="done">-->
+    <!--<button mat-fab>-->
+      <!--<mat-icon>check circle</mat-icon>-->
+    <!--</button>-->
+  <!--</span>-->
+</div>
 
 <!-- Nav tabs -->
 <!--<nav>-->

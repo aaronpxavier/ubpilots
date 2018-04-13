@@ -1,5 +1,14 @@
-.bg-secondary {
-    background-color: #006570;
+
+.mat-primary {
+    background-color: #F8F8F8;
+}
+
+.mat-accent {
+    background-color: #005bbb;
+}
+
+.mat-icon-button {
+    color:  #006570;
 }
 
 .container {
@@ -7,6 +16,12 @@
     margin-right: 20px;
     padding-left: 0px;
     margin-left: 0px;
+}
+
+.mat-accent {}
+
+#logo-img {
+    height: 50px;
 }
 
 #nav-list {
@@ -36,53 +51,5 @@
     color: #fff;
 }
 
-#mainNav .navbar-nav {
-    margin-top: 1rem;
-    letter-spacing: 0.0625rem;
-}
-
-#mainNav .nav li.nav-item a.nav-link {
-    color: #fff;
-}
 
 
-
-
-#mainNav .navbar-toggler {
-    font-size: 80%;
-    padding: 0.8rem;
-}
-
-@media (min-width: 992px) {
-    #mainNav {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-        -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
-        -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
-        transition: padding-top 0.3s, padding-bottom 0.3s;
-    }
-    #mainNav .navbar-brand {
-        font-size: 2em;
-        -webkit-transition: font-size 0.3s;
-        -moz-transition: font-size 0.3s;
-        transition: font-size 0.3s;
-    }
-    #mainNav .navbar-nav {
-        margin-top: 0;
-    }
-    #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
-        color: #fff;
-        background: #18BC9C;
-    }
-    #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
-        color: #fff;
-        background: #18BC9C;
-    }
-    #mainNav.navbar-shrink {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
-    #mainNav.navbar-shrink .navbar-brand {
-        font-size: 1.5em;
-    }
-}

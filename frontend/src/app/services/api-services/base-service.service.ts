@@ -2,7 +2,7 @@
 // Class is based on a service written by Michael Conroy
 // It has been modified by Arun Mavumkal
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
@@ -69,13 +69,13 @@ export class BaseService {
         return outputString;
     }
 
-    post(data: any): Observable<Token> {
+    post(data: any): Observable<any> {
         // const body = `username=${userName}&pass=${password}`;
         const body = this.getURLEncodedString(data);
         const options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
-        return this.http.post<Token>(this.url, body, options);
+        return this.http.post<any>(this.url, body, options);
     }
 
     postWithToken(data: any): Observable<any> {
@@ -90,6 +90,21 @@ export class BaseService {
         };
         return this.http.post<any>(this.url, body, options);
     }
+
+    // deleteWithToken(id: string): Observable<any> {
+    //     console.log('inside post with token');
+    //
+    //     const params = new HttpParams()
+    //         .set('id', id);
+    //
+    //     const options = {
+    //         headers: new HttpHeaders({
+    //             'Content-Type': 'application/x-www-form-urlencoded',
+    //             'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
+    //         })
+    //     };
+    //     return this.http.delete(this.url,{params, options})//<any>(this.url, body, options);
+    // }
 
     getWithToken(): Observable<Success> {
          if (localStorage.getItem(this.tokenKey) === null) {

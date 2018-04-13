@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogbookComponent } from './logbook.component';
 
-describe('LogbookComponent', () => {
-  let component: LogbookComponent;
-  let fixture: ComponentFixture<LogbookComponent>;
+import { AdminMenuComponent } from './admin-menu.component';
+
+describe('AdminMenuComponent', () => {
+  let component: AdminMenuComponent;
+  let fixture: ComponentFixture<AdminMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogbookComponent ]
+      declarations: [ AdminMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogbookComponent);
+    fixture = TestBed.createComponent(AdminMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

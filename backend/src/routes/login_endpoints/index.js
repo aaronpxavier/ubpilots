@@ -13,7 +13,6 @@ const router = express.Router();
 var token = new Token();
 var users = new Users();
 
-
 // Routes -------------------------------------------------------------------//
 
 // default version 1.0 route
@@ -67,6 +66,38 @@ router.get('/authcheck', (req, res) => {
             res.json(authResponseJson);
         });
 }); //end router.get(/protected)
+
+router.post('/signup', (req, res) => {
+    let username = req.body.username;
+    let first = req.body.first;
+    let last = req.body.last;
+    let pass = req.body.pass;
+
+    let responseJson = {
+        success: false,
+        userAlreadyExists: false,
+    }
+
+    if (username && first && last && pass) {
+        users.checkIfUserExists(username)
+            .then(userExists => {
+                if (userExists) {
+                    responseJson.userAlreadyExists = true;
+                    res.json(responseJson);
+                } else {
+                    responseJson.success = true;
+                    users.saveUser(username,first,last,pass);
+                    res.json(responseJson);
+                }
+            })
+            .catch((err) => {
+                print(err);
+                res.json(responseJson);
+            });
+    }
+    else
+        res.json(responseJson);
+});
 
 // Exports ------------------------------------------------------------------//
 

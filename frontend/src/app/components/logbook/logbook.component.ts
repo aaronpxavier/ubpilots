@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LoginService } from "../../services/api-services/login.service";
 import { MatDialog } from '@angular/material';
@@ -7,6 +7,10 @@ import { LogEntry } from "../../services/api-services/logbook.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
 import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
 import { PlatformLocation } from '@angular/common'
+import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import { EventEmitter } from "@angular/core";
+import {SelectionModel} from '@angular/cdk/collections';
+
 
 @Component({
   selector: 'app-logbook',
@@ -15,14 +19,15 @@ import { PlatformLocation } from '@angular/common'
 })
 
 export class LogbookComponent implements OnInit, AfterViewInit {
-
+  
   public isAdmin = false;
   public isSignedIn = false;
-  public  columnsDef = ['date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
-  public logs: LogEntry[];
+  public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
+  private dataSource:MatTableDataSource<LogEntry>;
+  private logsDataRetrievedEvent = new EventEmitter<number> ();
+  selection = new SelectionModel<Element>(true, []);
 
-
-
+  
   constructor(private titleService: Title,
               private loginService: LoginService,
               public dialog: MatDialog,
@@ -41,15 +46,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       }
       this.isSignedIn = true;
     }
-      this.logService.getLogs()
-          .then( data => {
-              this.logs = data;
-
-              console.log(this.logs);
-          })
-          .catch(err => {
-              console.error(err);
-          })
   }
 
   ngOnInit() {
@@ -65,11 +61,33 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       // get our data every subsequent 10 seconds
   }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sortForDataSource: MatSort;
+  @ViewChild('filter') filter: ElementRef;
   ngAfterViewInit() {
+    
+      this.logService.getLogs()
+          .then( data => {
+              this.dataSource = new MatTableDataSource<LogEntry>(data);
+              this.dataSource.paginator = this.paginator;
+              this.dataSource!.sort = this.sortForDataSource;
+          })
+          .catch(err => {
+              console.error(err);
+          })
+
+         
   }
+
+  
 
     newBtnClick() {
       this.router.navigateByUrl('/log/form');
+    }
+
+    homeBtnClick() {
+      this.router.navigateByUrl('/home');
+      this.footerService.show();
     }
 
     formatDate(dateIn: string): string {
@@ -84,5 +102,17 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       formatedDate += date.getFullYear();
       return formatedDate;
     }
-}
 
+    isAllSelected() {
+      const numSelected = this.selection.selected.length;
+      const numRows = this.dataSource.data.length;
+      return numSelected === numRows;
+    }
+  
+
+    masterToggle() {
+      this.isAllSelected() ?
+          this.selection.clear() :
+          this.dataSource.data.forEach(row => this.selection.select());
+    }
+  }
