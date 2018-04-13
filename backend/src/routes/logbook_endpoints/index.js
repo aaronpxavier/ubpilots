@@ -14,7 +14,16 @@ let token = new Token();
 let createLogEntry = (req, isConfirmed = false) => {
     let logBookEntry = logbook.getLogbookEntryJSON();
     logBookEntry.pic = {firstName: req.body.picFirst, lastName: req.body.picLast};
-    logBookEntry.sic = {firstName: req.body.sicFirst, lastName: req.body.sicLast};
+
+    if(req.body.sicFirst && req.body.sicLast)
+        logBookEntry.sic = {firstName: req.body.sicFirst, lastName: req.body.sicLast};
+    else if (req.body.sicFirst == '' && req.body.sicLast == '')
+        logBookEntry.sic = {firstName: '', lastName: ''};
+    else if(req.body.sicFirst)
+        logBookEntry.sic = {firstName: req.body.sicFirst, lastName: ''};
+    else if (req.body.sicLast)
+        logBookEntry.sic = {firstName: '', lastName: req.body.sicLast};
+
     logBookEntry.ac = {
         abreviation:req.body.acAbrev,
         isTurbine: req.body.isJet,
@@ -23,7 +32,8 @@ let createLogEntry = (req, isConfirmed = false) => {
     logBookEntry.isConfirmed = isConfirmed;
     logBookEntry.departure = req.body.dep;
     logBookEntry.destination = req.body.dest;
-    logBookEntry.imc = req.body.imc;
+    if(req.body.imc)
+        logBookEntry.imc = req.body.imc;
     logBookEntry.night = req.body.night;
     logBookEntry.takeoffs = req.body.to;
     logBookEntry.landings = req.body.lands;
@@ -71,6 +81,8 @@ router.post('/',(req,res)=>{
           res.json(authResponseJson);
       });
 }); // end router.get(/)
+
+
 
 // Exports ------------------------------------------------------------------//
 

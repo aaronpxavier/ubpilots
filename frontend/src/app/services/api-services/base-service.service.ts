@@ -69,13 +69,13 @@ export class BaseService {
         return outputString;
     }
 
-    post(data: any): Observable<Token> {
+    post(data: any): Observable<any> {
         // const body = `username=${userName}&pass=${password}`;
         const body = this.getURLEncodedString(data);
         const options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
-        return this.http.post<Token>(this.url, body, options);
+        return this.http.post<any>(this.url, body, options);
     }
 
     postWithToken(data: any): Observable<any> {
