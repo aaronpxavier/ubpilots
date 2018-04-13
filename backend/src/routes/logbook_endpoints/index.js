@@ -110,8 +110,7 @@ router.delete('/',(req,res)=> {
         res.json(responseJson);
     }
 });
-
-router.update('/',(req,res)=> {
+router.put('/confirm',(req,res)=> {
     let responseJson = {
         success: false
     }
