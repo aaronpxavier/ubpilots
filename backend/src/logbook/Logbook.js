@@ -114,7 +114,23 @@ export default class LogBook {
     }
 
     deleteEntry(id) {
-        return this.logbookModel.remove({_id:id});
+        return new Promise ((resolve, reject) => {
+            this.logbookModel.findOne({_id: id})
+                .then((doc) => {
+                    if (doc) {
+                        console.log(doc);
+                        return this.logbookModel.remove({_id: id});
+                    } else {
+                        resolve(false);
+                    }
+                })
+                .then(() => {
+                    resolve(true);
+                })
+                .catch ((err) => {
+                    reject(err);
+                })
+        });
     }
 
     confirmEntry(id) {

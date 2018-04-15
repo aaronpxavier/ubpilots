@@ -82,23 +82,23 @@ router.post('/',(req,res)=>{
       });
 }); // end router.get(/)
 
-router.delete('/',(req,res)=> {
+router.delete('/:id',(req,res)=> {
     let responseJson = {
         success: false
     }
-    if (req.body.id) {
+    if (req.params.id) {
         const bearer = req.headers['authorization'];
         token.resolveToken(bearer)
             .then(decoded => {
                 if(decoded.isAdmin) {
-                    console.log(decoded);
-                    return logbook.deleteEntry(req.body.id);
+                    return logbook.deleteEntry(req.params.id);
                 } else {
+                    res.status(403);
                     res.json(responseJson);
                 }
             })
-            .then(() => {
-                responseJson.success = true;
+            .then((success) => {
+                if(success) responseJson.success = true;
                 res.json(responseJson);
             })
             .catch((err) => {
