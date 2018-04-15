@@ -23,8 +23,11 @@ export class AdminMenuComponent implements OnInit {
     this.footerService.hide();
   }
 
-    approveClick(i) {
-
+    deleteClick(i: number) {
+        this.logbookService.deleteLog(this.logs[i]._id);
     }
 
+    approveClick(i: number) {
+        this.logbookService.confirmLog(this.logs[i]._id);
+    }
 }

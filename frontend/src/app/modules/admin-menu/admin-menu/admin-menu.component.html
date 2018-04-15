@@ -8,7 +8,7 @@
     <mat-grid-tile>Dest: {{log.destination}}</mat-grid-tile>
     <mat-grid-tile>TT: {{log.total}}</mat-grid-tile>
     <mat-grid-tile><button (click)="approveClick(i)" class="btn btn-success">Approve</button></mat-grid-tile>
-    <mat-grid-tile><button class="btn btn-danger">deny</button></mat-grid-tile>
+    <mat-grid-tile><button (click)="deleteClick(i)" class="btn btn-danger">deny</button></mat-grid-tile>
   </mat-grid-list>
   </mat-card>
   </div>

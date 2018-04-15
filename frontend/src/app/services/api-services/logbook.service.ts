@@ -61,16 +61,28 @@ export class LogbookService extends BaseService {
       });
   }
 
-    deleteLogs(logsJSON): Promise<Success> {
+    deleteLog(id: string): Promise<Success> {
         console.log('inside log service');
         return new Promise<Success>((resolve, reject) => {
-            this.postWithToken(logsJSON).subscribe(data => {
+            this.deleteWithToken(id).subscribe(data => {
                 resolve(data);
             }, err => {
                 reject(err);
             });
         });
-
+    }
+    confirmLog(id: string): Promise<Success> {
+        let data = {
+            id: id
+        };
+        console.log('inside log service');
+        return new Promise<Success>((resolve, reject) => {
+            this.putWithToken(data).subscribe(data => {
+                resolve(data);
+            }, err => {
+                reject(err);
+            });
+        });
     }
 
 }
