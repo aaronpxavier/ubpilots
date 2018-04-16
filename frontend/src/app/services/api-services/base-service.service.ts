@@ -92,15 +92,16 @@ export class BaseService {
     }
 
     deleteWithToken(id: string): Observable<any> {
-        console.log('inside post with token');
+        console.log('id in deleteTOken: ' + id);
         let url = this.url + '/' + id;
+        console.log('id in deleteTOken: ' + url);
         const options = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
             })
         };
-        return this.http.delete(this.url)//<any>(this.url, body, options);
+        return this.http.delete(url,options)//<any>(this.url, body, options);
     }
 
     putWithToken(data: any): Observable<any> {
@@ -113,7 +114,7 @@ export class BaseService {
                 'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
             })
         };
-        return this.http.post<any>(this.url, body, options);
+        return this.http.put<any>(this.url, body, options);
     }
 
     getWithToken(): Observable<Success> {

@@ -36,13 +36,12 @@ export class LogbookService extends BaseService {
 
   constructor(http: HttpClient, loginService: LoginService) {
       super(http);
-      this.setUrl('/api/log');
   }
 
   getLogs(): Promise<LogEntry[]> {
+      this.setUrl('/api/log');
     return new Promise<LogEntry[]>((resolve, reject) => {
         this.get().subscribe((logs) => {
-
             resolve (logs);
         }, (err) => {
             reject(err);
@@ -52,6 +51,7 @@ export class LogbookService extends BaseService {
 
   postLogs(logsJSON): Promise<Success> {
       console.log('inside log service');
+      this.setUrl('/api/log');
       return new Promise<Success>((resolve, reject) => {
           this.postWithToken(logsJSON).subscribe(data => {
               resolve(data);
@@ -63,6 +63,7 @@ export class LogbookService extends BaseService {
 
     deleteLog(id: string): Promise<Success> {
         console.log('inside log service');
+        this.setUrl('/api/log');
         return new Promise<Success>((resolve, reject) => {
             this.deleteWithToken(id).subscribe(data => {
                 resolve(data);
@@ -72,6 +73,7 @@ export class LogbookService extends BaseService {
         });
     }
     confirmLog(id: string): Promise<Success> {
+        this.setUrl('/api/log/confirm');
         let data = {
             id: id
         };

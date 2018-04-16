@@ -24,10 +24,17 @@ export class AdminMenuComponent implements OnInit {
   }
 
     deleteClick(i: number) {
-        this.logbookService.deleteLog(this.logs[i]._id);
+        this.logbookService.deleteLog(this.logs[i]._id)
+            .then((res) => {
+            if(res.success) this.logs.splice(i,1);
+        });;
     }
 
     approveClick(i: number) {
-        this.logbookService.confirmLog(this.logs[i]._id);
+        console.log(this.logs[i]._id);
+        this.logbookService.confirmLog(this.logs[i]._id)
+            .then((res) => {
+                if(res.success) this.logs.splice(i,1);
+            });
     }
 }

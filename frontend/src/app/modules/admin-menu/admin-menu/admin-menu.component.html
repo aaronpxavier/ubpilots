@@ -1,7 +1,7 @@
 
 <div class="container">
   <div *ngFor="let log of logs; let i = index" [attr.data-index]="i">
-  <mat-card>
+  <mat-card *ngIf="!log.isConfirmed">
   <mat-grid-list cols="6" rowHeight="4:1">
     <mat-grid-tile>PIC: {{log.pic.firstName}} {{log.pic.lastName}}</mat-grid-tile>
     <mat-grid-tile>Dep: {{log.departure}}</mat-grid-tile>
