@@ -57,6 +57,7 @@ router.post('/',(req,res)=>{
     console.log('req.body: ' + req.body.total);
   var authResponseJson = {
       success: false,
+      authFailed: false
   };
 
   const bearer = req.headers['authorization'];
@@ -68,7 +69,7 @@ router.post('/',(req,res)=>{
           } else {
               entry = createLogEntry(req);
           }
-          console.log(entry);
+
           return logbook.logbookEntry(entry);
       })
       .then(() => {
@@ -88,9 +89,11 @@ router.delete('/:id',(req,res)=> {
     }
     if (req.params.id) {
         const bearer = req.headers['authorization'];
+        console.log('delete' + bearer);
         token.resolveToken(bearer)
             .then(decoded => {
                 if(decoded.isAdmin) {
+                    console.log(decoded);
                     return logbook.deleteEntry(req.params.id);
                 } else {
                     res.status(403);
@@ -119,7 +122,6 @@ router.put('/confirm',(req,res)=> {
         token.resolveToken(bearer)
             .then(decoded => {
                 if(decoded.isAdmin) {
-                    console.log(decoded);
                     return logbook.confirmEntry(req.body.id);
                 } else {
                     res.json(responseJson);

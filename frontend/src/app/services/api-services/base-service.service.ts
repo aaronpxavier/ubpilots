@@ -91,20 +91,31 @@ export class BaseService {
         return this.http.post<any>(this.url, body, options);
     }
 
-    // deleteWithToken(id: string): Observable<any> {
-    //     console.log('inside post with token');
-    //
-    //     const params = new HttpParams()
-    //         .set('id', id);
-    //
-    //     const options = {
-    //         headers: new HttpHeaders({
-    //             'Content-Type': 'application/x-www-form-urlencoded',
-    //             'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
-    //         })
-    //     };
-    //     return this.http.delete(this.url,{params, options})//<any>(this.url, body, options);
-    // }
+    deleteWithToken(id: string): Observable<any> {
+        console.log('id in deleteTOken: ' + id);
+        let url = this.url + '/' + id;
+        console.log('id in deleteTOken: ' + url);
+        const options = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
+            })
+        };
+        return this.http.delete(url,options)//<any>(this.url, body, options);
+    }
+
+    putWithToken(data: any): Observable<any> {
+        console.log('inside post with token');
+        const body = this.getURLEncodedString(data);
+
+        const options = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': JSON.parse(localStorage.getItem(this.tokenKey)).token
+            })
+        };
+        return this.http.put<any>(this.url, body, options);
+    }
 
     getWithToken(): Observable<Success> {
          if (localStorage.getItem(this.tokenKey) === null) {
