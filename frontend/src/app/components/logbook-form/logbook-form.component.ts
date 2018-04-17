@@ -42,15 +42,20 @@ export class LogbookFormComponent implements OnInit {
   public total: number;
   public takeoffs: number;
   public landings: number;
-
+  private isAdmin: boolean;
   constructor(private title: Title,
               private hideFooterService: HideFooterService,
               private logService:LogbookService,
               private loginService: LoginService,
               private location: Location,
               private router:Router) {
-    this.title.setTitle('Logbook Form');
-    this.hideFooterService.hide();
+      let token = loginService.getTokenFromLocal();
+      if(token)
+          this.isAdmin = token.isAdmin;
+      else
+          router.navigateByUrl('/log');
+      this.title.setTitle('Logbook Form');
+      this.hideFooterService.hide();
   }
 
   ngOnInit() {

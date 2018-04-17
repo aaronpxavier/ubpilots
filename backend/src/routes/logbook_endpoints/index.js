@@ -6,15 +6,16 @@
 import express from '../../../node_modules/express';
 import Token from '../../login/Token';
 import Logbook from '../../logbook/Logbook';
-
+import Users from '../../login/Users'
 // Variables ------------------------------------------------------------------//
 const router = express.Router();
 let logbook = new Logbook();
 let token = new Token();
+let users = new Users();
+
 let createLogEntry = (req, isConfirmed = false) => {
     let logBookEntry = logbook.getLogbookEntryJSON();
     logBookEntry.pic = {firstName: req.body.picFirst, lastName: req.body.picLast};
-
     if(req.body.sicFirst && req.body.sicLast)
         logBookEntry.sic = {firstName: req.body.sicFirst, lastName: req.body.sicLast};
     else if (req.body.sicFirst == '' && req.body.sicLast == '')
@@ -41,6 +42,24 @@ let createLogEntry = (req, isConfirmed = false) => {
     logBookEntry.date = new Date();
     return logBookEntry;
 }
+
+let setUsername = (entryJSON, username) => {
+    entryJSON.username = username;
+}
+
+let setPIC = (entryJSON, username) => {
+    return new Promise((resolve, reject) => {
+        users.getUser(username)
+            .then((user) => {
+                entryJSON.pic = {firstName: user.firstName, lastName: user.lastName}
+                resolve();
+            })
+            .catch((err) => {
+                if(err)
+                    reject(err);
+            });
+    });
+}
 // Routes -------------------------------------------------------------------//
 
 // default version 1.0 route
@@ -64,13 +83,17 @@ router.post('/',(req,res)=>{
   token.resolveToken(bearer)
       .then(decoded => {
           let entry;
+          let username = decoded.username;
           if(decoded.isAdmin) {
               entry = createLogEntry(req, true);
           } else {
               entry = createLogEntry(req);
+              setPIC(entry, username)
+                  .then(() => {
+                      setUsername(entry, username);
+                      return logbook.logbookEntry(entry);
+                  })
           }
-
-          return logbook.logbookEntry(entry);
       })
       .then(() => {
           authResponseJson.success = true;
