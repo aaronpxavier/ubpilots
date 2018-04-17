@@ -64,6 +64,14 @@ let setPIC = (entryJSON, username) => {
 
 // default version 1.0 route
 router.get('/',(req,res)=>{
+    logbook.getAllConfirmedEntries()
+        .then(doc => {
+            console.log(doc);
+            res.json(doc);
+        });
+}); // end router.get(/)
+// default version 1.0 route
+router.get('/unconfirmed',(req,res)=>{
     logbook.getAllEntries()
         .then(doc => {
             console.log(doc);
@@ -72,8 +80,6 @@ router.get('/',(req,res)=>{
 }); // end router.get(/)
 
 router.post('/',(req,res)=>{
-
-    console.log('req.body: ' + req.body.total);
   var authResponseJson = {
       success: false,
       authFailed: false

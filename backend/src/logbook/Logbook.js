@@ -105,6 +105,10 @@ export default class LogBook {
         return this.logbookModel.find({});
     }
 
+    getAllConfirmedEntries() {
+        return this.logbookModel.find({isConfirmed: true});
+    }
+
     getEntriesFirstLast(first, last) {
         return this.logbookModel.find( { $or: [ {pic: {firstName: first, lastName: last}}, {sic: {firstName: first, lastName: last}} ]});
     }

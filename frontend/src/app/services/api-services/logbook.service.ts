@@ -39,15 +39,25 @@ export class LogbookService extends BaseService {
   }
 
   getLogs(): Promise<LogEntry[]> {
-      this.setUrl('/api/log');
-    return new Promise<LogEntry[]>((resolve, reject) => {
-        this.get().subscribe((logs) => {
-            resolve (logs);
-        }, (err) => {
-            reject(err);
+        this.setUrl('/api/log');
+        return new Promise<LogEntry[]>((resolve, reject) => {
+            this.get().subscribe((logs) => {
+                resolve (logs);
+            }, (err) => {
+                reject(err);
+            });
         });
-    });
-  }
+    }
+    getUnconfirmedLogs(): Promise<LogEntry[]> {
+        this.setUrl('/api/log/unconfirmed');
+        return new Promise<LogEntry[]>((resolve, reject) => {
+            this.get().subscribe((logs) => {
+                resolve (logs);
+            }, (err) => {
+                reject(err);
+            });
+        });
+    }
 
   postLogs(logsJSON): Promise<Success> {
       console.log('inside log service');

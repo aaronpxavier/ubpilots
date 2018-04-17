@@ -11,10 +11,9 @@ export class AdminMenuComponent implements OnInit {
 
   public logs: LogEntry[];
   constructor(private footerService: HideFooterService, private logbookService: LogbookService) {
-    logbookService.getLogs()
+    logbookService.getUnconfirmedLogs()
         .then(doc => {
-            this.logs = doc
-            console.log(this.logs);
+            this.logs = doc;
         });
 
   }
