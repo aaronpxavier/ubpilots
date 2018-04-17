@@ -13,8 +13,7 @@ export class AdminMenuComponent implements OnInit {
   constructor(private footerService: HideFooterService, private logbookService: LogbookService) {
     logbookService.getUnconfirmedLogs()
         .then(doc => {
-            this.logs = doc
-            console.log(this.logs);
+            this.logs = doc;
         });
 
   }
