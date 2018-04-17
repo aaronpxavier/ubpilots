@@ -15,6 +15,7 @@ export class LoginNavService {
   getPrev(): string {
     return this.prevURL;
   }
+
   deletePrev() {
     this.prevURL = null;
   }
