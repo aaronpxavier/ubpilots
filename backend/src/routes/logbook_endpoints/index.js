@@ -86,6 +86,7 @@ router.post('/',(req,res)=>{
           let username = decoded.username;
           if(decoded.isAdmin) {
               entry = createLogEntry(req, true);
+              return logbook.logbookEntry(entry);
           } else {
               entry = createLogEntry(req);
               setPIC(entry, username)
