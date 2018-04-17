@@ -56,13 +56,13 @@
     <button mat-icon-button [mat-menu-trigger-for]="menu">
       <mat-icon *ngIf="showUserMenu">account_box</mat-icon>
     </button>
+
     <button mat-icon-button [mat-menu-trigger-for]="menu">
       <mat-icon *ngIf="showLoginButton">view_headline</mat-icon>
     </button>
-
   </mat-toolbar>
   <mat-menu x-position="before" #menu="matMenu">
-    <button *ngIf="showLoginButton" routerLink="/login" mat-menu-item>Login</button>
+    <button *ngIf="showLoginButton" (click)="loginClick()" mat-menu-item>Login</button>
     <button *ngIf="isAdmin" routerLink="/admin" mat-menu-item>Admin Menu</button>
     <button  *ngIf="showUserMenu" (click)="signOut()" mat-menu-item>Sign Out</button>
   </mat-menu>

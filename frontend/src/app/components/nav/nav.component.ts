@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/api-services/login.service';
 import { Router } from "@angular/router";
-import { EventEmitter} from "@angular/core";
-import { HideNavMenuService} from "../../services/parent_comp_controls/hide-nav-menu.service";
-import {HideFooterService} from "../../services/parent_comp_controls/hide-footer-service.service";
+import { EventEmitter } from "@angular/core";
+import { HideNavMenuService } from "../../services/parent_comp_controls/hide-nav-menu.service";
+import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
+import { LoginNavService } from "../../services/navigation-services/login-nav.service";
 
 @Component({
   selector: 'app-nav',
@@ -19,13 +20,15 @@ export class NavComponent implements OnInit {
   public isAdmin: boolean;
   public showMenu: boolean;
   private loginEventEmitter: EventEmitter<number>;
-
+  private approvedLoginReturnURL: Array<string>;
   constructor(private loginService: LoginService,
-              private router:Router,
+              private router: Router,
               private hideMenuService: HideNavMenuService,
-              private footerService:HideFooterService) {
+              private footerService: HideFooterService,
+              private loginNavService: LoginNavService) {
       this.loginEventEmitter = loginService.getSignInEmitter();
       this.showMenu = true;
+      this.approvedLoginReturnURL = ['/log'];
       this.showUserMenu = hideMenuService.getState();
       this.loginService.checkIfTokenIsValid()
           .then((isLoggedIn) => {
@@ -57,12 +60,14 @@ export class NavComponent implements OnInit {
               } else if (value == 1) {
                   this.showMenu = true;
               }
-          })
+          });
   }
 
-  loginBtnClick() {
-      console.log('login click');
-      this.router.navigateByUrl('/login')
+  loginClick() {
+      let currentURL = this.router.url;
+      if(this.approvedLoginReturnURL.includes(currentURL))
+          this.loginNavService.setPrev(currentURL);
+      this.router.navigateByUrl('/login');
   }
 
   signOut() {
