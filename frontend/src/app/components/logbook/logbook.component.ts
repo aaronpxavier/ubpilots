@@ -79,11 +79,9 @@ export class LogbookComponent implements OnInit, AfterViewInit {
          
   }
 
-  
-
-    newBtnClick() {
-      this.router.navigateByUrl('/log/form');
-    }
+    // newBtnClick() {
+    //   this.router.navigateByUrl('/log/form');
+    // }
 
     homeBtnClick() {
       this.router.navigateByUrl('/home');

@@ -55,7 +55,7 @@ export class LogbookFormComponent implements OnInit {
 
   ngOnInit() {
       this.loginService.getSignOutEmitter().subscribe(() => {
-          this.location.back();
+          this.router.navigateByUrl('/log');
       })
   }
 
