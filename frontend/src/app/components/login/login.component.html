@@ -1,15 +1,19 @@
 <div class="container" >
+ <link rel="stylesheet" type="text/css" href="login.component.css" />
+ <img src="loginImage.png" width="1520 alt="Login page" />
   <form  action="#" *ngIf="showForm">
     <div class="input-field">
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
-          <i class="material-icons prefix">account_box</i>
+          <!--<i class="material-icons prefix">account_box</i>-->
+		  <i class="material-icons prefix">Username:</i>
           <input [style.border-bottom]="isInvlaidCreds ? '1px solid red' : ''" placeholder="User Name" type="text"  id="email" (keyup)=setUser($event)>
         </div>
       </div>
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
-          <i class="material-icons prefix">lock</i>
+          <!--<i class="material-icons prefix">lock</i>-->
+		  <i class="material-icons prefix">Password:</i>
           <input id="password" placeholder="Password" type="password" (keyup)=setPassword($event)>
         </div>
       </div>
@@ -19,15 +23,18 @@
           <a id="signup-btn"  class="waves-effect waves-light btn" routerLink="/signup">Signup</a>
         </div>
         <div class="col s4 m7 offset-s1 offset-m2">
-          <p id="login-error">{{errorMessage}}</p>
+          <!--<p id="login-error">{{errorMessage}}</p>-->
         </div>
       </div>
+	 <footer>
+		<p>Copyright &copy 2018</p>
+     </footer>
     </div>
   </form>
 
 </div>
 <div id="loginScreen" *ngIf="showWaiting">
-  <h1>{{waitingMessage}}</h1>
+  <!--<h1>{{waitingMessage}}</h1>-->
   <div class="preloader-wrapper big active" >
     <div class="spinner-layer spinner-blue-only">
       <div class="circle-clipper left">
