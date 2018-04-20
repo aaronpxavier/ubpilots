@@ -7,13 +7,7 @@ const router = express.Router();
 
 let token = new Token();
 let users = new users();
-router.get('/',(req,res)) =>{
-  logbook.getAllConfirmedEntries()
-  .then(doc =>{
-    console.log(doc);
-    res.json(doc);
-  }
-}
+
 router.post('/',(req,res)=>{
   let abreviation = req.body.abrev;
   let isTurbines = req.body.isTurbine;
@@ -21,7 +15,7 @@ router.post('/',(req,res)=>{
 
   var authResponseJson = {
       success: false,
-      authFailed: false
+      authFailed: falsedf
   };
 
   const bearer = req.headers['authorization'];
@@ -33,11 +27,7 @@ router.post('/',(req,res)=>{
               // TODO add checks
           } else {
               entry = createLogEntry(req);
-              setPIC(entry, username)
-                  .then(() => {
-                      setUsername(entry, username);
-                      return logbook.logbookEntry(entry);
-                  })
+              res.json(responseJson);
           }
       })
 
