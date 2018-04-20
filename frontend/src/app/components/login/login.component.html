@@ -1,19 +1,18 @@
 <div class="container" >
- <link rel="stylesheet" type="text/css" href="login.component.css" />
- <img src="loginImage.png" width="1520 alt="Login page" />
+   <img src="/assets/loginImage.png" width="1520" alt="Login page" />
   <form  action="#" *ngIf="showForm">
     <div class="input-field">
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
           <!--<i class="material-icons prefix">account_box</i>-->
-		  <i class="material-icons prefix">Username:</i>
+		  <i class="material-icons prefix">account_box</i>
           <input [style.border-bottom]="isInvlaidCreds ? '1px solid red' : ''" placeholder="User Name" type="text"  id="email" (keyup)=setUser($event)>
         </div>
       </div>
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
           <!--<i class="material-icons prefix">lock</i>-->
-		  <i class="material-icons prefix">Password:</i>
+		  <i class="material-icons prefix">lock</i>
           <input id="password" placeholder="Password" type="password" (keyup)=setPassword($event)>
         </div>
       </div>
