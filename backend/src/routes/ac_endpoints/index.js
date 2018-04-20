@@ -7,7 +7,13 @@ const router = express.Router();
 
 let token = new Token();
 let users = new users();
-
+router.get('/',(req,res)) =>{
+  logbook.getAllConfirmedEntries()
+  .then(doc =>{
+    console.log(doc);
+    res.json(doc);
+  }
+}
 router.post('/',(req,res)=>{
   let abreviation = req.body.abrev;
   let isTurbines = req.body.isTurbine;
