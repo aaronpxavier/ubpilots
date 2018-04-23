@@ -1,5 +1,7 @@
-<div class="container" >
-   <img src="/assets/loginImage.png" width="1520" alt="Login page" />
+<img src="/assets/loginImage.png" width="1520" alt="Login page" />
+<div class="wrap" >
+   <!--<img src="/assets/loginImage.png" width="1520" alt="Login page" />-->
+  <h2> Login </h2>
   <form  action="#" *ngIf="showForm">
     <div class="input-field">
       <div class="row">
@@ -26,14 +28,14 @@
           <!--<p id="login-error">{{errorMessage}}</p>-->
         </div>
       </div>
-	 <footer>
-		<p>Copyright &copy 2018</p>
-     </footer>
     </div>
   </form>
 
 </div>
 <div id="loginScreen" *ngIf="showWaiting">
+  <footer>
+    <p>Copyright &copy 2018</p>
+  </footer>
   <!--<h1>{{waitingMessage}}</h1>-->
   <div class="preloader-wrapper big active" >
     <div class="spinner-layer spinner-blue-only">
