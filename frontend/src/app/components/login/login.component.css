@@ -1,10 +1,61 @@
-.input-field {
-		position: relative;
-		left: 650px;
-		top: 100px;
+/*.input-field {*/
+		/*position: relative;*/
+		/*left: 650px;*/
+		/*top: 100px;*/
+	/*padding:10px;*/
+	/*margin: 15px;*/
+	/*border: 1px  RoyalBlue;*/
+/*}*/
+
+/*#footer {*/
+	/*position: relative;*/
+	/*top: 350px;*/
+/*}*/
+
+.wrap{
+	width: 355px;
+	margin:auto;
+	background: #f3f3f3;
+	margin-top: 200px;
+	padding: 5px;
+
 }
 
-#footer {
-	position: relative;
-	top: 350px;
+form{
+	padding:10px;
+	font-family: serif;
+	border: 1px  RoyalBlue;
+	margin: 15px;
+
 }
+
+h2{
+	text-align: center;
+	background: #005bbb;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+input[id= password] {
+	width: 90%;
+}
+
+input[type= text]{
+	width: 90%;
+}
+
+a[id = submit-btn]{
+	font-size: 25px;
+	position: relative;
+	left: 100px;
+}
+
+a[id = signup-btn] {
+	font-size: 25px;
+	position: relative;
+	left: 100px;
+}
+
+
+
