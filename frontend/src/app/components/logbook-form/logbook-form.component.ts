@@ -62,6 +62,12 @@ export class LogbookFormComponent implements OnInit {
       this.loginService.getSignOutEmitter().subscribe(() => {
           this.router.navigateByUrl('/log');
       })
+     this.picFirst = "";
+     this.picLast = "";
+     this.sicFirst = "";
+     this.sicLast = "";
+     this.night =0;
+     this.imc = 0;
   }
 
   buildJson(): any {
