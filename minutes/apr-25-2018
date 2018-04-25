@@ -1,0 +1,34 @@
+Team Meeting 
+4 / 25 / 2018
+
+
+Attendance:
+•	Felipe Canales
+•	Arun Mavumkal
+•	Derrick Delacruz
+
+Summary of Meeting:
+
+•	Discussed what is needed to be done for the final release
+• Discussed how we will present our project to the class
+• Add on features - weather API, forgot password, email validation
+
+Completed Since Last Meeting:
+
+•	Derrick Dela Cruz - Changed pilot acronyms to plain english.
+•	Felipe Canales - Frontend work. Implemented enter key for login/signup. Pop up was created for when a user clicks on a log entry. The pop up shows the data of said log entry.
+•	Arun Mavumkal -  Backend work. Implemented delete function for admins in the logbook
+
+
+Tasks to Be Completed Before Next Meeting:
+
+•	Felipe Canales – Frontend - Make edit feature functional in logbook
+•	Arun Mavumkal – Backend - Create service for edit feature
+•	Derrick Dela Cruz - Static e-board page
+
+
+Task Descriptions:
+
+•	Arun Mavumkal – Create backend service for edit feature. 
+•	Felipe Canales  - Create frontend side of edit feature 
+•	Derrick Dela Cruz – Static page with information about the eboard of the club
