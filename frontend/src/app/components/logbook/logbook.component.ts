@@ -1,15 +1,15 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LoginService } from "../../services/api-services/login.service";
-import { MatDialog } from '@angular/material';
 import { Router } from "@angular/router";
 import { LogEntry } from "../../services/api-services/logbook.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
 import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
 import { PlatformLocation } from '@angular/common'
-import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MatDialogModule, MAT_DIALOG_DATA} from '@angular/material';
 import { EventEmitter } from "@angular/core";
 import {SelectionModel} from '@angular/cdk/collections';
+import {PopupComponent} from '../popup/popup.component';
 
 
 @Component({
@@ -19,11 +19,11 @@ import {SelectionModel} from '@angular/cdk/collections';
 })
 
 export class LogbookComponent implements OnInit, AfterViewInit {
-  
+
   public isAdmin = false;
   public isSignedIn = false;
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
-  private dataSource:MatTableDataSource<LogEntry>;
+  public dataSource:MatTableDataSource<LogEntry>;
   private logsDataRetrievedEvent = new EventEmitter<number> ();
   selection = new SelectionModel<Element>(true, []);
 
@@ -48,6 +48,17 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     }
   }
 
+  openDialog(): void {
+    let dialogRef = this.dialog.open(PopupComponent, {
+      width: '350px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
   ngOnInit() {
       this.footerService.hide();
       this.platFormLocation.onPopState(() => {

@@ -55,11 +55,13 @@ import {
     MatTooltipModule,
 
 } from '@angular/material';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
 import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
 import { SignupService } from "./services/api-services/signup.service";
 import {LoginNavService} from "./services/navigation-services/login-nav.service";
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,7 @@ import {LoginNavService} from "./services/navigation-services/login-nav.service"
       SignupComponent,
       NavComponent,
       LogbookFormComponent,
+      PopupComponent,
   ],
   imports: [
       BrowserModule,
@@ -117,9 +120,14 @@ import {LoginNavService} from "./services/navigation-services/login-nav.service"
       MatToolbarModule,
       MatTooltipModule,
       NgbModule.forRoot(),
-      AdminMenuModule
+      AdminMenuModule,
+      MatFormFieldModule
   ],
   providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService, SignupService, LoginNavService],
+  entryComponents:
+  [
+      PopupComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
