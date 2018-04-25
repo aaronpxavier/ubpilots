@@ -113,7 +113,7 @@
         </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsDef"></mat-header-row>
-    <mat-row   *matRowDef="let myRowData; columns: columnsDef" (click) = "openDialog()">
+    <mat-row   *matRowDef="let myRowData; columns: columnsDef" (click) = "openDialog(myRowData)">
     </mat-row>
     
     </mat-table>

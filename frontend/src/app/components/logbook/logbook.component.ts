@@ -48,11 +48,21 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     }
   }
 
-  openDialog(): void {
+  openDialog(rowIn): void {
     let dialogRef = this.dialog.open(PopupComponent, {
-      width: '350px',
-      data: {}
+      width: '350px'
     });
+    dialogRef.componentInstance.pic = rowIn.pic;
+    dialogRef.componentInstance.sic = rowIn.sic;
+    dialogRef.componentInstance.ac = rowIn.ac;
+    dialogRef.componentInstance.id = rowIn._id;
+    dialogRef.componentInstance.date = rowIn.date;
+    dialogRef.componentInstance.departure = rowIn.departure;
+    dialogRef.componentInstance.destination = rowIn.destination;
+    dialogRef.componentInstance.imc = rowIn.imc;
+    dialogRef.componentInstance.takeoffs = rowIn.takeoffs;
+    dialogRef.componentInstance.landings = rowIn.landings;
+
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -123,5 +133,14 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.isAllSelected() ?
           this.selection.clear() :
           this.dataSource.data.forEach(row => this.selection.select());
+    }
+
+    removeSelectedRows() {
+        this.dataSource.data.forEach(row => {
+            let rowToDelete = JSON.stringify(this.selection.selected[0]);
+            let rowJSON = JSON.parse(rowToDelete);
+            let id = rowJSON._id;
+            this.logService.deleteLog(id);
+        })
     }
   }

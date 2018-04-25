@@ -8,6 +8,18 @@ import { LogbookComponent } from '../logbook/logbook.component';
   styleUrls: ['./popup.component.css']
 })
 export class PopupComponent implements OnInit {
+  public pic: any;
+  public sic: any;
+  public ac: any;
+  public id: string;
+  public date: string;
+  public departure: string;
+  public destination: string;
+  public imc: number;
+  public takeoffs: number;
+  public landings: number;
+
+
   constructor(
     public dialogRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
