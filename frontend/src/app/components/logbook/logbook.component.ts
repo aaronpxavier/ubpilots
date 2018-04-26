@@ -63,7 +63,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     dialogRef.componentInstance.takeoffs = rowIn.takeoffs;
     dialogRef.componentInstance.landings = rowIn.landings;
 
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       
@@ -89,9 +88,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     
       this.logService.getLogs()
           .then( data => {
-              this.dataSource = new MatTableDataSource<LogEntry>(data);
-              this.dataSource.paginator = this.paginator;
-              this.dataSource!.sort = this.sortForDataSource;
+             this.setDataSource(data);
           })
           .catch(err => {
               console.error(err);
@@ -100,6 +97,11 @@ export class LogbookComponent implements OnInit, AfterViewInit {
          
   }
 
+  setDataSource(data) {
+      this.dataSource = new MatTableDataSource<LogEntry>(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource!.sort = this.sortForDataSource;
+  }
     // newBtnClick() {
     //   this.router.navigateByUrl('/log/form');
     // }
@@ -127,7 +129,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       const numRows = this.dataSource.data.length;
       return numSelected === numRows;
     }
-  
 
     masterToggle() {
       this.isAllSelected() ?
@@ -139,8 +140,19 @@ export class LogbookComponent implements OnInit, AfterViewInit {
         this.dataSource.data.forEach(row => {
             let rowToDelete = JSON.stringify(this.selection.selected[0]);
             let rowJSON = JSON.parse(rowToDelete);
+
             let id = rowJSON._id;
-            this.logService.deleteLog(id);
+            this.logService.deleteLog(id)
+                .then(() => {
+                    this.dataSource = null;
+                    return this.logService.getLogs();
+                })
+                .then(data => {
+                    this.setDataSource(data);
+                })
+                .catch(err => {console.log(err)});
+
         })
     }
+
   }
