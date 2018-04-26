@@ -16,6 +16,8 @@ export class PopupComponent implements OnInit {
   public departure: string;
   public destination: string;
   public imc: number;
+  public night: number;
+  public total: number;
   public takeoffs: number;
   public landings: number;
 

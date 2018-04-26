@@ -1,14 +1,15 @@
 <div mat-dialog-content>
   <p>PIC: {{pic.firstName}} {{pic.lastName}}</p>
-  <p>Date: </p>
-  <p>Aircraft: </p>
-  <p>Departure: </p>
-  <p>Destination: </p>
-  <p>IMC: </p>
-  <p>Night: </p>
-  <p>Total: </p>
+  <p>Date: {{date}} </p>
+  <p>Aircraft: {{ac}}</p>
+  <p>Departure: {{departure}} </p>
+  <p>Destination: {{destination}} </p>
+  <p>IMC: {{imc}}</p>
+  <p>Night: {{night}}</p>
+  <p>Total: {{total}} </p>
+  <p>Takeoffs: {{takeoffs}} </p>
+  <p>Landings: {{landings}} </p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Ok</button>
-  <button mat-button (click) = "editClick()">Edit</button>
+  <button class = "block" mat-button (click)="onNoClick()">Ok</button>
 </div>

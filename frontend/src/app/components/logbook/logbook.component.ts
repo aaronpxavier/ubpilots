@@ -50,16 +50,18 @@ export class LogbookComponent implements OnInit, AfterViewInit {
 
   openDialog(rowIn): void {
     let dialogRef = this.dialog.open(PopupComponent, {
-      width: '350px'
+      width: '300px'
     });
     dialogRef.componentInstance.pic = rowIn.pic;
     dialogRef.componentInstance.sic = rowIn.sic;
-    dialogRef.componentInstance.ac = rowIn.ac;
+    dialogRef.componentInstance.ac = rowIn.ac.abreviation;
     dialogRef.componentInstance.id = rowIn._id;
     dialogRef.componentInstance.date = rowIn.date;
     dialogRef.componentInstance.departure = rowIn.departure;
     dialogRef.componentInstance.destination = rowIn.destination;
     dialogRef.componentInstance.imc = rowIn.imc;
+    dialogRef.componentInstance.night = rowIn.night;
+    dialogRef.componentInstance.total = rowIn.total;
     dialogRef.componentInstance.takeoffs = rowIn.takeoffs;
     dialogRef.componentInstance.landings = rowIn.landings;
 
@@ -154,5 +156,4 @@ export class LogbookComponent implements OnInit, AfterViewInit {
 
         })
     }
-
   }
