@@ -36,4 +36,17 @@ export class PopupComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  formatDate(dateIn: string): string {
+    let months = [ "Jan", "Feb", "Mar",
+          "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep",
+          "Oct", "Nov", "Dec"];
+    let formatedDate: string;
+    var date = new Date (dateIn);
+    formatedDate = months[date.getMonth()] + ' ';
+    formatedDate += date.getDate() + ', ';
+    formatedDate += date.getFullYear();
+    return formatedDate;
+  }
 }
