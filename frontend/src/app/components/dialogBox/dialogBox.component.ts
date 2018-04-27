@@ -3,11 +3,11 @@ import {MatDialog, MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angul
 import { LogbookComponent } from '../logbook/logbook.component';
 
 @Component({
-  selector: 'app-popup',
-  templateUrl: './popup.component.html',
-  styleUrls: ['./popup.component.css']
+  selector: 'app-dialogBox',
+  templateUrl: './dialogBox.component.html',
+  styleUrls: ['./dialogBox.component.css']
 })
-export class PopupComponent implements OnInit {
+export class DialogBoxComponent implements OnInit {
   public pic: any;
   public sic: any;
   public ac: any;
@@ -23,7 +23,7 @@ export class PopupComponent implements OnInit {
 
 
   constructor(
-    public dialogRef: MatDialogRef<PopupComponent>,
+    public dialogRef: MatDialogRef<DialogBoxComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {

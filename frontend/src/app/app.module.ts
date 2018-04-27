@@ -61,7 +61,7 @@ import { LogbookFormComponent } from './components/logbook-form/logbook-form.com
 import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
 import { SignupService } from "./services/api-services/signup.service";
 import {LoginNavService} from "./services/navigation-services/login-nav.service";
-import { PopupComponent } from './components/popup/popup.component';
+import { DialogBoxComponent } from './components/dialogBox/dialogBox.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,7 @@ import { PopupComponent } from './components/popup/popup.component';
       SignupComponent,
       NavComponent,
       LogbookFormComponent,
-      PopupComponent,
+      DialogBoxComponent,
   ],
   imports: [
       BrowserModule,
@@ -126,7 +126,7 @@ import { PopupComponent } from './components/popup/popup.component';
   providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService, SignupService, LoginNavService],
   entryComponents:
   [
-      PopupComponent
+    DialogBoxComponent
   ],
   bootstrap: [AppComponent]
 })

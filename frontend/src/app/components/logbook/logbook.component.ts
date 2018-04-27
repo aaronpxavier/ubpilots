@@ -9,7 +9,7 @@ import { PlatformLocation } from '@angular/common'
 import {MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MatDialogModule, MAT_DIALOG_DATA} from '@angular/material';
 import { EventEmitter } from "@angular/core";
 import {SelectionModel} from '@angular/cdk/collections';
-import {PopupComponent} from '../popup/popup.component';
+import {DialogBoxComponent} from '../dialogBox/dialogBox.component';
 
 
 @Component({
@@ -49,7 +49,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(rowIn): void {
-    let dialogRef = this.dialog.open(PopupComponent, {
+    let dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '300px'
     });
     dialogRef.componentInstance.pic = rowIn.pic;
