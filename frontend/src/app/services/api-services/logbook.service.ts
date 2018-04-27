@@ -34,7 +34,7 @@ export class LogEntry  {
 @Injectable()
 export class LogbookService extends BaseService {
 
-  constructor(http: HttpClient, loginService: LoginService) {
+  constructor(http: HttpClient, private loginService: LoginService) {
       super(http);
   }
 
@@ -44,7 +44,15 @@ export class LogbookService extends BaseService {
             this.get().subscribe((logs) => {
                 resolve (logs);
             }, (err) => {
-                reject(err);
+                this.loginService.checkIfTokenIsValid()
+                    .then(isLoggedIn => {
+                        if (isLoggedIn) {
+                            reject(err);
+                        } else {
+                            this.loginService.signOut();
+                            reject(err);
+                        }
+                    });
             });
         });
     }
@@ -66,7 +74,15 @@ export class LogbookService extends BaseService {
           this.postWithToken(logsJSON).subscribe(data => {
               resolve(data);
           }, err => {
-              reject(err);
+              this.loginService.checkIfTokenIsValid()
+                  .then(isLoggedIn => {
+                      if (isLoggedIn) {
+                          reject(err);
+                      } else {
+                          this.loginService.signOut();
+                          reject(err);
+                      }
+                  });
           });
       });
   }
@@ -78,7 +94,15 @@ export class LogbookService extends BaseService {
             this.deleteWithToken(id).subscribe(data => {
                 resolve(data);
             }, err => {
-                reject(err);
+                this.loginService.checkIfTokenIsValid()
+                    .then(isLoggedIn => {
+                        if (isLoggedIn) {
+                            reject(err);
+                        } else {
+                            this.loginService.signOut();
+                            reject(err);
+                        }
+                    });
             });
         });
     }
@@ -92,7 +116,15 @@ export class LogbookService extends BaseService {
             this.putWithToken(data).subscribe(data => {
                 resolve(data);
             }, err => {
-                reject(err);
+                this.loginService.checkIfTokenIsValid()
+                    .then(isLoggedIn => {
+                        if (isLoggedIn) {
+                            reject(err);
+                        } else {
+                            this.loginService.signOut();
+                            reject(err);
+                        }
+                    });
             });
         });
     }

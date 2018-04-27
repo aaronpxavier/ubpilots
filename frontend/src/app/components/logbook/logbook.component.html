@@ -49,6 +49,12 @@
         </button>
     </span>
 
+    <span *ngIf = "isAdmin" class = "done">
+        <button (click) = "editSelectedRows()" id = "edit-button" mat-fab>
+        <mat-icon>mode_edit</mat-icon>
+        </button>
+    </span>
+
 
 </mat-card>
 
@@ -85,35 +91,67 @@
 
     <ng-container matColumnDef="sic">
         <mat-header-cell *matHeaderCellDef> SIC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.sic.firstName}}  {{log.sic.lastName}} </mat-cell>
+        <mat-cell *matCellDef="let log"> {{log.sic.firstName}}  {{log.sic.lastName}} 
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="ac">
-        <mat-header-cell *matHeaderCellDef> AC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.ac.abreviation}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Aircraft </mat-header-cell>
+        <mat-cell *matCellDef="let log"> 
+                <label *ngIf = "!isAdmin">{{log.ac.abreviation}} </label> 
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input matInput placeholder="AC" [value]="log.ac.abreviation" [(ngModel)]="log.ac.abreviation">
+                    </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="dep">
-        <mat-header-cell *matHeaderCellDef> Dep </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.departure}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Departure </mat-header-cell>
+        <mat-cell *matCellDef="let log"> 
+            <label *ngIf = "!isAdmin">{{log.departure}} </label>
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input matInput placeholder="depart" [value]="log.departure" [(ngModel)]="log.departure">
+                    </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="dest">
-        <mat-header-cell *matHeaderCellDef> Dest </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.destination}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Destination </mat-header-cell>
+        <mat-cell *matCellDef="let log"> 
+                <label *ngIf = "!isAdmin">{{log.destination}} </label>
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input matInput placeholder="Destination" [value]="log.destination" [(ngModel)]="log.destination">
+                    </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="imc">
         <mat-header-cell *matHeaderCellDef> IMC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.imc}} </mat-cell>
+        <mat-cell *matCellDef="let log"> 
+                <label *ngIf = "!isAdmin">{{log.imc}} </label>
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input matInput placeholder="IMC" [value]="log.imc" [(ngModel)]="log.imc">
+                    </mat-form-field>
+             </mat-cell>
     </ng-container>
     <ng-container matColumnDef="night">
         <mat-header-cell *matHeaderCellDef> Night </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.night}} </mat-cell>
+        <mat-cell *matCellDef="let log"> 
+                <label *ngIf = "!isAdmin">{{log.night}} </label>
+            <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                <input matInput placeholder="Night" [value]="log.night" [(ngModel)]="log.night">
+            </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="total">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
-            <mat-cell *matCellDef="let log"> {{log.total}} </mat-cell>
+            <mat-cell *matCellDef="let log"> 
+                    <label *ngIf = "!isAdmin">{{log.total}} </label>
+                    <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input matInput placeholder="Total" [value]="log.total" [(ngModel)]="log.total">
+                    </mat-form-field>
+            </mat-cell>
         </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsDef"></mat-header-row>
-    <mat-row *matRowDef="let myRowData; columns: columnsDef"></mat-row>
+    <mat-row   *matRowDef="let myRowData; columns: columnsDef" (dblclick) = "openDialog(myRowData)">
+    </mat-row>
     
     </mat-table>
     <mat-paginator
