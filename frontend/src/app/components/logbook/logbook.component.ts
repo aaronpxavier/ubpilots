@@ -1,15 +1,15 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LoginService } from "../../services/api-services/login.service";
-import { MatDialog } from '@angular/material';
 import { Router } from "@angular/router";
 import { LogEntry } from "../../services/api-services/logbook.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
 import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
 import { PlatformLocation } from '@angular/common'
-import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MatDialogModule, MAT_DIALOG_DATA} from '@angular/material';
 import { EventEmitter } from "@angular/core";
 import {SelectionModel} from '@angular/cdk/collections';
+import {DialogBoxComponent} from '../dialogBox/dialogBox.component';
 
 
 @Component({
@@ -19,11 +19,11 @@ import {SelectionModel} from '@angular/cdk/collections';
 })
 
 export class LogbookComponent implements OnInit, AfterViewInit {
-  
+
   public isAdmin = false;
   public isSignedIn = false;
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
-  private dataSource:MatTableDataSource<LogEntry>;
+  public dataSource:MatTableDataSource<LogEntry>;
   private logsDataRetrievedEvent = new EventEmitter<number> ();
   selection = new SelectionModel<Element>(true, []);
 
@@ -48,6 +48,28 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     }
   }
 
+  openDialog(rowIn): void {
+    let dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '300px'
+    });
+    dialogRef.componentInstance.pic = rowIn.pic;
+    dialogRef.componentInstance.sic = rowIn.sic;
+    dialogRef.componentInstance.ac = rowIn.ac.abreviation;
+    dialogRef.componentInstance.id = rowIn._id;
+    dialogRef.componentInstance.date = rowIn.date;
+    dialogRef.componentInstance.departure = rowIn.departure;
+    dialogRef.componentInstance.destination = rowIn.destination;
+    dialogRef.componentInstance.imc = rowIn.imc;
+    dialogRef.componentInstance.night = rowIn.night;
+    dialogRef.componentInstance.total = rowIn.total;
+    dialogRef.componentInstance.takeoffs = rowIn.takeoffs;
+    dialogRef.componentInstance.landings = rowIn.landings;
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
   ngOnInit() {
       this.footerService.hide();
       this.platFormLocation.onPopState(() => {
@@ -68,9 +90,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     
       this.logService.getLogs()
           .then( data => {
-              this.dataSource = new MatTableDataSource<LogEntry>(data);
-              this.dataSource.paginator = this.paginator;
-              this.dataSource!.sort = this.sortForDataSource;
+             this.setDataSource(data);
           })
           .catch(err => {
               console.error(err);
@@ -79,6 +99,11 @@ export class LogbookComponent implements OnInit, AfterViewInit {
          
   }
 
+  setDataSource(data) {
+      this.dataSource = new MatTableDataSource<LogEntry>(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource!.sort = this.sortForDataSource;
+  }
     // newBtnClick() {
     //   this.router.navigateByUrl('/log/form');
     // }
@@ -106,11 +131,29 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       const numRows = this.dataSource.data.length;
       return numSelected === numRows;
     }
-  
 
     masterToggle() {
       this.isAllSelected() ?
           this.selection.clear() :
           this.dataSource.data.forEach(row => this.selection.select());
+    }
+
+    removeSelectedRows() {
+        this.dataSource.data.forEach(row => {
+            let rowToDelete = JSON.stringify(this.selection.selected[0]);
+            let rowJSON = JSON.parse(rowToDelete);
+
+            let id = rowJSON._id;
+            this.logService.deleteLog(id)
+                .then(() => {
+                    this.dataSource = null;
+                    return this.logService.getLogs();
+                })
+                .then(data => {
+                    this.setDataSource(data);
+                })
+                .catch(err => {console.log(err)});
+
+        })
     }
   }
