@@ -62,6 +62,7 @@ import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
 import { SignupService } from "./services/api-services/signup.service";
 import {LoginNavService} from "./services/navigation-services/login-nav.service";
 import { DialogBoxComponent } from './components/dialogBox/dialogBox.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { DialogBoxComponent } from './components/dialogBox/dialogBox.component';
       NavComponent,
       LogbookFormComponent,
       DialogBoxComponent,
+      LoadingSpinnerComponent,
   ],
   imports: [
       BrowserModule,
