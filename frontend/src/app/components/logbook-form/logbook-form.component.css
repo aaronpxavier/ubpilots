@@ -6,7 +6,19 @@
 .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
   }
-  
-  .ng-invalid:not(form)  {
-    border-left: 5px solid #a94442; /* red */
+
+  input[name = "totalNumber"]{
+    width: 300px;
   }
+
+  input[name = "departure"]{
+    width: 500px;
+  }
+
+  input[name = "destination"]{
+    width: 500px;
+  }
+
+  label[name = "starLabel"]{
+    color: red;
+}
