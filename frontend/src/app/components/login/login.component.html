@@ -1,30 +1,33 @@
-<img src="/assets/loginImage.png" width="1520" alt="Login page" />
+<img src="/assets/loginImage.png" width="1281" alt="Login page" />
 <div class="wrap" >
-  <!--<img src="/assets/loginImage.png" width="1520" alt="Login page" />-->
+   <!--<img src="/assets/loginImage.png" width="1520" alt="Login page" />-->
+
   <h2> Login </h2>
   <form  action="#" *ngIf="showForm">
     <div class="input-field">
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
           <!--<i class="material-icons prefix">account_box</i>-->
-          <i class="material-icons prefix">account_box</i>
-          <input [style.border-bottom]="isInvlaidCreds ? '1px solid red' : ''" placeholder="User Name" type="text"  id="email" (keyup)=setUser($event)>
+		  <i class="material-icons prefix">account_box</i>
+          <input  (keyup.enter)="submit()" [style.border-bottom]="isInvlaidCreds ? '1px solid red' : ''" placeholder="User Name" type="text"  id="email" (keyup)=setUser($event)>
+
         </div>
       </div>
       <div class="row">
         <div class="col s10 m8 offset-m2 offset-s1">
           <!--<i class="material-icons prefix">lock</i>-->
-          <i class="material-icons prefix">lock</i>
-          <input id="password" placeholder="Password" type="password" (keyup)=setPassword($event)>
+		  <i class="material-icons prefix">lock</i>
+      <input (keyup.enter)="submit()" id="password" placeholder="Password" type="password" (keyup)=setPassword($event)>
+
         </div>
       </div>
       <div class="row">
         <div class="col s4 m7 offset-s1 offset-m2">
-          <a id="submit-btn"  (click)="submit()" class="waves-effect waves-light btn" >Submit</a>
-          <a id="signup-btn"  class="waves-effect waves-light btn" routerLink="/signup">Signup</a>
+          <button id="submit-btn" mat-icon-button  (click)="submit()" class="waves-effect waves-light btn" >Login</button>
+          <button id="signup-btn" mat-icon-button class="waves-effect waves-light btn" routerLink="/signup">Signup</button>  
         </div>
         <div class="col s4 m7 offset-s1 offset-m2">
-          <!--<p id="login-error">{{errorMessage}}</p>-->
+          <p id="login-error">{{errorMessage}}</p>
         </div>
       </div>
     </div>
@@ -33,7 +36,8 @@
 </div>
 <div id="loginScreen" *ngIf="showWaiting">
   <footer>
-    <p>Copyright &copy 2018</p>
+    
+
   </footer>
   <!--<h1>{{waitingMessage}}</h1>-->
   <div class="preloader-wrapper big active" >
