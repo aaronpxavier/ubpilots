@@ -106,15 +106,17 @@ export class NavComponent implements OnInit {
     this.loginService.signOut();
   }
 
-//   setLoggedInState() {
-//       this.showLoginButton = false;
-//       this.userName = localStorage.getItem(this.loginService.userKey);
-//       this.isAdmin = this.loginService.getTokenFromLocal().isAdmin;
-//       this.showUserMenu = true;
-//   }
+  // setLoggedInState() {
+  //     this.showLoginButton = false;
+  //     this.userName = localStorage.getItem(this.loginService.userKey);
+  //     this.isAdmin = this.loginService.getTokenFromLocal().isAdmin;
+  //     this.showUserMenu = true;
+  // }
 
   setNotLoggedInState() {
       this.showLoginButton = true;
+      this.userName = '';
+      this.password = '';
       this.showUserMenu = false;
       this.isAdmin = false;
   }
