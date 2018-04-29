@@ -1,15 +1,15 @@
 /*.input-field {*/
-		/*position: relative;*/
-		/*left: 650px;*/
-		/*top: 100px;*/
-	/*padding:10px;*/
-	/*margin: 15px;*/
-	/*border: 1px  RoyalBlue;*/
+/*position: relative;*/
+/*left: 650px;*/
+/*top: 100px;*/
+/*padding:10px;*/
+/*margin: 15px;*/
+/*border: 1px  RoyalBlue;*/
 /*}*/
 
 /*#footer {*/
-	/*position: relative;*/
-	/*top: 350px;*/
+/*position: relative;*/
+/*top: 350px;*/
 /*}*/
 
 .wrap{
@@ -36,7 +36,6 @@ h2{
 	padding: 10px;
 	border-radius: 10px;
 }
-
 input[id= password] {
 	width: 90%;
 }
@@ -78,3 +77,4 @@ p[id = login-error]{
 	left: 35%;
 	
 }
+

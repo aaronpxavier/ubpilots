@@ -1,6 +1,7 @@
 <img src="/assets/loginImage.png" width="1281" alt="Login page" />
 <div class="wrap" >
    <!--<img src="/assets/loginImage.png" width="1520" alt="Login page" />-->
+
   <h2> Login </h2>
   <form  action="#" *ngIf="showForm">
     <div class="input-field">
@@ -9,6 +10,7 @@
           <!--<i class="material-icons prefix">account_box</i>-->
 		  <i class="material-icons prefix">account_box</i>
           <input  (keyup.enter)="submit()" [style.border-bottom]="isInvlaidCreds ? '1px solid red' : ''" placeholder="User Name" type="text"  id="email" (keyup)=setUser($event)>
+
         </div>
       </div>
       <div class="row">
@@ -16,6 +18,7 @@
           <!--<i class="material-icons prefix">lock</i>-->
 		  <i class="material-icons prefix">lock</i>
       <input (keyup.enter)="submit()" id="password" placeholder="Password" type="password" (keyup)=setPassword($event)>
+
         </div>
       </div>
       <div class="row">
@@ -34,6 +37,7 @@
 <div id="loginScreen" *ngIf="showWaiting">
   <footer>
     
+
   </footer>
   <!--<h1>{{waitingMessage}}</h1>-->
   <div class="preloader-wrapper big active" >
