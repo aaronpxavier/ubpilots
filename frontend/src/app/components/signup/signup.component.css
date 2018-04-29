@@ -67,10 +67,10 @@ label[type=text], input[type=sign]{
 .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
   }
-  
+/*   
   .ng-invalid:not(form)  {
-    border-left: 5px solid #a94442; /* red */
-  }
+    border-left: 5px solid #a94442; /* red
+  } */
 
 
 /*select{*/
@@ -78,3 +78,7 @@ label[type=text], input[type=sign]{
     /*width: 32%;*/
     /*border-radius: 5px;*/
 /*}*/
+
+label[name = "starLabel"]{
+    color: red;
+}

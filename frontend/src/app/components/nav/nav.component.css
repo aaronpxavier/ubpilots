@@ -54,6 +54,9 @@ input[type="text"]{
     padding: 5px 5px; 
     line-height: 28px; 
     font-size:15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 input[type="password"]{
     height: 20px; 
@@ -61,16 +64,20 @@ input[type="password"]{
     padding: 5px 5px; 
     line-height: 28px; 
     font-size:15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 ::-webkit-input-placeholder{
-    font-size: 15px
+    font-size: 15px;  
 }
 
 #submit-btn{
+    padding-top: 3px;
     color: #005bbb;
 }
 
 #signup-btn{
+    padding-top: 3px;
     color: #005bbb;
 }
-
