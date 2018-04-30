@@ -11,7 +11,6 @@ import { EventEmitter } from "@angular/core";
 import {SelectionModel} from '@angular/cdk/collections';
 import {DialogBoxComponent} from '../dialogBox/dialogBox.component';
 
-
 @Component({
   selector: 'app-logbook',
   templateUrl: './logbook.component.html',
@@ -25,7 +24,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
   public dataSource:MatTableDataSource<LogEntry>;
   private logsDataRetrievedEvent = new EventEmitter<number> ();
-  selection = new SelectionModel<Element>(true, []);
+  private selection = new SelectionModel<Element>(true, []);
 
   
   constructor(private titleService: Title,
@@ -67,7 +66,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      
     });
   }
   ngOnInit() {
@@ -80,7 +78,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
             this.isSignedIn = false;
             this.isAdmin = false;
           });
-      // get our data every subsequent 10 seconds
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -94,9 +91,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
           })
           .catch(err => {
               console.error(err);
-          })
-
-         
+          });
   }
 
   setDataSource(data) {
@@ -104,9 +99,6 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource!.sort = this.sortForDataSource;
   }
-    // newBtnClick() {
-    //   this.router.navigateByUrl('/log/form');
-    // }
 
     homeBtnClick() {
       this.router.navigateByUrl('/home');
@@ -139,10 +131,11 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     }
 
     removeSelectedRows() {
+        let i = 0;
         this.dataSource.data.forEach(row => {
-            let rowToDelete = JSON.stringify(this.selection.selected[0]);
+            let rowToDelete = JSON.stringify(this.selection.selected[i]);
             let rowJSON = JSON.parse(rowToDelete);
-
+            
             let id = rowJSON._id;
             this.logService.deleteLog(id)
                 .then(() => {
@@ -153,7 +146,8 @@ export class LogbookComponent implements OnInit, AfterViewInit {
                     this.setDataSource(data);
                 })
                 .catch(err => {console.log(err)});
-
-        })
+            ++i;
+        });
+        this.selection = new SelectionModel<Element>(true, []);
     }
   }
