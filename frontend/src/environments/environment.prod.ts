@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    baseURL: 'https://ubpilots.fltprep.com'
+    baseURL: 'https://www.ubpilots.com'
 };
