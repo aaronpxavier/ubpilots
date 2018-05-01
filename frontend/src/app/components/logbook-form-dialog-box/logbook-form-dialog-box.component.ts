@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material';
 import { Title } from "@angular/platform-browser";
 import { HideFooterService } from "../../services/parent_comp_controls/hide-footer-service.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
 import { LoginService } from "../../services/api-services/login.service";
 import { Location } from '@angular/common';
 import {Router} from "@angular/router";
+import { LogbookComponent } from '../logbook/logbook.component';
+import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-logbook-form',
-  templateUrl: './logbook-form.component.html',
-  styleUrls: ['./logbook-form.component.css']
+  selector: 'app-logbook-form-dialog-box',
+  templateUrl: './logbook-form-dialog-box.component.html',
+  styleUrls: ['./logbook-form-dialog-box.component.css']
 })
-export class LogbookFormComponent implements OnInit {
+export class LogbookFormDialogBoxComponent implements OnInit {
     public model = {
         picFirst: "",
         picLast: "",
@@ -27,8 +31,7 @@ export class LogbookFormComponent implements OnInit {
         takeoffs: "",
         landings: "",
     }
-
-
+  public form:  FormGroup;
   public picFirst: string;
   public picLast: string;
   public sicFirst: string;
@@ -43,18 +46,20 @@ export class LogbookFormComponent implements OnInit {
   public takeoffs: number;
   public landings: number;
   private isAdmin: boolean;
-  constructor(private title: Title,
-              private hideFooterService: HideFooterService,
-              private logService:LogbookService,
-              private loginService: LoginService,
-              private location: Location,
-              private router:Router) {
-      let token = loginService.getTokenFromLocal();
+
+  constructor(
+    public dialogRef: MatDialogRef<LogbookFormDialogBoxComponent>, 
+    private hideFooterService: HideFooterService,
+    private logService:LogbookService,
+    private loginService: LoginService,
+    private location: Location,
+    private router:Router,
+    private _formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any) {let token = loginService.getTokenFromLocal();
       if(token)
           this.isAdmin = token.isAdmin;
       else
           router.navigateByUrl('/log');
-      this.title.setTitle('Logbook Form');
       this.hideFooterService.hide();
   }
 
@@ -69,6 +74,8 @@ export class LogbookFormComponent implements OnInit {
      this.night =0;
      this.imc = 0;
   }
+
+  
 
   buildJson(): any {
       let jsonEntry =
@@ -99,7 +106,13 @@ export class LogbookFormComponent implements OnInit {
         .then(() => {
             this.router.navigateByUrl('/log');
         }).catch(err => console.log(err));
+        this.dialogRef.close();
 
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }
+
+ 

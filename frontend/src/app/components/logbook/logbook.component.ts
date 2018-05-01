@@ -10,6 +10,8 @@ import {MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MatD
 import { EventEmitter } from "@angular/core";
 import {SelectionModel} from '@angular/cdk/collections';
 import {DialogBoxComponent} from '../dialogBox/dialogBox.component';
+import{LogbookFormDialogBoxComponent} from '../logbook-form-dialog-box/logbook-form-dialog-box.component'
+
 
 @Component({
   selector: 'app-logbook',
@@ -24,7 +26,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
   public dataSource:MatTableDataSource<LogEntry>;
   private logsDataRetrievedEvent = new EventEmitter<number> ();
-  private selection = new SelectionModel<Element>(true, []);
+  selection = new SelectionModel<Element>(true, []);
 
   
   constructor(private titleService: Title,
@@ -66,8 +68,19 @@ export class LogbookComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      
     });
   }
+
+openLogForm(): void{
+  let dialogRef = this.dialog.open(LogbookFormDialogBoxComponent, {
+    width: '500px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+});
+}
   ngOnInit() {
       this.footerService.hide();
       this.platFormLocation.onPopState(() => {
@@ -78,6 +91,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
             this.isSignedIn = false;
             this.isAdmin = false;
           });
+      // get our data every subsequent 10 seconds
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -91,7 +105,9 @@ export class LogbookComponent implements OnInit, AfterViewInit {
           })
           .catch(err => {
               console.error(err);
-          });
+          })
+
+         
   }
 
   setDataSource(data) {
@@ -99,6 +115,9 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource!.sort = this.sortForDataSource;
   }
+    // newBtnClick() {
+    //   this.router.navigateByUrl('/log/form');
+    // }
 
     homeBtnClick() {
       this.router.navigateByUrl('/home');
@@ -131,11 +150,10 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     }
 
     removeSelectedRows() {
-        let i = 0;
         this.dataSource.data.forEach(row => {
-            let rowToDelete = JSON.stringify(this.selection.selected[i]);
+            let rowToDelete = JSON.stringify(this.selection.selected[0]);
             let rowJSON = JSON.parse(rowToDelete);
-            
+
             let id = rowJSON._id;
             this.logService.deleteLog(id)
                 .then(() => {
@@ -146,8 +164,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
                     this.setDataSource(data);
                 })
                 .catch(err => {console.log(err)});
-            ++i;
-        });
-        this.selection = new SelectionModel<Element>(true, []);
+
+        })
     }
   }

@@ -1,0 +1,90 @@
+<mat-card-header>
+
+  <mat-toolbar class = "logTool">
+      <mat-card-title name = "header">Logbook Entry</mat-card-title>
+      <span class="toolbar-spacer"></span>
+      <mat-icon class = "cancelation" (click)="onNoClick()">cancel</mat-icon>
+    </mat-toolbar>
+  </mat-card-header>
+  <mat-card-content class = "block">
+      <div class="container">
+        <label>All fields with a </label> <label name = "starLabel"> * </label> <label>is required. </label>
+          <form #formCtrl="ngForm" >
+              <div *ngIf="isAdmin" class="form-group">
+                  <label>Pilot in Command: </label>
+                  <div class="row">
+                      <div class="col">
+                          <input [(ngModel)]="picFirst" name="picFirst" type="text"  class="form-control" placeholder="First name">
+                      </div>
+                      <div class="col">
+                          <input [(ngModel)]="picLast" name="picLast" type="text" class="form-control" placeholder="Last name">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>Second in Command: </label>
+                  <div class="row">
+                      <div class="col">
+                          <input [(ngModel)]="sicFirst" name="sicFirst" type="text" class="form-control" placeholder="First name">
+                      </div>
+                      <div class="col">
+                          <input [(ngModel)]="sicLast" name="sicLast" type="text" class="form-control" placeholder="Last name">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>Route: </label>
+                  <div class="row">
+                      <div class="col">
+                          <input [(ngModel)]="model.dep" #dep="ngModel"  name="departure" type="text"  class="form-control" required placeholder="Departure">
+                      </div>
+                     <label name = "starLabel">*</label>
+                      <div class="col">
+                          <input  [(ngModel)]="dest"  name="destination" type="text" class="form-control" required placeholder="Destination"> 
+                      </div>
+                      <label name = "starLabel">*</label>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>Select Aircraft: </label>
+                      <div class = "row">
+                  <div class = "col">
+                  <select  [(ngModel)]="ac"  name="ac" style="width: 100px" required class="form-control" id="acSelect">
+                      <option *ngFor="let ac of aircafts" [ngValue]="ac" >{{ac}}</option>
+                  </select>
+                  </div>
+                  <div class = "col" style="margin-right:270px"><label name = "starLabel">*</label></div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label>Enter Time: </label>
+                  <div class="row">
+                      <div class="col">
+                          <input type="number" class="form-control" id="night"  name="night" [(ngModel)]="night" >
+                      </div>
+                      <div class="col">
+                          <input [(ngModel)]="imc" name="imc" type="number"  class="form-control" placeholder="IMC">
+                      </div>
+                      <div class="col">
+                          <input [(ngModel)]="total"  name="totalNumber" type="number" required class="form-control" placeholder="Total">
+                      </div>
+                      <label name = "starLabel">*</label>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label>Enter Number of Takeoffs and Landings: </label>
+                  <div class="row">
+                      <div  class="col">
+                          <input [(ngModel)]="takeoffs"  name="takeoffs"  required name="takeoffs" type="number" class="form-control" placeholder="Takeoffs"> 
+                      </div>
+                      <label name = "starLabel">*</label>
+                      <div class="col">
+                          <input  [(ngModel)]="landings" name="landings" required name="landings" type="number" class="form-control" placeholder="Landings">
+                      </div>
+                      <label name = "starLabel">*</label>
+                  </div>
+              </div>
+              <button id = "submit-btn" (click)="submit()" [disabled]="!formCtrl.form.valid" name = "submitButton" class="btn btn-primary" >Submit</button>
+          </form>
+      </div>
+  </mat-card-content>
