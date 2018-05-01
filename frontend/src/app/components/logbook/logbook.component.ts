@@ -150,4 +150,19 @@ export class LogbookComponent implements OnInit, AfterViewInit {
         });
         this.selection = new SelectionModel<Element>(true, []);
     }
+    
+    clean(stringIn: string): string {
+      
+      if (stringIn === "undefined")
+      {
+        console.log('if block: ' + stringIn)
+        return ' '
+      }
+      else{
+        console.log('else block: ' + stringIn)
+        return stringIn;
+      }
+    }
   }
+  
+  
