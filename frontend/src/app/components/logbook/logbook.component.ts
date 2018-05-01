@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { LoginService } from "../../services/api-services/login.service";
+import { LoginService} from "../../services/api-services/login.service";
 import { Router } from "@angular/router";
 import { LogEntry } from "../../services/api-services/logbook.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
@@ -23,6 +23,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public isSignedIn = false;
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
   public dataSource:MatTableDataSource<LogEntry>;
+  public showEdit = false; 
   private logsDataRetrievedEvent = new EventEmitter<number> ();
   private selection = new SelectionModel<Element>(true, []);
 
@@ -151,18 +152,17 @@ export class LogbookComponent implements OnInit, AfterViewInit {
         this.selection = new SelectionModel<Element>(true, []);
     }
     
-    clean(stringIn: string): string {
-      
-      if (stringIn === "undefined")
-      {
-        console.log('if block: ' + stringIn)
-        return ' '
-      }
-      else{
-        console.log('else block: ' + stringIn)
-        return stringIn;
+    cleanName(stringIn: string): string {
+      if (stringIn === "undefined") {return ' ';}
+      else {
+        let cleanedString = stringIn.toLowerCase();
+        cleanedString = cleanedString.charAt(0).toUpperCase() + cleanedString.slice(1);
+        return cleanedString;
       }
     }
+
+    editTable(log: LogEntry) {
+      this.logService.updateLog(log._id, log);
+    }
   }
-  
-  
+

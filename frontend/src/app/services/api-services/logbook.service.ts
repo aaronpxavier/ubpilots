@@ -108,12 +108,12 @@ export class LogbookService extends BaseService {
     }
     confirmLog(id: string): Promise<Success> {
         this.setUrl('/api/log/confirm');
-        let data = {
+        const DATA = {
             id: id
         };
         console.log('inside log service');
         return new Promise<Success>((resolve, reject) => {
-            this.putWithToken(data).subscribe(data => {
+            this.putWithToken(DATA).subscribe(data => {
                 resolve(data);
             }, err => {
                 this.loginService.checkIfTokenIsValid()
@@ -127,6 +127,47 @@ export class LogbookService extends BaseService {
                     });
             });
         });
+    }
+    
+    updateLog(id: string, logData: LogEntry): Promise<Success> {
+      this.setUrl('/api/log/update' + id);
+      const DATA = {
+        picFirst: logData.pic.firstName,
+        picLast: logData.pic.lastName,
+        sicFirst: logData.sic.firstName,
+        sicLast: logData.sic.lastName,
+        acAbrev: logData.ac.abreviation,
+        isJet: logData.ac.isTurbine,
+        noEngines: logData.ac.numberOfEngines,
+        dep: logData.departure,
+        dest: logData.destination,
+        imc: logData.imc,
+        to: logData.takeoffs,
+        lands: logData.landings,
+        night: logData.night,
+        username: logData.username,
+        year: logData.date.getFullYear(),
+        month: logData.date.getMonth(),
+        day: logData.date.getDate(),
+        total: logData.total
+      };
+
+      console.log('inside log service');
+      return new Promise<Success>((resolve, reject) => {
+          this.putWithToken(DATA).subscribe(data => {
+              resolve(data);
+          }, err => {
+              this.loginService.checkIfTokenIsValid()
+                  .then(isLoggedIn => {
+                      if (isLoggedIn) {
+                          reject(err);
+                      } else {
+                          this.loginService.signOut();
+                          reject(err);
+                      }
+                  });
+          });
+      });
     }
 
 }

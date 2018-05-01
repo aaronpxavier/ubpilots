@@ -1,36 +1,6 @@
-<!--<h2 id="table-title" class="center-align"> Flight Logs </h2>-->
-<!--<div class="container">-->
-
-    <!--<table id = "logsTable" class="table-hover table-" cellspacing="10" width="100%">-->
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<th class="center-align">Date</th>-->
-            <!--<th class="center-align">Pic</th>-->
-            <!--<th class="center-align">A/C</th>-->
-            <!--<th class="center-align">Dep</th>-->
-            <!--<th class="center-align">Dest</th>-->
-            <!--<th class="center-align">T/O</th>-->
-            <!--<th class="center-align">Lan-<br>dings</th>-->
-            <!--<th class="center-align">Total<br>Time</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr *ngFor="let log of logs">-->
-            <!--<td class="center-align">{{formatDate(log.date)}}</td>-->
-            <!--<td class="center-align">{{log.pic.firstName}} {{log.pic.lastName}}</td>-->
-            <!--<td class="center-align">{{log.ac.abreviation}}</td>-->
-            <!--<td class="center-align">{{log.departure}}</td>-->
-            <!--<td class="center-align">{{log.destination}}</td>-->
-            <!--<td class="center-align">{{log.takeoffs}}</td>-->
-            <!--<td class="center-align">{{log.landings}}</td>-->
-            <!--<td class="center-align">{{log.total}}</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-<!--</div>-->
 
 <mat-card>
-                     
+  
     <span class="done">
         <button (click)="homeBtnClick()" id="home-button" mat-fab>
           <mat-icon>home</mat-icon>
@@ -49,12 +19,11 @@
         </button>
     </span>
 
-    <span *ngIf = "isAdmin" class = "done">
+    <span *ngIf = "showEdit" class = "done">
         <button (click) = "editSelectedRows()" id = "edit-button" mat-fab>
         <mat-icon>mode_edit</mat-icon>
         </button>
     </span>
-
 
 </mat-card>
 
@@ -86,12 +55,12 @@
                     </ng-container>
     <ng-container matColumnDef="pic">
         <mat-header-cell *matHeaderCellDef mat-sort-header> PIC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.pic.firstName}} {{log.pic.lastName}} </mat-cell>
+        <mat-cell *matCellDef="let log"> {{cleanName(log.pic.firstName)}} {{cleanName(log.pic.lastName)}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="sic">
         <mat-header-cell *matHeaderCellDef> SIC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{clean(log.sic.firstName)}}  {{clean(log.sic.lastName)}}
+        <mat-cell *matCellDef="let log"> {{cleanName(log.sic.firstName)}}  {{cleanName(log.sic.lastName)}}
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="ac">
@@ -106,7 +75,7 @@
     <ng-container matColumnDef="dep">
         <mat-header-cell *matHeaderCellDef> Departure </mat-header-cell>
         <mat-cell *matCellDef="let log">
-            <label *ngIf = "!isAdmin">{{log.departure}} </label>
+            <label *ngIf = "!isAdmin">{{log.departure.toUpperCase()}} </label>
                 <mat-form-field *ngIf = "isAdmin" floatLabel="never">
                         <input matInput placeholder="depart" [value]="log.departure" [(ngModel)]="log.departure">
                     </mat-form-field>
@@ -115,7 +84,7 @@
     <ng-container matColumnDef="dest">
         <mat-header-cell *matHeaderCellDef> Destination </mat-header-cell>
         <mat-cell *matCellDef="let log">
-                <label *ngIf = "!isAdmin">{{log.destination}} </label>
+                <label *ngIf = "!isAdmin">{{log.destination.toUpperCase()}} </label>
                 <mat-form-field *ngIf = "isAdmin" floatLabel="never">
                         <input matInput placeholder="Destination" [value]="log.destination" [(ngModel)]="log.destination">
                     </mat-form-field>
