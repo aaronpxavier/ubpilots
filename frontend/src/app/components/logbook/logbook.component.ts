@@ -22,12 +22,13 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public isAdmin = false;
   public isSignedIn = false;
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
-  public dataSource:MatTableDataSource<LogEntry>;
-  public showEdit = false; 
+  public dataSource: MatTableDataSource<LogEntry>;
+  public showEdit = false;
+  public tempLog: LogEntry;
+
   private logsDataRetrievedEvent = new EventEmitter<number> ();
   private selection = new SelectionModel<Element>(true, []);
 
-  
   constructor(private titleService: Title,
               private loginService: LoginService,
               public dialog: MatDialog,
@@ -161,8 +162,24 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       }
     }
 
-    editTable(log: LogEntry) {
-      this.logService.updateLog(log._id, log);
+    editTableKeyup(log: LogEntry) {
+      this.tempLog = log;
+      this.showEdit = true;
+    }
+
+    editBtnClick() {
+      this.logService.updateLog(this.tempLog._id, this.tempLog)
+          .then(data => {
+              console.log(data);
+              return this.logService.getLogs();
+          })
+          .then( data => {
+              this.setDataSource(data);
+              this.showEdit = false;
+          })
+          .catch(err => {
+              console.log(err);
+          });
     }
   }
 

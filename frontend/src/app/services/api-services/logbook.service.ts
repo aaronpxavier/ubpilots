@@ -19,7 +19,7 @@ export class LogEntry  {
       public sic:Pilot,
       public username: string = '',
       public ac: AC,
-      public date:Date,
+      public date: Date,
       public _id:string,
       public isConfirmed:boolean,
       public departure:string,
@@ -130,7 +130,9 @@ export class LogbookService extends BaseService {
     }
     
     updateLog(id: string, logData: LogEntry): Promise<Success> {
-      this.setUrl('/api/log/update' + id);
+      let date = new Date(logData.date);
+      console.log(logData);
+      this.setUrl('/api/log/update/' + id);
       const DATA = {
         picFirst: logData.pic.firstName,
         picLast: logData.pic.lastName,
@@ -146,13 +148,13 @@ export class LogbookService extends BaseService {
         lands: logData.landings,
         night: logData.night,
         username: logData.username,
-        year: logData.date.getFullYear(),
-        month: logData.date.getMonth(),
-        day: logData.date.getDate(),
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        day: date.getDate(),
         total: logData.total
       };
 
-      console.log('inside log service');
+
       return new Promise<Success>((resolve, reject) => {
           this.putWithToken(DATA).subscribe(data => {
               resolve(data);
