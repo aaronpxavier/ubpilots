@@ -127,5 +127,6 @@ export class LoginComponent implements OnInit {
     signOut() {
         this.setDefaultState();
         this.loginService.signOut();
+        this.router.navigateByUrl('/home');
     }
 }
