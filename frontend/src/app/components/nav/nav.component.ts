@@ -105,6 +105,7 @@ export class NavComponent implements OnInit {
   signOut() {
     this.setNotLoggedInState();
     this.loginService.signOut();
+    this.router.navigateByUrl('/home');
   }
 
   // setLoggedInState() {
