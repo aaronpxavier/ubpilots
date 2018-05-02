@@ -26,7 +26,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
   public dataSource:MatTableDataSource<LogEntry>;
   private logsDataRetrievedEvent = new EventEmitter<number> ();
-  selection = new SelectionModel<Element>(true, []);
+  private selection = new SelectionModel<Element>(true, []);
 
   
   constructor(private titleService: Title,
@@ -91,7 +91,6 @@ openLogForm(): void{
             this.isSignedIn = false;
             this.isAdmin = false;
           });
-      // get our data every subsequent 10 seconds
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -150,8 +149,9 @@ openLogForm(): void{
     }
 
     removeSelectedRows() {
+      let i = 0;
         this.dataSource.data.forEach(row => {
-            let rowToDelete = JSON.stringify(this.selection.selected[0]);
+          let rowToDelete = JSON.stringify(this.selection.selected[i]);
             let rowJSON = JSON.parse(rowToDelete);
 
             let id = rowJSON._id;
@@ -164,7 +164,10 @@ openLogForm(): void{
                     this.setDataSource(data);
                 })
                 .catch(err => {console.log(err)});
+                ++i;
+               });
+              this.selection = new SelectionModel<Element>(true, []);
 
-        })
+        }
     }
-  }
+  
