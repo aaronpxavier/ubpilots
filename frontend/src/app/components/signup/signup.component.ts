@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 
 export class SignupComponent implements OnInit {
-  showAlert = true;
+  showAlert = false;
   alertMessage = '';
   model = {
     firstname: "", 

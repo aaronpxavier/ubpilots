@@ -15,7 +15,8 @@ import {Location, PlatformLocation} from '@angular/common';
 })
 
 export class NavComponent implements OnInit {
-
+    showAlert = false;
+    isLoggedIn = false;
   public showLoginButton: boolean;
   public showUserMenu: boolean;
   public userName: string;
@@ -189,9 +190,12 @@ submit() {
         .then(() => {
             this.loginService.signInEventTrigger();
             this.exitFromLogin()
+            this.isLoggedIn = true;
         })
         .catch((err) => {
             this.setLogInFailedState();
+            this.showAlert = true;
+            this.isLoggedIn = false;
         });
 }
 

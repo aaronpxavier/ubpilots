@@ -57,12 +57,12 @@ import {
 } from '@angular/material';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { LogbookFormComponent } from './components/logbook-form/logbook-form.component';
 import { AdminMenuModule } from "./modules/admin-menu/admin-menu.module";
 import { SignupService } from "./services/api-services/signup.service";
 import {LoginNavService} from "./services/navigation-services/login-nav.service";
 import { DialogBoxComponent } from './components/dialogBox/dialogBox.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LogbookFormDialogBoxComponent } from './components/logbook-form-dialog-box/logbook-form-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -78,9 +78,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
       LogbookComponent,
       SignupComponent,
       NavComponent,
-      LogbookFormComponent,
       DialogBoxComponent,
       LoadingSpinnerComponent,
+      LogbookFormDialogBoxComponent,
   ],
   imports: [
       BrowserModule,
@@ -128,7 +128,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
   providers: [ Title, HideNavMenuService, HideFooterService, LoginService, LogbookService, SignupService, LoginNavService],
   entryComponents:
   [
-    DialogBoxComponent
+    DialogBoxComponent,
+    LogbookFormDialogBoxComponent
   ],
   bootstrap: [AppComponent]
 })
