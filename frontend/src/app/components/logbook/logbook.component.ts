@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { LoginService } from "../../services/api-services/login.service";
+import { LoginService} from "../../services/api-services/login.service";
 import { Router } from "@angular/router";
 import { LogEntry } from "../../services/api-services/logbook.service";
 import { LogbookService } from "../../services/api-services/logbook.service";
@@ -24,11 +24,13 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   public isAdmin = false;
   public isSignedIn = false;
   public  columnsDef = ['select', 'date', 'pic', 'sic' , 'ac', 'dep', 'dest', 'imc', 'night', 'total'];
-  public dataSource:MatTableDataSource<LogEntry>;
+  public dataSource: MatTableDataSource<LogEntry>;
+  public showEdit = false;
+  public tempLog: LogEntry;
+
   private logsDataRetrievedEvent = new EventEmitter<number> ();
   private selection = new SelectionModel<Element>(true, []);
 
-  
   constructor(private titleService: Title,
               private loginService: LoginService,
               public dialog: MatDialog,
@@ -96,8 +98,8 @@ openLogForm(): void{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sortForDataSource: MatSort;
   @ViewChild('filter') filter: ElementRef;
+
   ngAfterViewInit() {
-    
       this.logService.getLogs()
           .then( data => {
              this.setDataSource(data);
@@ -110,6 +112,10 @@ openLogForm(): void{
   }
 
   setDataSource(data) {
+      for (const i of data) {
+          i.destination = i.destination.toUpperCase();
+          i.departure = i.departure.toUpperCase();
+      }
       this.dataSource = new MatTableDataSource<LogEntry>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource!.sort = this.sortForDataSource;
@@ -169,5 +175,37 @@ openLogForm(): void{
               this.selection = new SelectionModel<Element>(true, []);
 
         }
+    
+
+
+    cleanName(stringIn: string): string {
+      if (stringIn === "undefined") {return ' ';}
+      else {
+        let cleanedString = stringIn.toLowerCase();
+        cleanedString = cleanedString.charAt(0).toUpperCase() + cleanedString.slice(1);
+        return cleanedString;
+      }
     }
-  
+
+    editTableKeyup(log: LogEntry) {
+      this.tempLog = log;
+      this.showEdit = true;
+      console.log(log.departure);
+    }
+
+    editBtnClick() {
+      this.logService.updateLog(this.tempLog._id, this.tempLog)
+          .then(data => {
+              console.log(data);
+              return this.logService.getLogs();
+          })
+          .then( data => {
+              this.setDataSource(data);
+              this.showEdit = false;
+          })
+          .catch(err => {
+              console.log(err);
+          });
+    }
+  }
+

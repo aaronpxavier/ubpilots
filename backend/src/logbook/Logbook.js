@@ -140,4 +140,9 @@ export default class LogBook {
     confirmEntry(id) {
         return this.logbookModel.update({_id:id}, {isConfirmed: true});
     }
+    
+    updateEntry(id, entryJSON) {
+      return this.logbookModel.update({_id: id}, entryJSON)
+    }
+    
 }
