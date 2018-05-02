@@ -10,6 +10,8 @@ import {MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MatD
 import { EventEmitter } from "@angular/core";
 import {SelectionModel} from '@angular/cdk/collections';
 import {DialogBoxComponent} from '../dialogBox/dialogBox.component';
+import{LogbookFormDialogBoxComponent} from '../logbook-form-dialog-box/logbook-form-dialog-box.component'
+
 
 @Component({
   selector: 'app-logbook',
@@ -68,8 +70,19 @@ export class LogbookComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      
     });
   }
+
+openLogForm(): void{
+  let dialogRef = this.dialog.open(LogbookFormDialogBoxComponent, {
+    width: '500px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+});
+}
   ngOnInit() {
       this.footerService.hide();
       this.platFormLocation.onPopState(() => {
@@ -93,7 +106,9 @@ export class LogbookComponent implements OnInit, AfterViewInit {
           })
           .catch(err => {
               console.error(err);
-          });
+          })
+
+         
   }
 
   setDataSource(data) {
@@ -105,6 +120,9 @@ export class LogbookComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource!.sort = this.sortForDataSource;
   }
+    // newBtnClick() {
+    //   this.router.navigateByUrl('/log/form');
+    // }
 
     homeBtnClick() {
       this.router.navigateByUrl('/home');
@@ -137,9 +155,9 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     }
 
     removeSelectedRows() {
-        let i = 0;
+      let i = 0;
         this.dataSource.data.forEach(row => {
-            let rowToDelete = JSON.stringify(this.selection.selected[i]);
+          let rowToDelete = JSON.stringify(this.selection.selected[i]);
             let rowJSON = JSON.parse(rowToDelete);
 
             let id = rowJSON._id;
@@ -152,10 +170,13 @@ export class LogbookComponent implements OnInit, AfterViewInit {
                     this.setDataSource(data);
                 })
                 .catch(err => {console.log(err)});
-            ++i;
-        });
-        this.selection = new SelectionModel<Element>(true, []);
-    }
+                ++i;
+               });
+              this.selection = new SelectionModel<Element>(true, []);
+
+        }
+    
+
 
     cleanName(stringIn: string): string {
       if (stringIn === "undefined") {return ' ';}
@@ -187,3 +208,4 @@ export class LogbookComponent implements OnInit, AfterViewInit {
           });
     }
   }
+

@@ -30,4 +30,7 @@
       <button  *ngIf="showUserMenu" (click)="signOut()" mat-menu-item>Sign Out</button>
     </mat-menu>
   
+    <div [hidden]= "!showAlert" *ngIf =  "!isLoggedIn"class="alert alert-danger">
+      {{errorMessage}}
+    </div>
   </div>  

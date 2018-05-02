@@ -7,7 +7,7 @@
 2. Start ng2 development server. (See README in /frontend)
 
 ## Production Site (Non Tech User)
-[UBPilots Site](https://ubpilots.fltprep.com)
+[UBPilots Site](https://ubpilots.com/)
 
 
 ## Project Description. 
