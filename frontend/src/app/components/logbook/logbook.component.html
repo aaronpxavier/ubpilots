@@ -38,7 +38,7 @@
     </span>
 
     <span *ngIf="isSignedIn" class="done">
-        <button routerLink="/log/form" id="add-button" mat-fab>
+        <button (click) = "openLogForm()" id="add-button" mat-fab>
           <mat-icon>add</mat-icon>
         </button>
     </span>
