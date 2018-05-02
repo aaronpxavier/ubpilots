@@ -77,7 +77,7 @@
         <mat-cell *matCellDef="let log">
             <label *ngIf = "!isAdmin">{{log.departure.toUpperCase()}} </label>
                 <mat-form-field *ngIf = "isAdmin" floatLabel="never">
-                        <input (keyup)="editTableKeyup(log)" matInput placeholder="depart" [value]="log.departure" [(ngModel)]="log.departure">
+                        <input (keyup)="editTableKeyup(log)" matInput placeholder="depart" value="{{log.departure.toUpperCase()}}" [(ngModel)]="log.departure">
                     </mat-form-field>
         </mat-cell>
     </ng-container>
@@ -86,7 +86,7 @@
         <mat-cell *matCellDef="let log">
                 <label *ngIf ="!isAdmin">{{log.destination.toUpperCase()}} </label>
                 <mat-form-field *ngIf = "isAdmin" floatLabel="never">
-                        <input (keyup)="editTableKeyup(log)" matInput placeholder="Destination" [value]="log.destination" [(ngModel)]="log.destination">
+                        <input (keyup)="editTableKeyup(log)" matInput placeholder="Destination" [value]="log.destination.toUpperCase()" [(ngModel)]="log.destination">
                     </mat-form-field>
         </mat-cell>
     </ng-container>

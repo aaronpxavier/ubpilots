@@ -15,15 +15,15 @@ export class AC {
 }
 export class LogEntry  {
   constructor(
-      public pic:Pilot,
-      public sic:Pilot,
+      public pic: Pilot,
+      public sic: Pilot,
       public username: string = '',
       public ac: AC,
       public date: Date,
-      public _id:string,
-      public isConfirmed:boolean,
-      public departure:string,
-      public destination:string,
+      public _id: string,
+      public isConfirmed: boolean,
+      public departure: string,
+      public destination: string,
       public imc: number,
       public night: number,
       public total: number,

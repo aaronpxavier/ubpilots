@@ -85,8 +85,8 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sortForDataSource: MatSort;
   @ViewChild('filter') filter: ElementRef;
+
   ngAfterViewInit() {
-    
       this.logService.getLogs()
           .then( data => {
              this.setDataSource(data);
@@ -97,6 +97,10 @@ export class LogbookComponent implements OnInit, AfterViewInit {
   }
 
   setDataSource(data) {
+      for (const i of data) {
+          i.destination = i.destination.toUpperCase();
+          i.departure = i.departure.toUpperCase();
+      }
       this.dataSource = new MatTableDataSource<LogEntry>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource!.sort = this.sortForDataSource;
@@ -137,7 +141,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
         this.dataSource.data.forEach(row => {
             let rowToDelete = JSON.stringify(this.selection.selected[i]);
             let rowJSON = JSON.parse(rowToDelete);
-            
+
             let id = rowJSON._id;
             this.logService.deleteLog(id)
                 .then(() => {
@@ -152,7 +156,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
         });
         this.selection = new SelectionModel<Element>(true, []);
     }
-    
+
     cleanName(stringIn: string): string {
       if (stringIn === "undefined") {return ' ';}
       else {
@@ -165,6 +169,7 @@ export class LogbookComponent implements OnInit, AfterViewInit {
     editTableKeyup(log: LogEntry) {
       this.tempLog = log;
       this.showEdit = true;
+      console.log(log.departure);
     }
 
     editBtnClick() {
@@ -182,4 +187,3 @@ export class LogbookComponent implements OnInit, AfterViewInit {
           });
     }
   }
-
