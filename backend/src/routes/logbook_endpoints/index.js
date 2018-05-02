@@ -7,6 +7,7 @@ import express from '../../../node_modules/express';
 import Token from '../../login/Token';
 import Logbook from '../../logbook/Logbook';
 import Users from '../../login/Users'
+
 // Variables ------------------------------------------------------------------//
 const router = express.Router();
 let logbook = new Logbook();
@@ -17,7 +18,7 @@ let toLower = (stringIn) => {
   return stringIn.toLowerCase();
 }
 
-let createLogEntry = (req, isConfirmed = false, date = new Date()) => {
+let createLogEntry = (req, isConfirmed = false, setDate = true) => {
     let logBookEntry = logbook.getLogbookEntryJSON();
     logBookEntry.pic = {firstName: toLower(req.body.picFirst), lastName: toLower(req.body.picLast)};
     if(req.body.sicFirst && req.body.sicLast)
@@ -43,7 +44,10 @@ let createLogEntry = (req, isConfirmed = false, date = new Date()) => {
     logBookEntry.takeoffs = req.body.to;
     logBookEntry.landings = req.body.lands;
     logBookEntry.total = req.body.total;
-    logBookEntry.date = date;
+    if(setDate)
+        logBookEntry.date = new Date();
+    else
+        delete logBookEntry.date;
     return logBookEntry;
 }
 
@@ -185,7 +189,7 @@ router.put('/update/:id',(req,res)=> {
             .then(decoded => {
                 if(decoded.isAdmin) {
                     let date = new Date(req.body.year, req.body.month - 1, req.body.day);
-                    return logbook.updateEntry(req.params.id, createLogEntry(req,true,date));
+                    return logbook.updateEntry(req.params.id, createLogEntry(req,true,false));
                 } else {
                     res.json(responseJson);
                 }
