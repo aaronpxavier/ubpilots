@@ -107,6 +107,9 @@ export class LogbookFormDialogBoxComponent implements OnInit {
             this.router.navigateByUrl('/log');
         }).catch(err => console.log(err));
         this.dialogRef.close();
+        if(this.isAdmin === false){
+            alert("Thank you for your submission. Your entry has been sent to an admin for approval.");
+            }
 
   }
 
