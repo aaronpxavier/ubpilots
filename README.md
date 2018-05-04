@@ -41,7 +41,8 @@ flight log data will be stored and retrieved from a mongoDB database.
     
  Prototype: https://youtu.be/kUIHj_HXadQ <br />
  Alpha: https://youtu.be/ZYCBLVYwpwQ <br />
- Beta: https://youtu.be/LZ4thBqFBZw
+ Beta: https://youtu.be/LZ4thBqFBZw <br />
+ Official Release: https://youtu.be/D-XqftUMDrk
 
     
     
