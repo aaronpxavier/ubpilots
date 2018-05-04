@@ -13,7 +13,8 @@
  You will have to signout as regular user and sign back in as admin to confirm the logs and see the submission on the table.
  The option to confirm flight log submissions will be in the admin menu which will be available through a drop down on the nav bar once you login with the appropriate credentials.
  Admin users also have the option to delete or edit log entries. 
- Anyone testing the app should reach out to us on gitter for the admin credentials.
+
+**Anyone testing the app should reach out to us on gitter for the admin credentials.**
 
 ## Production Site (Non Tech User)
 [UBPilots Site](https://ubpilots.com/)
