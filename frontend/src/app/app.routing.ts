@@ -4,7 +4,6 @@ import {ModuleWithProviders} from '@angular/core';
 import {LoginComponent} from "./components/login/login.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {LogbookComponent} from "./components/logbook/logbook.component";
-import {LogbookFormComponent} from "./components/logbook-form/logbook-form.component";
 import {HomeComponent} from "./components/home/home.component";
 import {ErrorComponent} from "./components/error/error.component";
 
@@ -22,10 +21,7 @@ const routes: Routes = [
         path: 'log',
         component: LogbookComponent
     },
-    {
-        path: 'log/form',
-        component: LogbookFormComponent
-    },
+    
     {
         path: 'home',
         pathMatch: 'full',

@@ -6,8 +6,18 @@
 1. Start node/express development server. (See README in /backend)
 2. Start ng2 development server. (See README in /frontend)
 
+## Special notes for testing
+ Admin and regular users have different privilges on the site. 
+ Flight log submissions by admin are confirmed right away and will immediately apear on the flight log table. 
+ If a normal user makes a flight log submission it has to be confirmed by an admin before it apears on the flight logs table. 
+ You will have to signout as regular user and sign back in as admin to confirm the logs and see the submission on the table.
+ The option to confirm flight log submissions will be in the admin menu which will be available through a drop down on the nav bar once you login with the appropriate credentials.
+ Admin users also have the option to delete or edit log entries. 
+
+**Anyone testing the app should reach out to us on gitter for the admin credentials.**
+
 ## Production Site (Non Tech User)
-[UBPilots Site](https://ubpilots.fltprep.com)
+[UBPilots Site](https://ubpilots.com/)
 
 
 ## Project Description. 
@@ -29,8 +39,11 @@ flight log data will be stored and retrieved from a mongoDB database.
      Admin has ability to change content of page through a web application interface.
     </details>
     
- Prototype: https://youtu.be/kUIHj_HXadQ
- Alpha: https://youtu.be/ZYCBLVYwpwQ
+ Prototype: https://youtu.be/kUIHj_HXadQ <br />
+ Alpha: https://youtu.be/ZYCBLVYwpwQ <br />
+ Beta: https://youtu.be/LZ4thBqFBZw <br />
+ Official Release: https://youtu.be/D-XqftUMDrk
+
     
     
 

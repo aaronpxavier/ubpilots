@@ -1,36 +1,6 @@
-<!--<h2 id="table-title" class="center-align"> Flight Logs </h2>-->
-<!--<div class="container">-->
-
-    <!--<table id = "logsTable" class="table-hover table-" cellspacing="10" width="100%">-->
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<th class="center-align">Date</th>-->
-            <!--<th class="center-align">Pic</th>-->
-            <!--<th class="center-align">A/C</th>-->
-            <!--<th class="center-align">Dep</th>-->
-            <!--<th class="center-align">Dest</th>-->
-            <!--<th class="center-align">T/O</th>-->
-            <!--<th class="center-align">Lan-<br>dings</th>-->
-            <!--<th class="center-align">Total<br>Time</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr *ngFor="let log of logs">-->
-            <!--<td class="center-align">{{formatDate(log.date)}}</td>-->
-            <!--<td class="center-align">{{log.pic.firstName}} {{log.pic.lastName}}</td>-->
-            <!--<td class="center-align">{{log.ac.abreviation}}</td>-->
-            <!--<td class="center-align">{{log.departure}}</td>-->
-            <!--<td class="center-align">{{log.destination}}</td>-->
-            <!--<td class="center-align">{{log.takeoffs}}</td>-->
-            <!--<td class="center-align">{{log.landings}}</td>-->
-            <!--<td class="center-align">{{log.total}}</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-<!--</div>-->
 
 <mat-card>
-                     
+  
     <span class="done">
         <button (click)="homeBtnClick()" id="home-button" mat-fab>
           <mat-icon>home</mat-icon>
@@ -38,7 +8,7 @@
     </span>
 
     <span *ngIf="isSignedIn" class="done">
-        <button routerLink="/log/form" id="add-button" mat-fab>
+        <button (click) = "openLogForm()" id="add-button" mat-fab>
           <mat-icon>add</mat-icon>
         </button>
     </span>
@@ -49,6 +19,11 @@
         </button>
     </span>
 
+    <span *ngIf = "showEdit" class = "done">
+        <button (click) = "editBtnClick()" id = "edit-button" mat-fab>
+        <mat-icon>mode_edit</mat-icon>
+        </button>
+    </span>
 
 </mat-card>
 
@@ -62,13 +37,13 @@
     <mat-table #table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="select">
                     <mat-header-cell *matHeaderCellDef>
-                      <mat-checkbox (change)="$event ? masterToggle() : null"
+                        <mat-checkbox *ngIf = "isAdmin" (change)="$event ? masterToggle() : null"
                                     [checked]="selection.hasValue() && isAllSelected()"
                                     [indeterminate]="selection.hasValue() && !isAllSelected()">
                       </mat-checkbox>
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row">
-                      <mat-checkbox (click)="$event.stopPropagation()"
+                        <mat-checkbox *ngIf = "isAdmin" (click)="$event.stopPropagation()"
                                     (change)="$event ? selection.toggle(row) : null"
                                     [checked]="selection.isSelected(row)">
                       </mat-checkbox>
@@ -80,48 +55,79 @@
                     </ng-container>
     <ng-container matColumnDef="pic">
         <mat-header-cell *matHeaderCellDef mat-sort-header> PIC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.pic.firstName}} {{log.pic.lastName}} </mat-cell>
+        <mat-cell *matCellDef="let log"> {{cleanName(log.pic.firstName)}} {{cleanName(log.pic.lastName)}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="sic">
         <mat-header-cell *matHeaderCellDef> SIC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.sic.firstName}}  {{log.sic.lastName}} </mat-cell>
+        <mat-cell *matCellDef="let log"> {{cleanName(log.sic.firstName)}}  {{cleanName(log.sic.lastName)}}
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="ac">
-        <mat-header-cell *matHeaderCellDef> AC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.ac.abreviation}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Aircraft </mat-header-cell>
+        <mat-cell *matCellDef="let log">
+                <label *ngIf = "!isAdmin">{{log.ac.abreviation}} </label>
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input (keyup)="editTableKeyup(log)" matInput placeholder="AC" [value]="log.ac.abreviation" [(ngModel)]="log.ac.abreviation">
+                    </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="dep">
-        <mat-header-cell *matHeaderCellDef> Dep </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.departure}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Departure </mat-header-cell>
+        <mat-cell *matCellDef="let log">
+            <label *ngIf = "!isAdmin">{{log.departure.toUpperCase()}} </label>
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input (keyup)="editTableKeyup(log)" matInput placeholder="depart" value="{{log.departure.toUpperCase()}}" [(ngModel)]="log.departure">
+                    </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="dest">
-        <mat-header-cell *matHeaderCellDef> Dest </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.destination}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Destination </mat-header-cell>
+        <mat-cell *matCellDef="let log">
+                <label *ngIf ="!isAdmin">{{log.destination.toUpperCase()}} </label>
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input (keyup)="editTableKeyup(log)" matInput placeholder="Destination" [value]="log.destination.toUpperCase()" [(ngModel)]="log.destination">
+                    </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="imc">
         <mat-header-cell *matHeaderCellDef> IMC </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.imc}} </mat-cell>
+        <mat-cell *matCellDef="let log">
+                <label *ngIf = "!isAdmin">{{log.imc}} </label>
+                <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input (keyup)="editTableKeyup(log)" matInput placeholder="IMC" [value]="log.imc" [(ngModel)]="log.imc">
+                    </mat-form-field>
+             </mat-cell>
     </ng-container>
     <ng-container matColumnDef="night">
         <mat-header-cell *matHeaderCellDef> Night </mat-header-cell>
-        <mat-cell *matCellDef="let log"> {{log.night}} </mat-cell>
+        <mat-cell *matCellDef="let log">
+                <label *ngIf = "!isAdmin">{{log.night}} </label>
+            <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                <input (keyup)="editTableKeyup(log)" matInput placeholder="Night" [value]="log.night" [(ngModel)]="log.night">
+            </mat-form-field>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="total">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
-            <mat-cell *matCellDef="let log"> {{log.total}} </mat-cell>
+            <mat-cell *matCellDef="let log">
+                    <label *ngIf = "!isAdmin">{{log.total}} </label>
+                    <mat-form-field *ngIf = "isAdmin" floatLabel="never">
+                        <input (keyup)="editTableKeyup(log)" matInput placeholder="Total" [value]="log.total" [(ngModel)]="log.total">
+                    </mat-form-field>
+            </mat-cell>
         </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsDef"></mat-header-row>
-    <mat-row *matRowDef="let myRowData; columns: columnsDef"></mat-row>
+    <mat-row   *matRowDef="let myRowData; columns: columnsDef" (dblclick) = "openDialog(myRowData)">
+    </mat-row>
     
     </mat-table>
     <mat-paginator
             #paginator
-
-                    [length]="100"
-                   [pageSize]="10"
-                   [pageSizeOptions]="[5, 10, 25, 100]">
+            [length]="100"
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
    
 </div>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import { HideNavMenuService } from '../../services/parent_comp_controls/hide-nav-menu.service';
 import { HideFooterService } from '../../services/parent_comp_controls/hide-footer-service.service';
 import { LoginService } from '../../services/api-services/login.service';
 import {Location, PlatformLocation} from '@angular/common';
+import {LoginNavService} from "../../services/navigation-services/login-nav.service";
 
 @Component({
   selector: 'app-login',
@@ -19,14 +20,16 @@ export class LoginComponent implements OnInit {
     public userName: string;
     public password: string;
     public errorMessage: string;
-
+    private prevPage: string;
     constructor(private titleService: Title,
                 public menuService: HideNavMenuService,
                 public footerService: HideFooterService,
                 public loginService: LoginService,
+                private route: ActivatedRoute,
                 private router: Router,
                 private location: Location,
-                private platformLocation: PlatformLocation) {
+                private platformLocation: PlatformLocation,
+                private loginNavService: LoginNavService) {
 
         this.titleService.setTitle("Login");
         this.setWaitingState();
@@ -35,7 +38,7 @@ export class LoginComponent implements OnInit {
                 if (isValid) {
                     console.log('isValid token in local');
 
-                    location.back();
+                    this.exitFromLogin();
                 } else {
                     this.setDefaultState();
                 }
@@ -49,9 +52,23 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.platformLocation.onPopState(() => {
+            this.loginNavService.deletePrev();
             this.menuService.show();
             this.footerService.show();
         });
+        this.prevPage = this.loginNavService.getPrev() || '/';
+    }
+
+    exitFromLogin() {
+        if(this.prevPage) {
+            this.loginNavService.deletePrev();
+            this.menuService.show();
+            this.footerService.show();
+            this.router.navigateByUrl(this.prevPage);
+        }
+        else {
+            this.router.navigateByUrl('/');
+        }
     }
 
     setDefaultState () {
@@ -100,7 +117,7 @@ export class LoginComponent implements OnInit {
         this.loginService.getToken(this.userName, this.password)
             .then(() => {
                 this.loginService.signInEventTrigger();
-                this.location.back();
+                this.exitFromLogin()
             })
             .catch((err) => {
                 this.setLogInFailedState();
@@ -110,5 +127,6 @@ export class LoginComponent implements OnInit {
     signOut() {
         this.setDefaultState();
         this.loginService.signOut();
+        this.router.navigateByUrl('/home');
     }
 }

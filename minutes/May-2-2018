@@ -1,0 +1,34 @@
+Team Meeting 
+5 / 2 / 2018
+
+
+Attendance:
+•	Felipe Canales
+•	Arun Mavumkal
+•	Derrick Delacruz
+
+Summary of Meeting:
+
+•	Discussed what is needed to be done for the final release
+• Add on features for future - weather API, forgot password, email validation
+• 
+
+Completed Since Last Meeting:
+
+•	Derrick Dela Cruz - E-board static page
+•	Felipe Canales - Redesigned logbook and navbar through Frontend work.
+•	Arun Mavumkal -  Backend work. Implemented delete and edit function for admins in the logbook.
+
+
+Tasks to Be Completed Before Next Meeting:
+
+•	Felipe Canales – Frontend - implement beta test feature
+•	Arun Mavumkal – Backend - implement weather API
+•	Derrick Dela Cruz - Frontend - add units to logbook
+
+
+Task Descriptions:
+
+•	Arun Mavumkal – Implement weather API feature. 
+•	Felipe Canales  - implement beta test feature
+•	Derrick Dela Cruz – edit logbook to make it have units
