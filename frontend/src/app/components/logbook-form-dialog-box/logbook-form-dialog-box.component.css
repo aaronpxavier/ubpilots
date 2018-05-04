@@ -1,0 +1,57 @@
+mat-card-title[name = "header"]{
+    color: #005bbb;
+    text-align: center;
+    padding-left: 100px;
+    padding-top: 10px;
+    font-size: 30px;
+}
+
+.cancelation{
+    color: #005bbb;
+    padding-left: 85px;
+    padding-bottom: 50px;
+}
+
+button[name = "submitButton"]{
+    color: #005bbb;
+    position: relative;
+    left: 85%;
+}
+
+label[name = "starLabel"]{
+    color: red;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+
+  #submit-btn{
+    color: #005bbb;
+}
+
+.block{
+    height: 550px;
+}
+
+.mat-dialog-container {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.mat-dialog-container > * {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-dialog-content {
+    max-height: inherit !important;
+}
+
+.mat-dialog-actions {
+    display: block !important;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    padding: 12px 0 0 !important;
+
+}

@@ -1,0 +1,34 @@
+Team Meeting 
+4 / 18 / 2018
+
+
+Attendance:
+•	Felipe Canales
+•	Derrick Dela Cruz
+•	Arun Mavumkal
+
+Summary of Meeting:
+
+•	Discussed what is needed to be done for the final release
+• Discussed bugs
+• Add on features
+
+Completed Since Last Meeting:
+
+•	Derrick Dela Cruz - Essay for grade make up
+•	Felipe Canales - Frontend work. Added checkboxes to logbook, sorting, modifications to frontend
+•	Arun Mavumkal -  Modified login endpoints, created sign up endpoints, confirmation page, delete endpoints
+
+
+Tasks to Be Completed Before Next Meeting:
+
+•	Felipe Canales – Modify logbook entry field validations. Pop up for editing a log entry for admins
+•	Arun Mavumkal –  Delete functionality for logbook page. Make edit feature functional
+•	Derrick Dela Cruz - Acronyms for "pilot language" to plain english
+
+
+Task Descriptions:
+
+•	Arun Mavumkal – Add functionality to the delete button/edit fields for admin's logbook
+•	Felipe Canales  - When an admins click on edit button, have text fields pop up for them to edit
+•	Derrick Dela Cruz – Acronyms for "pilot language" to plain english

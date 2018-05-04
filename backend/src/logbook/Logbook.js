@@ -105,6 +105,10 @@ export default class LogBook {
         return this.logbookModel.find({});
     }
 
+    getAllConfirmedEntries() {
+        return this.logbookModel.find({isConfirmed: true});
+    }
+
     getEntriesFirstLast(first, last) {
         return this.logbookModel.find( { $or: [ {pic: {firstName: first, lastName: last}}, {sic: {firstName: first, lastName: last}} ]});
     }
@@ -114,10 +118,31 @@ export default class LogBook {
     }
 
     deleteEntry(id) {
-        return this.logbookModel.remove({_id:id});
+        return new Promise ((resolve, reject) => {
+            this.logbookModel.findOne({_id: id})
+                .then((doc) => {
+                    if (doc) {
+                        console.log(doc);
+                        return this.logbookModel.remove({_id: id});
+                    } else {
+                        resolve(false);
+                    }
+                })
+                .then(() => {
+                    resolve(true);
+                })
+                .catch ((err) => {
+                    reject(err);
+                })
+        });
     }
 
     confirmEntry(id) {
         return this.logbookModel.update({_id:id}, {isConfirmed: true});
     }
+    
+    updateEntry(id, entryJSON) {
+      return this.logbookModel.update({_id: id}, entryJSON)
+    }
+    
 }
