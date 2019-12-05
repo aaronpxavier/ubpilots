@@ -1,6 +1,5 @@
 # UBPA Web Application
 
-[![Gitter chat](https://badges.gitter.im/USER/REPO.png)](https://gitter.im/UB-Pilots-Association-Dev-Team "Gitter chat")
 
 ## Setup 
 1. Start node/express development server. (See README in /backend)
@@ -14,7 +13,6 @@
  The option to confirm flight log submissions will be in the admin menu which will be available through a drop down on the nav bar once you login with the appropriate credentials.
  Admin users also have the option to delete or edit log entries. 
 
-**Anyone testing the app should reach out to us on gitter for the admin credentials.**
 
 ## Production Site (Non Tech User)
 [UBPilots Site](https://ubpilots.com/)
